@@ -3,7 +3,6 @@ import { useColorScheme } from "@/components/useColorScheme";
 import { Colors } from "@/constants/Colors";
 import { Link, Tabs } from "expo-router";
 import { SymbolView } from "expo-symbols";
-import React from "react";
 import { Pressable } from "react-native";
 
 const TabLayout = () => {

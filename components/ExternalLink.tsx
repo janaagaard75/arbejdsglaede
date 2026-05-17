@@ -1,9 +1,9 @@
 import { Link } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
-import React from "react";
+import { ComponentProps } from "react";
 
 export const ExternalLink = (
-  props: Omit<React.ComponentProps<typeof Link>, "href"> & { href: string },
+  props: Omit<ComponentProps<typeof Link>, "href"> & { href: string },
 ) => {
   return (
     <Link
