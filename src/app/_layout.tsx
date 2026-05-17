@@ -1,4 +1,4 @@
-import { useColorScheme } from "@/src/components/useColorScheme";
+import { useColorScheme } from "@/src/useColorScheme";
 import {
   DarkTheme,
   DefaultTheme,
