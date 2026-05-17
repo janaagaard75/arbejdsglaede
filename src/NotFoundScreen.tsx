@@ -1,6 +1,6 @@
-import { Text, View } from "@/src/Themed";
 import { Link, Stack } from "expo-router";
 import { StyleSheet } from "react-native";
+import { Text, View } from "./Themed";
 
 export const NotFoundScreen = () => {
   return (

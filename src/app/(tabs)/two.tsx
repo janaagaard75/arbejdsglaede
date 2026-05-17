@@ -1,3 +1,3 @@
-import { TabTwoScreen } from "@/src/TabTwoScreen";
+import { TabTwoScreen } from "../../TabTwoScreen";
 
 export default TabTwoScreen;

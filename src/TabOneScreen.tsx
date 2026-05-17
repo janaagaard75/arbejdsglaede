@@ -1,6 +1,6 @@
-import { EditScreenInfo } from "@/src/EditScreenInfo";
-import { Text, View } from "@/src/Themed";
 import { StyleSheet } from "react-native";
+import { EditScreenInfo } from "./EditScreenInfo";
+import { Text, View } from "./Themed";
 
 export const TabOneScreen = () => {
   return (

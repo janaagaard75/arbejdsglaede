@@ -1,9 +1,9 @@
-import { Colors } from "@/src/Colors";
-import { useClientOnlyValue } from "@/src/useClientOnlyValue";
-import { useColorScheme } from "@/src/useColorScheme";
 import { Link, Tabs } from "expo-router";
 import { SymbolView } from "expo-symbols";
 import { Pressable } from "react-native";
+import { Colors } from "../../Colors";
+import { useClientOnlyValue } from "../../useClientOnlyValue";
+import { useColorScheme } from "../../useColorScheme";
 
 const TabLayout = () => {
   const colorScheme = useColorScheme();

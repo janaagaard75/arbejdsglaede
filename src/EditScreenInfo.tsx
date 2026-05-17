@@ -1,5 +1,5 @@
-import { Colors } from "@/src/Colors";
 import { StyleSheet } from "react-native";
+import { Colors } from "./Colors";
 import { ExternalLink } from "./ExternalLink";
 import { MonoText } from "./StyledText";
 import { Text, View } from "./Themed";
