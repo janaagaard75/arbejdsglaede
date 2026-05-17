@@ -1,4 +1,4 @@
-import { useColorScheme } from "@/components/useColorScheme";
+import { useColorScheme } from "@/src/components/useColorScheme";
 import {
   DarkTheme,
   DefaultTheme,
@@ -25,7 +25,7 @@ SplashScreen.preventAutoHideAsync();
 
 const RootLayout = () => {
   const [loaded, error] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    SpaceMono: require("../../assets/fonts/SpaceMono-Regular.ttf"),
   });
 
   // Expo Router uses Error Boundaries to catch errors in the navigation tree.

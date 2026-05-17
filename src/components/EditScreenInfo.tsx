@@ -1,4 +1,4 @@
-import { Colors } from "@/constants/Colors";
+import { Colors } from "@/src/constants/Colors";
 import { StyleSheet } from "react-native";
 import { ExternalLink } from "./ExternalLink";
 import { MonoText } from "./StyledText";

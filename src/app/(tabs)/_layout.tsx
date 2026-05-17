@@ -1,6 +1,6 @@
-import { useClientOnlyValue } from "@/components/useClientOnlyValue";
-import { useColorScheme } from "@/components/useColorScheme";
-import { Colors } from "@/constants/Colors";
+import { useClientOnlyValue } from "@/src/components/useClientOnlyValue";
+import { useColorScheme } from "@/src/components/useColorScheme";
+import { Colors } from "@/src/constants/Colors";
 import { Link, Tabs } from "expo-router";
 import { SymbolView } from "expo-symbols";
 import { Pressable } from "react-native";
