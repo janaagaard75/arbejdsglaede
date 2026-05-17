@@ -1,6 +1,6 @@
 import { Text, TextProps } from "./Themed";
 
-export function MonoText(props: TextProps) {
+export const MonoText = (props: TextProps) => {
   return (
     <Text
       {...props}
@@ -12,4 +12,4 @@ export function MonoText(props: TextProps) {
       ]}
     />
   );
-}
+};

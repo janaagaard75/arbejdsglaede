@@ -1,8 +1,8 @@
-import EditScreenInfo from "@/components/EditScreenInfo";
+import { EditScreenInfo } from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
 import { StyleSheet } from "react-native";
 
-export default function TabTwoScreen() {
+const TabTwoScreen = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab Two</Text>
@@ -14,7 +14,7 @@ export default function TabTwoScreen() {
       <EditScreenInfo path="app/(tabs)/two.tsx" />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -32,3 +32,5 @@ const styles = StyleSheet.create({
     width: "80%",
   },
 });
+
+export default TabTwoScreen;
