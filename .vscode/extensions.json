@@ -1,1 +1,11 @@
-{ "recommendations": ["expo.vscode-expo-tools"] }
+{
+  "recommendations": [
+    "DavidAnson.vscode-markdownlint",
+    "dbaeumer.vscode-eslint",
+    "EditorConfig.EditorConfig",
+    "esbenp.prettier-vscode",
+    "expo.vscode-expo-tools",
+    "streetsidesoftware.code-spell-checker-danish",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}
