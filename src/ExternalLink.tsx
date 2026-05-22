@@ -1,21 +1,8 @@
-import { Link } from "expo-router";
-import { openBrowserAsync } from "expo-web-browser";
+import { Href, Link } from "expo-router";
 import { ComponentProps } from "react";
 
 export const ExternalLink = (
-  props: Omit<ComponentProps<typeof Link>, "href"> & { href: string },
+  props: Omit<ComponentProps<typeof Link>, "href"> & { href: Href },
 ) => {
-  return (
-    <Link
-      target="_blank"
-      {...props}
-      href={props.href}
-      onPress={(e) => {
-        // Prevent the default behavior of linking to the default browser on native.
-        e.preventDefault();
-        // Open the link in an in-app browser.
-        openBrowserAsync(props.href as string);
-      }}
-    />
-  );
+  return <Link target="_blank" {...props} href={props.href} />;
 };
