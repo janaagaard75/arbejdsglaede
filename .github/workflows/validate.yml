@@ -1,0 +1,35 @@
+name: "Validate the code"
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  validate-mobile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install Yarn
+        run: corepack enable
+
+      - uses: actions/setup-node@v6
+        with:
+          cache-dependency-path: yarn.lock
+          cache: "yarn"
+          node-version-file: .nvmrc
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Generate typed routes
+        run: yarn generate-typed-routes
+
+      - name: Check types
+        run: yarn check-types
+
+      - name: Check formatting
+        run: yarn check-formatting
