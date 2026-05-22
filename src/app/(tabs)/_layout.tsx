@@ -36,7 +36,7 @@ const TabLayout = () => {
                     name={{
                       ios: "info.circle",
                       android: "info",
-                          }}
+                    }}
                     size={25}
                     tintColor={Colors[colorScheme].text}
                     style={{
