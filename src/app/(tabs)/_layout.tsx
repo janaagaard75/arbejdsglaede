@@ -2,7 +2,6 @@ import { Link, Tabs } from "expo-router";
 import { SymbolView } from "expo-symbols";
 import { Pressable } from "react-native";
 import { Colors } from "../../Colors";
-import { useClientOnlyValue } from "../../useClientOnlyValue";
 import { useColorScheme } from "../../useColorScheme";
 
 const TabLayout = () => {
@@ -12,8 +11,7 @@ const TabLayout = () => {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
-        // Disable the static render of the header on web to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
+        headerShown: true,
       }}
     >
       <Tabs.Screen
@@ -25,7 +23,6 @@ const TabLayout = () => {
               name={{
                 ios: "chevron.left.forwardslash.chevron.right",
                 android: "code",
-                web: "code",
               }}
               tintColor={color}
               size={28}
@@ -39,8 +36,7 @@ const TabLayout = () => {
                     name={{
                       ios: "info.circle",
                       android: "info",
-                      web: "info",
-                    }}
+                          }}
                     size={25}
                     tintColor={Colors[colorScheme].text}
                     style={{
@@ -62,7 +58,6 @@ const TabLayout = () => {
               name={{
                 ios: "chevron.left.forwardslash.chevron.right",
                 android: "code",
-                web: "code",
               }}
               tintColor={color}
               size={28}

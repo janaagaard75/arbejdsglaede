@@ -3,10 +3,18 @@
 # dependencies
 node_modules/
 
+# Yarn, without Zero-Install
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
 # Expo
 .expo/
 dist/
-web-build/
 expo-env.d.ts
 
 # Native
