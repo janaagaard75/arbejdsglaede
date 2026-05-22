@@ -30,7 +30,7 @@ const TabLayout = () => {
           ),
           headerRight: () => (
             <Link href="/modal" asChild>
-              <Pressable style={{ marginRight: 15 }}>
+              <Pressable className="mr-3.75">
                 {({ pressed }) => (
                   <SymbolView
                     name={{
