@@ -9,7 +9,7 @@ const config: ExpoConfig = {
   scheme: "arbejdsglaede",
   userInterfaceStyle: "automatic",
   ios: {
-    supportsTablet: true,
+    supportsTablet: false,
   },
   android: {
     adaptiveIcon: {
