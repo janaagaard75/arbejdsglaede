@@ -9,7 +9,6 @@ export const ExternalLink = (
     <Link
       target="_blank"
       {...props}
-      // @ts-expect-error: We are abusing the link component here to link to external URLs which do of course not match any of the internal routes of the app.
       href={props.href}
       onPress={(e) => {
         // Prevent the default behavior of linking to the default browser on native.
