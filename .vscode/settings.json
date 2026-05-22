@@ -1,6 +1,6 @@
 {
   "cSpell.language": "en,da",
-  "cSpell.words": ["arbejdsglaede", "claude", "worklets"],
+  "cSpell.words": ["arbejdsglaede", "claude", "nvmrc", "worklets"],
   "editor.codeActionsOnSave": {
     "source.organizeImports": "always",
     "source.sortMembers": "explicit"

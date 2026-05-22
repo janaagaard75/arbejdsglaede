@@ -1,12 +1,14 @@
 {
   "name": "arbejdsglaede",
   "main": "expo-router/entry",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "private": true,
   "packageManager": "yarn@4.15.0",
   "scripts": {
     "android": "expo start --android",
+    "check-formatting": "prettier --check .",
     "check-types": "tsc",
+    "generate-typed-routes": "yarn expo customize tsconfig.json",
     "ios": "expo start --ios",
     "start": "expo start"
   },
