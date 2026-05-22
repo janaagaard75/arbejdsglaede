@@ -48,7 +48,7 @@ config.resolver.resolveRequest = (context, moduleName, platform) => {
         mainFields: ["module"],
       },
       moduleName,
-      platform
+      platform,
     );
   }
   return context.resolveRequest(context, moduleName, platform);
@@ -104,7 +104,7 @@ export class ReactNativeCanvas {
 
 export const makeWebGPURenderer = (
   context: GPUCanvasContext,
-  { antialias = true }: { antialias?: boolean } = {}
+  { antialias = true }: { antialias?: boolean } = {},
 ) =>
   new THREE.WebGPURenderer({
     antialias,
@@ -218,7 +218,12 @@ export const FiberCanvas = ({
     };
   });
 
-  return <Canvas ref={canvasRef} style={style} />;
+  return (
+    <Canvas
+      ref={canvasRef}
+      style={style}
+    />
+  );
 };
 ```
 
@@ -258,7 +263,10 @@ function Scene() {
   return (
     <>
       <ambientLight intensity={0.5} />
-      <directionalLight position={[10, 10, 5]} intensity={1} />
+      <directionalLight
+        position={[10, 10, 5]}
+        intensity={1}
+      />
       <RotatingBox />
     </>
   );
@@ -406,7 +414,11 @@ function Particles({ count = 500 }) {
           args={[positions.current, 3]}
         />
       </bufferGeometry>
-      <pointsMaterial color="#ffffff" size={0.2} sizeAttenuation />
+      <pointsMaterial
+        color="#ffffff"
+        size={0.2}
+        sizeAttenuation
+      />
     </points>
   );
 }
@@ -425,7 +437,10 @@ function Scene() {
   const [OrbitControls, events] = useControls();
 
   return (
-    <View style={{ flex: 1 }} {...events}>
+    <View
+      style={{ flex: 1 }}
+      {...events}
+    >
       <FiberCanvas style={{ flex: 1 }}>
         <OrbitControls />
         {/* Your 3D content */}

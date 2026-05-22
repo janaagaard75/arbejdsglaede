@@ -170,7 +170,10 @@ interface Props {
 
 export default function SyntaxHighlight({ code, language }: Props) {
   return (
-    <SyntaxHighlighter language={language} style={docco}>
+    <SyntaxHighlighter
+      language={language}
+      style={docco}
+    >
       {code}
     </SyntaxHighlighter>
   );
@@ -197,12 +200,20 @@ interface Props {
 
 export default function Chart({ data }: Props) {
   return (
-    <LineChart width={400} height={300} data={data}>
+    <LineChart
+      width={400}
+      height={300}
+      data={data}
+    >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
       <YAxis />
       <Tooltip />
-      <Line type="monotone" dataKey="value" stroke="#8884d8" />
+      <Line
+        type="monotone"
+        dataKey="value"
+        stroke="#8884d8"
+      />
     </LineChart>
   );
 }
@@ -307,7 +318,12 @@ export default function Screen() {
   const { id } = useLocalSearchParams();
   const pathname = usePathname();
 
-  return <DOMComponent id={id as string} pathname={pathname} />;
+  return (
+    <DOMComponent
+      id={id as string}
+      pathname={pathname}
+    />
+  );
 }
 ```
 
@@ -364,7 +380,12 @@ export default function Component({
 }: {
   dom: import("expo/dom").DOMProps;
 }) {
-  return <img src={logo} alt="Logo" />;
+  return (
+    <img
+      src={logo}
+      alt="Logo"
+    />
+  );
 }
 ```
 
@@ -383,7 +404,10 @@ export default function HomeScreen() {
     <View style={{ flex: 1 }}>
       <Text>Native content above</Text>
 
-      <WebChart data={[10, 20, 30, 40, 50]} dom={{ style: { height: 300 } }} />
+      <WebChart
+        data={[10, 20, 30, 40, 50]}
+        dom={{ style: { height: 300 } }}
+      />
 
       <CodeBlock
         code="const x = 1;"

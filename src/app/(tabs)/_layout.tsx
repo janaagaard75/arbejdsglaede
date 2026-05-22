@@ -29,7 +29,10 @@ const TabLayout = () => {
             />
           ),
           headerRight: () => (
-            <Link href="/modal" asChild>
+            <Link
+              href="/modal"
+              asChild
+            >
               <Pressable className="mr-3.75">
                 {({ pressed }) => (
                   <SymbolView

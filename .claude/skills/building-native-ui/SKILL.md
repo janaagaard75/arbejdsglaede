@@ -15,7 +15,7 @@ Consult these resources as needed:
 references/
   animations.md          Reanimated: entering, exiting, layout, scroll-driven, gestures
   controls.md            Native iOS: Switch, Slider, SegmentedControl, DateTimePicker, Picker
-  form-sheet.md          Form sheets in expo-router: configuration, footers and background interaction. 
+  form-sheet.md          Form sheets in expo-router: configuration, footers and background interaction.
   gradients.md           CSS gradients via experimental_backgroundImage (New Arch only)
   icons.md               SF Symbols via expo-image (sf: source), names, animations, weights
   media.md               Camera, audio, video, and file saving
@@ -180,7 +180,10 @@ Add long press context menus to Link components:
 ```tsx
 import { Link } from "expo-router";
 
-<Link href="/settings" asChild>
+<Link
+  href="/settings"
+  asChild
+>
   <Link.Trigger>
     <Pressable>
       <Card />
@@ -198,8 +201,15 @@ import { Link } from "expo-router";
       destructive
       onPress={handleBlockPress}
     />
-    <Link.Menu title="More" icon="ellipsis">
-      <Link.MenuAction title="Copy" icon="doc.on.doc" onPress={() => {}} />
+    <Link.Menu
+      title="More"
+      icon="ellipsis"
+    >
+      <Link.MenuAction
+        title="Copy"
+        icon="doc.on.doc"
+        onPress={() => {}}
+      />
       <Link.MenuAction
         title="Delete"
         icon="trash"
@@ -233,7 +243,10 @@ Link preview can be used with context menus.
 Present a screen as a modal:
 
 ```tsx
-<Stack.Screen name="modal" options={{ presentation: "modal" }} />
+<Stack.Screen
+  name="modal"
+  options={{ presentation: "modal" }}
+/>
 ```
 
 Prefer this to building a custom modal component.
@@ -282,7 +295,10 @@ export default function Layout() {
           <Icon sf="list.dash" />
           <Label>Items</Label>
         </NativeTabs.Trigger>
-        <NativeTabs.Trigger name="(search)" role="search" />
+        <NativeTabs.Trigger
+          name="(search)"
+          role="search"
+        />
       </NativeTabs>
     </Theme>
   );
@@ -313,8 +329,14 @@ export default function Layout({ segment }) {
         headerBackButtonDisplayMode: "minimal",
       }}
     >
-      <Stack.Screen name={screen} options={{ title: titles[screen] }} />
-      <Stack.Screen name="i/[id]" options={{ headerLargeTitle: false }} />
+      <Stack.Screen
+        name={screen}
+        options={{ title: titles[screen] }}
+      />
+      <Stack.Screen
+        name="i/[id]"
+        options={{ headerLargeTitle: false }}
+      />
     </Stack>
   );
 }

@@ -25,15 +25,24 @@ export default function TabLayout() {
   return (
     <NativeTabs minimizeBehavior="onScrollDown">
       <NativeTabs.Trigger name="index">
-        <NativeTabs.Trigger.Icon sf="house.fill" md="home" />
+        <NativeTabs.Trigger.Icon
+          sf="house.fill"
+          md="home"
+        />
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Badge>9+</NativeTabs.Trigger.Badge>
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="settings">
-        <NativeTabs.Trigger.Icon sf="gear" md="settings" />
+        <NativeTabs.Trigger.Icon
+          sf="gear"
+          md="settings"
+        />
         <NativeTabs.Trigger.Label>Settings</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="(search)" role="search">
+      <NativeTabs.Trigger
+        name="(search)"
+        role="search"
+      >
         <NativeTabs.Trigger.Label>Search</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
     </NativeTabs>
@@ -107,7 +116,10 @@ The tab bar automatically adopts liquid glass appearance on iOS 26+.
 ### Search Tab
 
 ```tsx
-<NativeTabs.Trigger name="(search)" role="search">
+<NativeTabs.Trigger
+  name="(search)"
+  role="search"
+>
   <NativeTabs.Trigger.Label>Search</NativeTabs.Trigger.Label>
 </NativeTabs.Trigger>
 ```
@@ -152,9 +164,15 @@ const adaptiveBlue = Platform.select({
 ## Conditional Tabs
 
 ```tsx
-<NativeTabs.Trigger name="admin" hidden={!isAdmin}>
+<NativeTabs.Trigger
+  name="admin"
+  hidden={!isAdmin}
+>
   <NativeTabs.Trigger.Label>Admin</NativeTabs.Trigger.Label>
-  <NativeTabs.Trigger.Icon sf="shield.fill" md="shield" />
+  <NativeTabs.Trigger.Icon
+    sf="shield.fill"
+    md="shield"
+  />
 </NativeTabs.Trigger>
 ```
 
@@ -221,7 +239,10 @@ export default function TabLayout() {
         />
       </NativeTabs.BottomAccessory>
       <NativeTabs.Trigger name="index">
-        <NativeTabs.Trigger.Icon sf="house.fill" md="home" />
+        <NativeTabs.Trigger.Icon
+          sf="house.fill"
+          md="home"
+        />
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
     </NativeTabs>
@@ -239,7 +260,10 @@ SDK 55 handles safe areas automatically:
 To opt out per-tab, use `disableAutomaticContentInsets` and manage manually:
 
 ```tsx
-<NativeTabs.Trigger name="index" disableAutomaticContentInsets>
+<NativeTabs.Trigger
+  name="index"
+  disableAutomaticContentInsets
+>
   <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
 </NativeTabs.Trigger>
 ```
@@ -250,7 +274,10 @@ import { SafeAreaView } from "react-native-screens/experimental";
 
 export default function HomeScreen() {
   return (
-    <SafeAreaView edges={{ bottom: true }} style={{ flex: 1 }}>
+    <SafeAreaView
+      edges={{ bottom: true }}
+      style={{ flex: 1 }}
+    >
       {/* content */}
     </SafeAreaView>
   );
@@ -266,9 +293,12 @@ import { NativeTabs } from "expo-router/unstable-native-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 <NativeTabs.Trigger name="home">
-  <NativeTabs.Trigger.VectorIcon vector={Ionicons} name="home" />
+  <NativeTabs.Trigger.VectorIcon
+    vector={Ionicons}
+    name="home"
+  />
   <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
-</NativeTabs.Trigger>
+</NativeTabs.Trigger>;
 ```
 
 **Prefer SF Symbols + `md` prop over vector icons for native feel.**
@@ -288,7 +318,10 @@ export default function TabLayout() {
     <NativeTabs>
       <NativeTabs.Trigger name="(home)">
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon sf="house.fill" md="home" />
+        <NativeTabs.Trigger.Icon
+          sf="house.fill"
+          md="home"
+        />
       </NativeTabs.Trigger>
     </NativeTabs>
   );
@@ -304,7 +337,10 @@ export default function HomeStack() {
         name="index"
         options={{ title: "Home", headerLargeTitle: true }}
       />
-      <Stack.Screen name="details" options={{ title: "Details" }} />
+      <Stack.Screen
+        name="details"
+        options={{ title: "Details" }}
+      />
     </Stack>
   );
 }
@@ -334,7 +370,12 @@ import { Tabs } from "expo-router";
     name="index"
     options={{
       title: "Home",
-      tabBarIcon: ({ color }) => <IconSymbol name="house.fill" color={color} />,
+      tabBarIcon: ({ color }) => (
+        <IconSymbol
+          name="house.fill"
+          color={color}
+        />
+      ),
       tabBarBadge: 3,
     }}
   />
@@ -349,7 +390,10 @@ import { NativeTabs } from "expo-router/unstable-native-tabs";
 <NativeTabs>
   <NativeTabs.Trigger name="index">
     <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
-    <NativeTabs.Trigger.Icon sf="house.fill" md="home" />
+    <NativeTabs.Trigger.Icon
+      sf="house.fill"
+      md="home"
+    />
     <NativeTabs.Trigger.Badge>3</NativeTabs.Trigger.Badge>
   </NativeTabs.Trigger>
 </NativeTabs>;

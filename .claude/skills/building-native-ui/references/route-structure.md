@@ -144,7 +144,10 @@ export default function Layout({ segment }: { segment: string }) {
 
   return (
     <Stack>
-      <Stack.Screen name={screen} options={options} />
+      <Stack.Screen
+        name={screen}
+        options={options}
+      />
     </Stack>
   );
 }
