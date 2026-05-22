@@ -1,15 +1,11 @@
-import { Text, TextProps } from "./Themed";
+import { ComponentProps } from "react";
+import { Text } from "react-native";
 
-export const MonoText = (props: TextProps) => {
+export const MonoText = (props: ComponentProps<typeof Text>) => {
   return (
     <Text
       {...props}
-      style={[
-        props.style,
-        {
-          fontFamily: "SpaceMono",
-        },
-      ]}
+      className={`font-[SpaceMono] ${props.className ?? ""}`}
     />
   );
 };

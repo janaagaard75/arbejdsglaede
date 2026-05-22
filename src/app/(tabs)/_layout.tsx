@@ -29,14 +29,17 @@ const TabLayout = () => {
             />
           ),
           headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable style={{ marginRight: 15 }}>
+            <Link
+              href="/modal"
+              asChild
+            >
+              <Pressable className="mr-3.75">
                 {({ pressed }) => (
                   <SymbolView
                     name={{
                       ios: "info.circle",
                       android: "info",
-                          }}
+                    }}
                     size={25}
                     tintColor={Colors[colorScheme].text}
                     style={{

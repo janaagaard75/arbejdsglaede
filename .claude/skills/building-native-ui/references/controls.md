@@ -12,7 +12,10 @@ import { useState } from "react";
 
 const [enabled, setEnabled] = useState(false);
 
-<Switch value={enabled} onValueChange={setEnabled} />;
+<Switch
+  value={enabled}
+  onValueChange={setEnabled}
+/>;
 ```
 
 ### Customization
@@ -206,7 +209,7 @@ import { TextInput } from "react-native";
     borderRadius: 8,
     backgroundColor: "#f0f0f0",
   }}
-/>
+/>;
 ```
 
 ### Keyboard Types
@@ -252,11 +255,26 @@ import { useState } from "react";
 
 const [selected, setSelected] = useState("js");
 
-<Picker selectedValue={selected} onValueChange={setSelected}>
-  <Picker.Item label="JavaScript" value="js" />
-  <Picker.Item label="TypeScript" value="ts" />
-  <Picker.Item label="Python" value="py" />
-  <Picker.Item label="Go" value="go" />
+<Picker
+  selectedValue={selected}
+  onValueChange={setSelected}
+>
+  <Picker.Item
+    label="JavaScript"
+    value="js"
+  />
+  <Picker.Item
+    label="TypeScript"
+    value="ts"
+  />
+  <Picker.Item
+    label="Python"
+    value="py"
+  />
+  <Picker.Item
+    label="Go"
+    value="go"
+  />
 </Picker>;
 ```
 

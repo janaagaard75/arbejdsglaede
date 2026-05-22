@@ -92,7 +92,7 @@ Use `sheetLargestUndimmedDetentIndex` (zero-indexed) to keep content behind the 
 
 ```tsx
 // app/_layout.tsx
-import { Stack } from 'expo-router';
+import { Stack } from "expo-router";
 
 export default function Layout() {
   return (
@@ -108,7 +108,7 @@ export default function Layout() {
         }}
       />
     </Stack>
-  )
+  );
 }
 ```
 
@@ -139,7 +139,10 @@ import { Stack } from "expo-router";
 export default function Layout() {
   return (
     <Stack>
-      <Stack.Screen name="index" options={{ title: "Home" }} />
+      <Stack.Screen
+        name="index"
+        options={{ title: "Home" }}
+      />
       <Stack.Screen
         name="confirm"
         options={{
@@ -176,10 +179,16 @@ export default function ConfirmSheet() {
       </View>
 
       <View style={styles.footer}>
-        <Pressable style={styles.cancelButton} onPress={() => router.back()}>
+        <Pressable
+          style={styles.cancelButton}
+          onPress={() => router.back()}
+        >
           <Text style={styles.cancelText}>Cancel</Text>
         </Pressable>
-        <Pressable style={styles.confirmButton} onPress={() => router.back()}>
+        <Pressable
+          style={styles.confirmButton}
+          onPress={() => router.back()}
+        >
           <Text style={styles.confirmText}>Confirm</Text>
         </Pressable>
       </View>

@@ -21,10 +21,16 @@ export default function FoldersScreen() {
         {/* Screen content */}
       </ScrollView>
       <Stack.Screen.Title large>Folders</Stack.Screen.Title>
-      <Stack.SearchBar placeholder="Search" onChangeText={() => {}} />
+      <Stack.SearchBar
+        placeholder="Search"
+        onChangeText={() => {}}
+      />
       {/* Header toolbar - right side */}
       <Stack.Toolbar placement="right">
-        <Stack.Toolbar.Button icon="folder.badge.plus" onPress={() => {}} />
+        <Stack.Toolbar.Button
+          icon="folder.badge.plus"
+          onPress={() => {}}
+        />
         <Stack.Toolbar.Button onPress={() => {}}>Edit</Stack.Toolbar.Button>
       </Stack.Toolbar>
 
@@ -62,13 +68,19 @@ export default function InboxScreen() {
       </ScrollView>
       <Stack.Screen options={{ headerTransparent: true }} />
       <Stack.Screen.Title>Inbox</Stack.Screen.Title>
-      <Stack.SearchBar placeholder="Search" onChangeText={() => {}} />
+      <Stack.SearchBar
+        placeholder="Search"
+        onChangeText={() => {}}
+      />
       {/* Header toolbar - right side */}
       <Stack.Toolbar placement="right">
         <Stack.Toolbar.Button onPress={() => {}}>Select</Stack.Toolbar.Button>
         <Stack.Toolbar.Menu icon="ellipsis">
           <Stack.Toolbar.Menu inline>
-            <Stack.Toolbar.Menu inline title="Sort By">
+            <Stack.Toolbar.Menu
+              inline
+              title="Sort By"
+            >
               <Stack.Toolbar.MenuAction isOn>
                 Categories
               </Stack.Toolbar.MenuAction>
@@ -147,7 +159,10 @@ Dropdown menu for grouping actions.
   </Stack.Toolbar.Menu>
   <Stack.Toolbar.Menu title="Filter">
     <Stack.Toolbar.Menu inline>
-      <Stack.Toolbar.MenuAction isOn icon="square.grid.2x2">
+      <Stack.Toolbar.MenuAction
+        isOn
+        icon="square.grid.2x2"
+      >
         All Items
       </Stack.Toolbar.MenuAction>
     </Stack.Toolbar.Menu>
@@ -217,7 +232,10 @@ function InboxHeader() {
   return (
     <>
       <Stack.Screen.Title>Inbox</Stack.Screen.Title>
-      <Stack.SearchBar placeholder="Search" onChangeText={() => {}} />
+      <Stack.SearchBar
+        placeholder="Search"
+        onChangeText={() => {}}
+      />
       <Stack.Toolbar placement="right">{/* Toolbar buttons */}</Stack.Toolbar>
     </>
   );
@@ -232,7 +250,10 @@ This will **not work**:
 function Buttons() {
   return (
     <>
-      <Stack.Toolbar.Button icon="star.fill" onPress={() => {}} />
+      <Stack.Toolbar.Button
+        icon="star.fill"
+        onPress={() => {}}
+      />
       <Stack.Toolbar.Button onPress={() => {}}>Done</Stack.Toolbar.Button>
     </>
   );
@@ -256,7 +277,10 @@ This will work:
 function ToolbarWithButtons() {
   return (
     <Stack.Toolbar>
-      <Stack.Toolbar.Button icon="star.fill" onPress={() => {}} />
+      <Stack.Toolbar.Button
+        icon="star.fill"
+        onPress={() => {}}
+      />
       <Stack.Toolbar.Button onPress={() => {}}>Done</Stack.Toolbar.Button>
     </Stack.Toolbar>
   );

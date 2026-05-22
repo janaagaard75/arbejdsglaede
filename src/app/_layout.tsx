@@ -3,6 +3,7 @@ import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from "expo-router";
 import { hideAsync, preventAutoHideAsync } from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
+import "../global.css";
 import { useColorScheme } from "../useColorScheme";
 
 export {
@@ -47,8 +48,14 @@ const RootLayoutNav = () => {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+        <Stack.Screen
+          name="(tabs)"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="modal"
+          options={{ presentation: "modal" }}
+        />
       </Stack>
     </ThemeProvider>
   );
