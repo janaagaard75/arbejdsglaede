@@ -1,4 +1,6 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { makeAutoObservable } from "mobx";
+import { makePersistable } from "mobx-persist-store";
 import { QrCode } from "./QrCode";
 import { calculateNewValues } from "./calculateNewValues";
 
@@ -16,6 +18,11 @@ class MainStore {
 
   constructor() {
     makeAutoObservable(this);
+    makePersistable(this, {
+      name: "MainStore",
+      properties: ["flames", "hearts", "percentage"],
+      storage: AsyncStorage,
+    });
   }
 
   get score(): number {
