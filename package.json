@@ -27,6 +27,8 @@
     "expo-splash-screen": "~57.0.2",
     "expo-status-bar": "~57.0.0",
     "expo-symbols": "~57.0.0",
+    "mobx": "^6.16.1",
+    "mobx-react-lite": "^4.1.1",
     "nativewind": "5.0.0-preview.4",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
