@@ -32,9 +32,13 @@ export const BatteryIcon = (props: Props) => {
     );
   }, [opacity]);
 
+  // The animated style stays attached and the condition lives inside the
+  // worklet. Conditionally attaching and detaching the style crashes
+  // Reanimated when the percentage changes to or from zero.
+  const isEmpty = props.percentage === 0;
   const animatedOpacity = useAnimatedStyle(() => {
     return {
-      opacity: opacity.value,
+      opacity: isEmpty ? opacity.value : 1,
     };
   });
 
@@ -53,7 +57,7 @@ export const BatteryIcon = (props: Props) => {
   })();
 
   return (
-    <Animated.View style={[props.percentage === 0 && animatedOpacity]}>
+    <Animated.View style={animatedOpacity}>
       <Svg
         stroke={hexColor}
         fill={hexColor}

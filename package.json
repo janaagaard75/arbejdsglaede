@@ -5,11 +5,11 @@
   "private": true,
   "packageManager": "yarn@4.15.0",
   "scripts": {
-    "android": "expo start --android",
+    "android": "expo run:android",
     "check-formatting": "prettier --check .",
     "check-types": "tsc",
     "generate-typed-routes": "yarn expo customize tsconfig.json",
-    "ios": "expo start --ios",
+    "ios": "expo run:ios",
     "ios-device": "expo run:ios --device",
     "start": "expo start"
   },
