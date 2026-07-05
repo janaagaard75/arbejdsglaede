@@ -1,4 +1,4 @@
-import { memo, useCallback, useRef } from "react";
+import { useCallback, useRef } from "react";
 import { Animated, GestureResponderEvent, View } from "react-native";
 import { clamp } from "react-native-reanimated";
 import { cn } from "../cn";
@@ -13,7 +13,7 @@ interface Props {
   sliderWidth: number;
 }
 
-export const SlideToConfirm = memo((props: Props) => {
+export const SlideToConfirm = (props: Props) => {
   const startPageX = useRef(0);
   const animatedPosition = useRef(new Animated.Value(0)).current;
 
@@ -111,4 +111,4 @@ export const SlideToConfirm = memo((props: Props) => {
       </Animated.View>
     </View>
   );
-});
+};

@@ -1,11 +1,10 @@
-import { memo } from "react";
 import { View } from "react-native";
 
 interface Props {
   readonly viewfinderSize: number;
 }
 
-export const HeadUpDisplay = memo((props: Props) => {
+export const HeadUpDisplay = (props: Props) => {
   const cornerBorderWidth = 4;
   const cornerOpacity = 0.4;
   const cornerRadius = 12;
@@ -72,4 +71,4 @@ export const HeadUpDisplay = memo((props: Props) => {
       />
     </>
   );
-});
+};

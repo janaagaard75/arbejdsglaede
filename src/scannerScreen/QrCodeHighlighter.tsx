@@ -1,5 +1,4 @@
 import { BarcodeBounds } from "expo-camera";
-import { memo } from "react";
 import { View } from "react-native";
 import { useColors } from "../colors/useColors";
 
@@ -7,7 +6,7 @@ interface Props {
   readonly bounds: BarcodeBounds | undefined;
 }
 
-export const QrCodeHighlighter = memo((props: Props) => {
+export const QrCodeHighlighter = (props: Props) => {
   const green = useColors().green;
 
   if (props.bounds === undefined) {
@@ -27,4 +26,4 @@ export const QrCodeHighlighter = memo((props: Props) => {
       }}
     />
   );
-});
+};
