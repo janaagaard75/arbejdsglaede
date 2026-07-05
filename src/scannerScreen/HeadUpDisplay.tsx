@@ -2,7 +2,6 @@ import { memo } from "react";
 import { View } from "react-native";
 
 interface Props {
-  readonly scannerMargin: number;
   readonly viewfinderSize: number;
 }
 
@@ -10,7 +9,8 @@ export const HeadUpDisplay = memo((props: Props) => {
   const cornerBorderWidth = 4;
   const cornerOpacity = 0.4;
   const cornerRadius = 12;
-  const cornerSize = 40;
+  const cornerSize = 35;
+  const hudMargin = 70;
 
   return (
     <>
@@ -21,8 +21,8 @@ export const HeadUpDisplay = memo((props: Props) => {
           borderTopLeftRadius: cornerRadius,
           borderTopWidth: cornerBorderWidth,
           height: cornerSize,
-          marginLeft: props.scannerMargin,
-          marginTop: props.scannerMargin,
+          marginLeft: hudMargin,
+          marginTop: hudMargin,
           opacity: cornerOpacity,
           position: "absolute",
           width: cornerSize,
@@ -35,8 +35,8 @@ export const HeadUpDisplay = memo((props: Props) => {
           borderTopRightRadius: cornerRadius,
           borderTopWidth: cornerBorderWidth,
           height: cornerSize,
-          marginLeft: props.viewfinderSize - (props.scannerMargin + cornerSize),
-          marginTop: props.scannerMargin,
+          marginLeft: props.viewfinderSize - (hudMargin + cornerSize),
+          marginTop: hudMargin,
           opacity: cornerOpacity,
           position: "absolute",
           width: cornerSize,
@@ -49,8 +49,8 @@ export const HeadUpDisplay = memo((props: Props) => {
           borderColor: "white",
           borderLeftWidth: cornerBorderWidth,
           height: cornerSize,
-          marginLeft: props.scannerMargin,
-          marginTop: props.viewfinderSize - (props.scannerMargin + cornerSize),
+          marginLeft: hudMargin,
+          marginTop: props.viewfinderSize - (hudMargin + cornerSize),
           opacity: cornerOpacity,
           position: "absolute",
           width: cornerSize,
@@ -63,8 +63,8 @@ export const HeadUpDisplay = memo((props: Props) => {
           borderColor: "white",
           borderRightWidth: cornerBorderWidth,
           height: cornerSize,
-          marginLeft: props.viewfinderSize - (props.scannerMargin + cornerSize),
-          marginTop: props.viewfinderSize - (props.scannerMargin + cornerSize),
+          marginLeft: props.viewfinderSize - (hudMargin + cornerSize),
+          marginTop: props.viewfinderSize - (hudMargin + cornerSize),
           opacity: cornerOpacity,
           position: "absolute",
           width: cornerSize,

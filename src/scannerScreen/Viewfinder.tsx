@@ -87,10 +87,7 @@ export const Viewfinder = (props: Props) => {
           width: "100%",
         }}
       />
-      <HeadUpDisplay
-        scannerMargin={scannerMargin}
-        viewfinderSize={viewfinderSize}
-      />
+      <HeadUpDisplay viewfinderSize={viewfinderSize} />
       <QrCodeHighlighter bounds={bounds} />
     </View>
   );
