@@ -1,12 +1,13 @@
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from "expo-router";
 import "react-native-reanimated";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import colors from "tailwindcss/colors";
+import { useColors } from "../colors/useColors";
 import "../global.css";
 import { useColorScheme } from "../useColorScheme";
 
 const RootLayout = () => {
   const colorScheme = useColorScheme();
+  const colors = useColors();
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
@@ -16,8 +17,7 @@ const RootLayout = () => {
             headerShadowVisible: false,
             headerShown: true,
             headerStyle: {
-              backgroundColor:
-                colorScheme === "dark" ? colors.zinc[900] : colors.zinc[100],
+              backgroundColor: colors.background,
             },
           }}
         >
