@@ -10,6 +10,7 @@
     "check-types": "tsc",
     "generate-typed-routes": "yarn expo customize tsconfig.json",
     "ios": "expo start --ios",
+    "ios-device": "expo run:ios --device",
     "start": "expo start"
   },
   "resolutions": {
