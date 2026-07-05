@@ -1,7 +1,9 @@
 import { BarcodeBounds, BarcodeScanningResult, CameraView } from "expo-camera";
-import { memo, useState } from "react";
+import { useState } from "react";
 import { View } from "react-native";
 import { useColors } from "../colors/useColors";
+import { HeadUpDisplay } from "./HeadUpDisplay";
+import { QrCodeHighlighter } from "./QrCodeHighlighter";
 
 interface Props {
   readonly onScannedQrCodeChange: (scannedQrCode: string | undefined) => void;
@@ -93,101 +95,3 @@ export const Viewfinder = (props: Props) => {
     </View>
   );
 };
-
-const HeadUpDisplay = memo(
-  (props: { scannerMargin: number; viewfinderSize: number }) => {
-    const cornerBorderWidth = 4;
-    const cornerOpacity = 0.4;
-    const cornerRadius = 12;
-    const cornerSize = 40;
-
-    return (
-      <>
-        <View
-          style={{
-            borderColor: "white",
-            borderLeftWidth: cornerBorderWidth,
-            borderTopLeftRadius: cornerRadius,
-            borderTopWidth: cornerBorderWidth,
-            height: cornerSize,
-            marginLeft: props.scannerMargin,
-            marginTop: props.scannerMargin,
-            opacity: cornerOpacity,
-            position: "absolute",
-            width: cornerSize,
-          }}
-        />
-        <View
-          style={{
-            borderColor: "white",
-            borderRightWidth: cornerBorderWidth,
-            borderTopRightRadius: cornerRadius,
-            borderTopWidth: cornerBorderWidth,
-            height: cornerSize,
-            marginLeft:
-              props.viewfinderSize - (props.scannerMargin + cornerSize),
-            marginTop: props.scannerMargin,
-            opacity: cornerOpacity,
-            position: "absolute",
-            width: cornerSize,
-          }}
-        />
-        <View
-          style={{
-            borderBottomLeftRadius: cornerRadius,
-            borderBottomWidth: cornerBorderWidth,
-            borderColor: "white",
-            borderLeftWidth: cornerBorderWidth,
-            height: cornerSize,
-            marginLeft: props.scannerMargin,
-            marginTop:
-              props.viewfinderSize - (props.scannerMargin + cornerSize),
-            opacity: cornerOpacity,
-            position: "absolute",
-            width: cornerSize,
-          }}
-        />
-        <View
-          style={{
-            borderBottomRightRadius: cornerRadius,
-            borderBottomWidth: cornerBorderWidth,
-            borderColor: "white",
-            borderRightWidth: cornerBorderWidth,
-            height: cornerSize,
-            marginLeft:
-              props.viewfinderSize - (props.scannerMargin + cornerSize),
-            marginTop:
-              props.viewfinderSize - (props.scannerMargin + cornerSize),
-            opacity: cornerOpacity,
-            position: "absolute",
-            width: cornerSize,
-          }}
-        />
-      </>
-    );
-  },
-);
-
-const QrCodeHighlighter = memo(
-  (props: { bounds: BarcodeBounds | undefined }) => {
-    const green = useColors().green;
-
-    if (props.bounds === undefined) {
-      return <></>;
-    }
-
-    return (
-      <View
-        style={{
-          borderColor: green,
-          borderWidth: 2,
-          height: props.bounds.size.height,
-          left: props.bounds.origin.x,
-          position: "absolute",
-          top: props.bounds.origin.y,
-          width: props.bounds.size.width,
-        }}
-      />
-    );
-  },
-);
