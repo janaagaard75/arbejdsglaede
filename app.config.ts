@@ -9,6 +9,7 @@ const config: ExpoConfig = {
   scheme: "arbejdsglaede",
   userInterfaceStyle: "automatic",
   ios: {
+    bundleIdentifier: "com.janaagaard.arbejdsglaede",
     supportsTablet: false,
   },
   android: {
