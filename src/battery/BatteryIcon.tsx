@@ -32,9 +32,7 @@ export const BatteryIcon = (props: Props) => {
     );
   }, [opacity]);
 
-  // The animated style stays attached and the condition lives inside the
-  // worklet. Conditionally attaching and detaching the style crashes
-  // Reanimated when the percentage changes to or from zero.
+  // The animated style stays attached and the condition lives inside the worklet. Conditionally attaching and detaching the style crashes Reanimated when the percentage changes to or from zero.
   const isEmpty = props.percentage === 0;
   const animatedOpacity = useAnimatedStyle(() => {
     return {

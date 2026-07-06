@@ -26,8 +26,7 @@ export const SlideToConfirm = (props: Props) => {
   const maxDx = props.sliderWidth - props.buttonWidth;
   const onConfirm = props.onConfirm;
 
-  // The pan activates on horizontal movement and fails on vertical movement,
-  // letting a downward swipe on the button dismiss the modal instead.
+  // The pan activates on horizontal movement and fails on vertical movement, letting a downward swipe on the button dismiss the modal instead.
   const pan = Gesture.Pan()
     .enabled(!props.disabled)
     .activeOffsetX([-10, 10])

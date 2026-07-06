@@ -1,6 +1,4 @@
-// Hex values from the Tailwind color palette. Tailwind v4 only exposes the
-// palette as oklch() strings, which React Native and react-native-svg cannot
-// parse, so the values are written out here.
+// Hex values from the Tailwind color palette. Tailwind v4 only exposes the palette as oklch() strings, which React Native and react-native-svg cannot parse, so the values are written out here.
 const amber500 = "#f59e0b";
 const green600 = "#16a34a";
 const red600 = "#dc2626";
