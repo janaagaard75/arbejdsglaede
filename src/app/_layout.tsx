@@ -3,6 +3,7 @@ import "react-native-reanimated";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useColors } from "../colors/useColors";
 import "../global.css";
+import { HeaderCloseButton } from "../HeaderCloseButton";
 import { useColorScheme } from "../useColorScheme";
 
 const RootLayout = () => {
@@ -31,6 +32,8 @@ const RootLayout = () => {
           <Stack.Screen
             name="reset"
             options={{
+              gestureEnabled: false,
+              headerRight: () => <HeaderCloseButton />,
               headerTitle: "Nulstil",
               presentation: "modal",
             }}
@@ -38,8 +41,9 @@ const RootLayout = () => {
           <Stack.Screen
             name="scan"
             options={{
+              gestureEnabled: false,
+              headerRight: () => <HeaderCloseButton />,
               headerTitle: "Scan QR-kode",
-              headerBackButtonDisplayMode: "minimal",
               presentation: "modal",
             }}
           />
