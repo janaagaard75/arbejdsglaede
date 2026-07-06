@@ -38,6 +38,8 @@ const RootLayout = () => {
             name="scan"
             options={{
               headerTitle: "Scan QR-kode",
+              headerBackButtonDisplayMode: "minimal",
+              presentation: "modal",
             }}
           />
         </Stack>
