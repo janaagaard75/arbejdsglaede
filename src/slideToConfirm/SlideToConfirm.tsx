@@ -1,6 +1,11 @@
 import { useCallback, useRef } from "react";
-import { Animated, GestureResponderEvent, View } from "react-native";
-import { clamp } from "react-native-reanimated";
+import { GestureResponderEvent, View } from "react-native";
+import Animated, {
+  clamp,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 import { cn } from "../cn";
 import { ThemedText } from "../themed/ThemedText";
 import { ArrowRightIcon } from "./ArrowRightIcon";
@@ -15,7 +20,7 @@ interface Props {
 
 export const SlideToConfirm = (props: Props) => {
   const startPageX = useRef(0);
-  const animatedPosition = useRef(new Animated.Value(0)).current;
+  const animatedPosition = useSharedValue(0);
 
   const dropZoneWidth = 20;
   const maxDx = props.sliderWidth - props.buttonWidth;
@@ -33,11 +38,7 @@ export const SlideToConfirm = (props: Props) => {
         props.onConfirm();
       }
 
-      Animated.timing(animatedPosition, {
-        duration: 100,
-        toValue: 0,
-        useNativeDriver: false,
-      }).start();
+      animatedPosition.set(withTiming(0, { duration: 100 }));
     },
     [animatedPosition, maxDx, props],
   );
@@ -49,8 +50,7 @@ export const SlideToConfirm = (props: Props) => {
       }
 
       const dx = event.nativeEvent.pageX - startPageX.current;
-      const clampedDx = clamp(dx, 0, maxDx);
-      animatedPosition.setValue(clampedDx);
+      animatedPosition.set(clamp(dx, 0, maxDx));
     },
     [animatedPosition, maxDx, props.disabled],
   );
@@ -65,6 +65,16 @@ export const SlideToConfirm = (props: Props) => {
     },
     [props.disabled],
   );
+
+  const animatedTranslation = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          translateX: animatedPosition.value,
+        },
+      ],
+    };
+  });
 
   const borderClasses = props.disabled
     ? "border-zinc-400 dark:border-zinc-500"
@@ -83,14 +93,12 @@ export const SlideToConfirm = (props: Props) => {
         onTouchEndCapture={end}
         onTouchMove={move}
         onTouchStart={start}
-        style={{
-          transform: [
-            {
-              translateX: animatedPosition,
-            },
-          ],
-          width: props.sliderWidth,
-        }}
+        style={[
+          animatedTranslation,
+          {
+            width: props.sliderWidth,
+          },
+        ]}
       >
         <View
           className={cn(
