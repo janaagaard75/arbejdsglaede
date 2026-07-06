@@ -19,6 +19,7 @@ interface Props {
 }
 
 export const SlideToConfirm = (props: Props) => {
+  const hasConfirmed = useRef(false);
   const startPageX = useRef(0);
   const animatedPosition = useSharedValue(0);
 
@@ -27,7 +28,7 @@ export const SlideToConfirm = (props: Props) => {
 
   const end = useCallback(
     (event: GestureResponderEvent) => {
-      if (props.disabled) {
+      if (props.disabled || hasConfirmed.current) {
         return;
       }
 
@@ -35,6 +36,7 @@ export const SlideToConfirm = (props: Props) => {
       const withinDropZone = maxDx - dx <= dropZoneWidth;
 
       if (withinDropZone) {
+        hasConfirmed.current = true;
         props.onConfirm();
       }
 
@@ -61,6 +63,7 @@ export const SlideToConfirm = (props: Props) => {
         return;
       }
 
+      hasConfirmed.current = false;
       startPageX.current = event.nativeEvent.pageX;
     },
     [props.disabled],
@@ -90,7 +93,6 @@ export const SlideToConfirm = (props: Props) => {
       <Animated.View
         onTouchCancel={end}
         onTouchEnd={end}
-        onTouchEndCapture={end}
         onTouchMove={move}
         onTouchStart={start}
         style={[
