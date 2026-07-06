@@ -1,7 +1,8 @@
-import { useCallback, useRef } from "react";
-import { GestureResponderEvent, View } from "react-native";
+import { View } from "react-native";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   clamp,
+  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
@@ -19,55 +20,25 @@ interface Props {
 }
 
 export const SlideToConfirm = (props: Props) => {
-  const hasConfirmed = useRef(false);
-  const startPageX = useRef(0);
   const animatedPosition = useSharedValue(0);
 
   const dropZoneWidth = 20;
   const maxDx = props.sliderWidth - props.buttonWidth;
+  const onConfirm = props.onConfirm;
 
-  const end = useCallback(
-    (event: GestureResponderEvent) => {
-      if (props.disabled || hasConfirmed.current) {
-        return;
+  const pan = Gesture.Pan()
+    .enabled(!props.disabled)
+    .onChange((event) => {
+      animatedPosition.value = clamp(event.translationX, 0, maxDx);
+    })
+    .onEnd(() => {
+      if (maxDx - animatedPosition.value <= dropZoneWidth) {
+        runOnJS(onConfirm)();
       }
-
-      const dx = event.nativeEvent.pageX - startPageX.current;
-      const withinDropZone = maxDx - dx <= dropZoneWidth;
-
-      if (withinDropZone) {
-        hasConfirmed.current = true;
-        props.onConfirm();
-      }
-
-      animatedPosition.set(withTiming(0, { duration: 100 }));
-    },
-    [animatedPosition, maxDx, props],
-  );
-
-  const move = useCallback(
-    (event: GestureResponderEvent) => {
-      if (props.disabled) {
-        return;
-      }
-
-      const dx = event.nativeEvent.pageX - startPageX.current;
-      animatedPosition.set(clamp(dx, 0, maxDx));
-    },
-    [animatedPosition, maxDx, props.disabled],
-  );
-
-  const start = useCallback(
-    (event: GestureResponderEvent) => {
-      if (props.disabled) {
-        return;
-      }
-
-      hasConfirmed.current = false;
-      startPageX.current = event.nativeEvent.pageX;
-    },
-    [props.disabled],
-  );
+    })
+    .onFinalize(() => {
+      animatedPosition.value = withTiming(0, { duration: 100 });
+    });
 
   const animatedTranslation = useAnimatedStyle(() => {
     return {
@@ -90,37 +61,32 @@ export const SlideToConfirm = (props: Props) => {
         width: props.sliderWidth + 2 * (3 + 2),
       }}
     >
-      <Animated.View
-        onResponderGrant={start}
-        onResponderMove={move}
-        onResponderRelease={end}
-        onResponderTerminate={end}
-        onResponderTerminationRequest={() => false}
-        onStartShouldSetResponder={() => true}
-        style={[
-          animatedTranslation,
-          {
-            width: props.sliderWidth,
-          },
-        ]}
-      >
-        <View
-          className={cn(
-            "flex-row items-center gap-2.5 rounded-md border-2 px-3.5 py-1.5",
-            borderClasses,
-          )}
-          style={{
-            width: props.buttonWidth,
-          }}
+      <GestureDetector gesture={pan}>
+        <Animated.View
+          style={[
+            animatedTranslation,
+            {
+              width: props.buttonWidth,
+            },
+          ]}
         >
-          <ThemedText
-            className={cn(props.disabled && "text-zinc-400 dark:text-zinc-500")}
+          <View
+            className={cn(
+              "flex-row items-center gap-2.5 rounded-md border-2 px-3.5 py-1.5",
+              borderClasses,
+            )}
           >
-            {props.children}
-          </ThemedText>
-          <ArrowRightIcon />
-        </View>
-      </Animated.View>
+            <ThemedText
+              className={cn(
+                props.disabled && "text-zinc-400 dark:text-zinc-500",
+              )}
+            >
+              {props.children}
+            </ThemedText>
+            <ArrowRightIcon />
+          </View>
+        </Animated.View>
+      </GestureDetector>
     </View>
   );
 };
