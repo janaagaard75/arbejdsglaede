@@ -91,10 +91,12 @@ export const SlideToConfirm = (props: Props) => {
       }}
     >
       <Animated.View
-        onTouchCancel={end}
-        onTouchEnd={end}
-        onTouchMove={move}
-        onTouchStart={start}
+        onResponderGrant={start}
+        onResponderMove={move}
+        onResponderRelease={end}
+        onResponderTerminate={end}
+        onResponderTerminationRequest={() => false}
+        onStartShouldSetResponder={() => true}
         style={[
           animatedTranslation,
           {
