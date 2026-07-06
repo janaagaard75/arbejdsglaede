@@ -16,7 +16,7 @@ export const HeaderCloseButton = () => {
       hitSlop={10}
       onPress={close}
     >
-      <ThemedText>Luk</ThemedText>
+      <ThemedText>✕</ThemedText>
     </Pressable>
   );
 };
