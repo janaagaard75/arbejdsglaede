@@ -32,6 +32,7 @@ const RootLayout = () => {
             name="reset"
             options={{
               headerTitle: "Nulstil",
+              presentation: "modal",
             }}
           />
           <Stack.Screen
