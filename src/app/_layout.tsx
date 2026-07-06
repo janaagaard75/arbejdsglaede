@@ -34,7 +34,6 @@ const RootLayout = () => {
             <Stack.Screen
               name="reset"
               options={{
-                gestureEnabled: false,
                 headerRight: () => <HeaderCloseButton />,
                 headerTitle: "Nulstil",
                 presentation: "modal",
@@ -43,7 +42,6 @@ const RootLayout = () => {
             <Stack.Screen
               name="scan"
               options={{
-                gestureEnabled: false,
                 headerRight: () => <HeaderCloseButton />,
                 headerTitle: "Scan QR-kode",
                 presentation: "modal",
