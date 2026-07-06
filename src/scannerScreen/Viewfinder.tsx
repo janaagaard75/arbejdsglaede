@@ -68,10 +68,9 @@ export const Viewfinder = (props: Props) => {
 
   return (
     <View
+      className="mx-auto"
       style={{
         height: viewfinderSize,
-        marginLeft: "auto",
-        marginRight: "auto",
         width: viewfinderSize,
       }}
     >
