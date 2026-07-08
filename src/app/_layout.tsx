@@ -5,10 +5,10 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useColors } from "../colors/useColors";
 import "../global.css";
 import { HeaderCloseButton } from "../HeaderCloseButton";
-import { useColorScheme } from "../useColorScheme";
+import { useAppColorScheme } from "../useAppColorScheme";
 
 const RootLayout = () => {
-  const colorScheme = useColorScheme();
+  const colorScheme = useAppColorScheme();
   const colors = useColors();
 
   return (
