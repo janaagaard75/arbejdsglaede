@@ -7,6 +7,7 @@
     "lightningcss",
     "nativewind",
     "nvmrc",
+    "tailwindcss",
     "worklets"
   ],
   "editor.codeActionsOnSave": {

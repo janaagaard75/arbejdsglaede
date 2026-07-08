@@ -9,6 +9,7 @@ const config: ExpoConfig = {
   scheme: "arbejdsglaede",
   userInterfaceStyle: "automatic",
   ios: {
+    bundleIdentifier: "com.janaagaard.arbejdsglaede",
     supportsTablet: false,
   },
   android: {
@@ -21,6 +22,14 @@ const config: ExpoConfig = {
     predictiveBackGestureEnabled: false,
   },
   plugins: [
+    [
+      "expo-camera",
+      {
+        cameraPermission:
+          "App'en har brug for adgang til kameraet for at kunne scanne QR-koderne i spillet.",
+        recordAudioAndroid: false,
+      },
+    ],
     "expo-router",
     [
       "expo-splash-screen",
@@ -32,6 +41,7 @@ const config: ExpoConfig = {
     ],
   ],
   experiments: {
+    reactCompiler: true,
     typedRoutes: true,
   },
 };
