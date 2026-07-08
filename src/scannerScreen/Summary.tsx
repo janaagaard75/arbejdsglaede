@@ -6,23 +6,21 @@ import { HeartIcon } from "../iconsRow/HeartIcon";
 import { HeartOutlineIcon } from "../iconsRow/HeartOutlineIcon";
 import { IconsRow } from "../iconsRow/IconsRow";
 
-export const Summary = ({
-  flames,
-  hearts,
-  percentage,
-}: {
+interface Props {
   flames: number;
   hearts: number;
   percentage: number;
-}) => (
+}
+
+export const Summary = (props: Props) => (
   <View className="flex-1 justify-center">
     <View className="items-center">
       <View className="ml-5 w-20 content-center">
-        <Battery percentage={percentage} />
+        <Battery percentage={props.percentage} />
       </View>
       <View className="h-1.25" />
       <IconsRow
-        currentValue={flames}
+        currentValue={props.flames}
         excludedIcon={<FlameOutlineIcon />}
         gap={1}
         includedIcon={<FlameIcon />}
@@ -31,7 +29,7 @@ export const Summary = ({
       />
       <View className="h-1.25" />
       <IconsRow
-        currentValue={hearts}
+        currentValue={props.hearts}
         excludedIcon={<HeartOutlineIcon />}
         gap={1}
         includedIcon={<HeartIcon />}

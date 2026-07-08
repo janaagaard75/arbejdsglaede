@@ -1,18 +1,18 @@
+import { clsx } from "clsx";
 import { Text, type TextProps } from "react-native";
-import { cn } from "../cn";
 
 type Props = TextProps & { children: string };
 
-export const ThemedText = ({ children, className, ...otherProps }: Props) => {
+export const ThemedText = (props: Props) => {
   return (
     <Text
-      className={cn(
+      className={clsx(
         "text-[20px] leading-[30px] text-zinc-800 dark:text-zinc-200",
-        className,
+        props.className,
       )}
-      {...otherProps}
+      {...props}
     >
-      {children}
+      {props.children}
     </Text>
   );
 };

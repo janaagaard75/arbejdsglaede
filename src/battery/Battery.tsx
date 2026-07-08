@@ -1,8 +1,12 @@
 import { View } from "react-native";
 import { BatteryIcon } from "./BatteryIcon";
 
-export const Battery = ({ percentage }: { percentage: number }) => {
-  const roundedPercentage = Math.round(percentage);
+interface Props {
+  percentage: number;
+}
+
+export const Battery = (props: Props) => {
+  const roundedPercentage = Math.round(props.percentage);
 
   const batteryColor = (() => {
     if (roundedPercentage <= 10) {

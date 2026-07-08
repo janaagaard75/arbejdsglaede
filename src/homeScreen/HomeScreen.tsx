@@ -55,13 +55,8 @@ export const HomeScreen = observer(() => {
               size={30}
             />
           </View>
-          <View className="justify-end">
-            <ThemedLinkButton
-              className="mb-20"
-              href="/scan"
-            >
-              Scan QR-kode
-            </ThemedLinkButton>
+          <View className="mb-20 justify-end">
+            <ThemedLinkButton href="/scan">Scan QR-kode</ThemedLinkButton>
           </View>
         </View>
       </ThemedView>

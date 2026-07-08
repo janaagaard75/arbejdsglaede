@@ -1,3 +1,4 @@
+import { clsx } from "clsx";
 import { View } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
@@ -7,7 +8,6 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import { cn } from "../cn";
 import { ThemedText } from "../themed/ThemedText";
 import { ArrowRightIcon } from "./ArrowRightIcon";
 
@@ -53,13 +53,12 @@ export const SlideToConfirm = (props: Props) => {
     };
   });
 
-  const borderClasses = props.disabled
-    ? "border-zinc-400 dark:border-zinc-500"
-    : "border-zinc-800 dark:border-zinc-200";
-
   return (
     <View
-      className={cn("rounded-[10px] border-2 p-[3px]", borderClasses)}
+      className={clsx("rounded-[10px] border-2 p-0.75", {
+        "border-zinc-400 dark:border-zinc-500": props.disabled,
+        "border-zinc-800 dark:border-zinc-200": !props.disabled,
+      })}
       style={{
         width: props.sliderWidth + 2 * (3 + 2),
       }}
@@ -74,15 +73,18 @@ export const SlideToConfirm = (props: Props) => {
           ]}
         >
           <View
-            className={cn(
+            className={clsx(
               "flex-row items-center gap-2.5 rounded-md border-2 px-3.5 py-1.5",
-              borderClasses,
+              {
+                "border-zinc-400 dark:border-zinc-500": props.disabled,
+                "border-zinc-800 dark:border-zinc-200": !props.disabled,
+              },
             )}
           >
             <ThemedText
-              className={cn(
-                props.disabled && "text-zinc-400 dark:text-zinc-500",
-              )}
+              className={clsx({
+                "text-zinc-400 dark:text-zinc-500": props.disabled,
+              })}
             >
               {props.children}
             </ThemedText>
