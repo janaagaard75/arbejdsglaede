@@ -12,26 +12,26 @@ const flameValue = 50;
 const heartValue = 125;
 
 class MainStore {
-  flames = initialFlames;
-  hearts = initialHearts;
-  percentage = initialPercentage;
+  public flames = initialFlames;
+  public hearts = initialHearts;
+  public percentage = initialPercentage;
 
-  constructor() {
+  public constructor() {
     makeAutoObservable(this);
-    makePersistable(this, {
+    void makePersistable(this, {
       name: "MainStore",
       properties: ["flames", "hearts", "percentage"],
       storage: AsyncStorage,
     });
   }
 
-  get score(): number {
+  public get score(): number {
     return (
       this.percentage + this.hearts * heartValue + this.flames * flameValue
     );
   }
 
-  applyQrCode(qrCode: QrCode) {
+  public applyQrCode(qrCode: QrCode) {
     const newValues = calculateNewValues(
       {
         flames: this.flames,
@@ -46,7 +46,7 @@ class MainStore {
     this.percentage = newValues.newPercentage;
   }
 
-  reset() {
+  public reset() {
     this.flames = initialFlames;
     this.hearts = initialHearts;
     this.percentage = initialPercentage;

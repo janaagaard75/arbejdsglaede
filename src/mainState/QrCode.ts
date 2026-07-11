@@ -1,3 +1,5 @@
+export type QrCode = FlameQrCode | HeartQrCode | PercentageQrCode;
+
 interface FlameQrCode {
   amount: -1 | 1;
   type: "flame";
@@ -12,5 +14,3 @@ interface PercentageQrCode {
   amount: number;
   type: "percentage";
 }
-
-export type QrCode = FlameQrCode | HeartQrCode | PercentageQrCode;

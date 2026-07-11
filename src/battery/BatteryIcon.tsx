@@ -57,44 +57,56 @@ export const BatteryIcon = (props: Props) => {
   return (
     <Animated.View style={animatedOpacity}>
       <Svg
-        stroke={hexColor}
         fill={hexColor}
+        height="100%"
+        stroke={hexColor}
+        strokeWidth="0"
         style={{
           marginLeft: 10, // Push the battery a little to the right to center it visually.
         }}
-        strokeWidth="0"
         viewBox="0 100 512 312"
         width="100%"
-        height="100%"
       >
         <Rect
-          width="400"
-          height="224"
-          x="32"
-          y="144"
           fill="none"
+          height="224"
+          rx="45.7"
+          ry="45.7"
           strokeLinecap="square"
           strokeMiterlimit="10"
           strokeWidth="32"
-          rx="45.7"
-          ry="45.7"
+          transform={[
+            {
+              translateX: 32,
+            },
+            {
+              translateY: 144,
+            },
+          ]}
+          width="400"
         />
         <Rect
-          width={percentageBarWidth}
           height={114.13 + 32}
-          x={85.69 - 16}
-          y={198.93 - 16}
-          strokeLinecap="square"
-          strokeMiterlimit="10"
           rx={15}
           ry={15}
+          strokeLinecap="square"
+          strokeMiterlimit="10"
+          transform={[
+            {
+              translateX: 85.69 - 16,
+            },
+            {
+              translateY: 198.93 - 16,
+            },
+          ]}
+          width={percentageBarWidth}
         />
         <Path
+          d="M480 218.67v74.66"
           fill="none"
           strokeLinecap="round"
           strokeMiterlimit="10"
           strokeWidth="32"
-          d="M480 218.67v74.66"
         />
       </Svg>
     </Animated.View>

@@ -3,11 +3,11 @@ import { View } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   clamp,
-  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import { scheduleOnRN } from "react-native-worklets";
 import { ThemedText } from "../themed/ThemedText";
 import { ArrowRightIcon } from "./ArrowRightIcon";
 
@@ -36,7 +36,7 @@ export const SlideToConfirm = (props: Props) => {
     })
     .onEnd(() => {
       if (maxDx - animatedPosition.value <= dropZoneWidth) {
-        runOnJS(onConfirm)();
+        scheduleOnRN(onConfirm);
       }
     })
     .onFinalize(() => {

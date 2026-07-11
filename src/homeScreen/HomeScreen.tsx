@@ -7,7 +7,7 @@ import { FlameOutlineIcon } from "../iconsRow/FlameOutlineIcon";
 import { HeartIcon } from "../iconsRow/HeartIcon";
 import { HeartOutlineIcon } from "../iconsRow/HeartOutlineIcon";
 import { IconsRow } from "../iconsRow/IconsRow";
-import { mainStore } from "../mainState/MainStore";
+import { mainStore } from "../mainState/mainStore";
 import { maximumIcons } from "../mainState/maximumIcons";
 import { ThemedLinkButton } from "../themed/ThemedLinkButton";
 import { ThemedText } from "../themed/ThemedText";

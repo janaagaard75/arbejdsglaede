@@ -5,7 +5,7 @@ import { useState } from "react";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useColors } from "../colors/useColors";
-import { mainStore } from "../mainState/MainStore";
+import { mainStore } from "../mainState/mainStore";
 import { SlideToConfirm } from "../slideToConfirm/SlideToConfirm";
 import { ThemedText } from "../themed/ThemedText";
 import { ThemedTextButton } from "../themed/ThemedTextButton";
