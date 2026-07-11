@@ -7,7 +7,7 @@ import { FlameOutlineIcon } from "../iconsRow/FlameOutlineIcon";
 import { HeartIcon } from "../iconsRow/HeartIcon";
 import { HeartOutlineIcon } from "../iconsRow/HeartOutlineIcon";
 import { IconsRow } from "../iconsRow/IconsRow";
-import { mainStore1 } from "../mainState/mainStore1";
+import { mainStore } from "../mainState/mainStore";
 import { maximumIcons } from "../mainState/maximumIcons";
 import { ThemedLinkButton } from "../themed/ThemedLinkButton";
 import { ThemedText } from "../themed/ThemedText";
@@ -31,14 +31,14 @@ export const HomeScreen = observer(() => {
         <View className="flex-1 justify-center">
           <View className="mt-10">
             <ThemedText className="self-center text-[28px] font-bold">
-              {`Trivselsscore: ${mainStore1.score}`}
+              {`Trivselsscore: ${mainStore.score}`}
             </ThemedText>
           </View>
           <View className="flex-1 justify-center">
-            <BatteryAndPercentage percentage={mainStore1.percentage} />
+            <BatteryAndPercentage percentage={mainStore.percentage} />
             <View className="h-10" />
             <IconsRow
-              currentValue={mainStore1.hearts}
+              currentValue={mainStore.hearts}
               excludedIcon={<HeartOutlineIcon />}
               gap={3}
               includedIcon={<HeartIcon />}
@@ -47,7 +47,7 @@ export const HomeScreen = observer(() => {
             />
             <View className="h-5" />
             <IconsRow
-              currentValue={mainStore1.flames}
+              currentValue={mainStore.flames}
               excludedIcon={<FlameOutlineIcon />}
               gap={3}
               includedIcon={<FlameIcon />}

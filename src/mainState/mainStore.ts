@@ -53,4 +53,4 @@ class MainStore {
   }
 }
 
-export const mainStore1 = new MainStore();
+export const mainStore = new MainStore();
