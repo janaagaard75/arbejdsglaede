@@ -1,5 +1,9 @@
 import { QrCode } from "../mainState/QrCode";
 
+const flameCode = /^[+-]flame$/;
+const heartCode = /^[+-]heart$/;
+const percentagePointsCode = /^[+-]\d{3}pp$/;
+
 export const parseQrCodeString = (
   qrCodeString: string | undefined,
 ): QrCode | undefined => {
@@ -7,7 +11,7 @@ export const parseQrCodeString = (
     return undefined;
   }
 
-  if (/^[+-]flame$/.test(qrCodeString)) {
+  if (flameCode.test(qrCodeString)) {
     const operation = qrCodeString[0];
     const value = (() => {
       switch (operation) {
@@ -26,7 +30,7 @@ export const parseQrCodeString = (
     };
   }
 
-  if (/^[+-]heart$/.test(qrCodeString)) {
+  if (heartCode.test(qrCodeString)) {
     const operation = qrCodeString[0];
     const value = (() => {
       switch (operation) {
@@ -45,7 +49,7 @@ export const parseQrCodeString = (
     };
   }
 
-  if (/^[+-]\d{3}pp$/.test(qrCodeString)) {
+  if (percentagePointsCode.test(qrCodeString)) {
     const operation = qrCodeString[0];
     const absolutePercentagePoints = parseInt(qrCodeString.slice(1, 4), 10);
     const percentagePoints = (() => {
