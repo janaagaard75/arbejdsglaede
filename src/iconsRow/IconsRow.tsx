@@ -17,6 +17,7 @@ export const IconsRow = (props: Props) => (
   >
     {Array.from({ length: props.maximum }).map((_, index) => (
       <View
+        // eslint-disable-next-line @eslint-react/no-array-index-key
         key={index}
         style={{
           height: props.size,
