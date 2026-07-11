@@ -25,23 +25,23 @@ export const ScannedCodeFeedback = (props: Props) => {
       case "flame":
         if (props.qrCode.amount === 1) {
           return "+1 flamme";
-        } else {
-          return "− 1 flamme";
         }
+
+        return "− 1 flamme";
 
       case "heart":
         if (props.qrCode.amount === 1) {
           return "+ 1 hjerte";
-        } else {
-          return "− 1 hjerte";
         }
+
+        return "− 1 hjerte";
 
       case "percentage":
         if (props.qrCode.amount > 0) {
           return `+ ${props.qrCode.amount}%`;
-        } else {
-          return `− ${Math.abs(props.qrCode.amount)}%`;
         }
+
+        return `− ${Math.abs(props.qrCode.amount)}%`;
     }
   })();
 
