@@ -5,7 +5,7 @@ import { useState } from "react";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useColors } from "../colors/useColors";
-import { mainStore } from "../mainState/MainStore";
+import { mainStore1 } from "../mainState/mainStore1";
 import { SlideToConfirm } from "../slideToConfirm/SlideToConfirm";
 import { ThemedText } from "../themed/ThemedText";
 import { ThemedTextButton } from "../themed/ThemedTextButton";
@@ -29,7 +29,7 @@ export const ScannerScreen = observer(() => {
       return;
     }
 
-    mainStore.applyQrCode(qrCode);
+    mainStore1.applyQrCode(qrCode);
 
     // Wrapping in this conditional removes a warning from the router. Don't know why.
     if (router.canGoBack()) {
@@ -88,9 +88,9 @@ export const ScannerScreen = observer(() => {
         </View>
         <View className="flex-1">
           <ScannedCodeFeedback
-            flames={mainStore.flames}
-            hearts={mainStore.hearts}
-            percentage={mainStore.percentage}
+            flames={mainStore1.flames}
+            hearts={mainStore1.hearts}
+            percentage={mainStore1.percentage}
             qrCode={qrCode}
           />
         </View>

@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Battery } from "./battery/Battery";
 import { useColors } from "./colors/useColors";
-import { mainStore } from "./mainState/MainStore";
+import { mainStore1 } from "./mainState/mainStore1";
 import { SlideToConfirm } from "./slideToConfirm/SlideToConfirm";
 import { ThemedText } from "./themed/ThemedText";
 import { ThemedView } from "./themed/ThemedView";
@@ -13,7 +13,7 @@ export const ResetScreen = () => {
   const router = useRouter();
 
   const reset = () => {
-    mainStore.reset();
+    mainStore1.reset();
 
     // Wrapping in this conditional removes a warning from the router. Don't know why.
     if (router.canGoBack()) {
