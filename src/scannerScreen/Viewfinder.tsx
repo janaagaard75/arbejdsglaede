@@ -54,6 +54,8 @@ export const Viewfinder = (props: Props) => {
       return;
     }
 
+    // This is inside an event handler, so even though it fires constantly, using Date.now() here is fine.
+    // eslint-disable-next-line react-hooks/purity
     const now = Date.now();
 
     if (
