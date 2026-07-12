@@ -17,9 +17,6 @@ import tsEslint from "typescript-eslint";
 
 export default defineConfig(
   {
-    ignores: [".yarn/**/*"],
-  },
-  {
     files: [".expo/types/**/*", "src/**/*.ts", "src/**/*.tsx", "*.d.ts"],
     languageOptions: {
       globals: {

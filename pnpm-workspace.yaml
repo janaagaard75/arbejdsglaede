@@ -1,0 +1,28 @@
+# Flat node_modules so Metro / React Native module resolution works
+# (equivalent to Yarn's nodeLinker: node-modules).
+nodeLinker: hoisted
+
+# Fail install if the active Node version does not satisfy the "engines"
+# field in package.json. Replaces the Yarn node-version-check plugin.
+engineStrict: true
+
+# Only install dependency versions published at least 6 hours ago
+# (replaces npmMinimalAgeGate: "6h").
+minimumReleaseAge: 360
+
+# Replaces Yarn's "resolutions" field.
+overrides:
+  lightningcss: 1.30.1
+
+# Silence known-safe peer dependency warnings.
+peerDependencyRules:
+  # react-dom is a peer of @radix-ui/* and vaul, which are transitive deps of @expo/ui / expo-router web tooling. Not needed in a native app.
+  ignoreMissing:
+    - react-dom
+  # The eslint-react plugins declare TypeScript <6, but we run TS 6.
+  allowedVersions:
+    "eslint-plugin-react-hooks-extra>typescript": "6"
+    "@eslint-react/ast>typescript": "6"
+    "@eslint-react/core>typescript": "6"
+    "@eslint-react/shared>typescript": "6"
+    "@eslint-react/var>typescript": "6"
