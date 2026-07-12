@@ -1,0 +1,11 @@
+# Flat node_modules so Metro / React Native module resolution works
+# (equivalent to Yarn's nodeLinker: node-modules).
+nodeLinker: hoisted
+
+# Fail install if the active Node version does not satisfy the "engines"
+# field in package.json. Replaces the Yarn node-version-check plugin.
+engineStrict: true
+
+# Only install dependency versions published at least 6 hours ago
+# (replaces npmMinimalAgeGate: "6h").
+minimumReleaseAge: 360
