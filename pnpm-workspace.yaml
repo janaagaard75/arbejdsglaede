@@ -9,3 +9,7 @@ engineStrict: true
 # Only install dependency versions published at least 6 hours ago
 # (replaces npmMinimalAgeGate: "6h").
 minimumReleaseAge: 360
+
+# Replaces Yarn's "resolutions" field.
+overrides:
+  lightningcss: 1.30.1
