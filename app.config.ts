@@ -1,5 +1,7 @@
 import { ExpoConfig } from "expo/config";
 
+const applicationIdentifier = "com.henrikleth.arbejdsglaede";
+
 const config: ExpoConfig = {
   name: "arbejdsglaede",
   slug: "arbejdsglaede",
@@ -9,7 +11,7 @@ const config: ExpoConfig = {
   scheme: "arbejdsglaede",
   userInterfaceStyle: "automatic",
   ios: {
-    bundleIdentifier: "com.janaagaard.arbejdsglaede",
+    bundleIdentifier: applicationIdentifier,
     supportsTablet: false,
   },
   android: {
@@ -19,6 +21,7 @@ const config: ExpoConfig = {
       backgroundImage: "./assets/images/android-icon-background.png",
       monochromeImage: "./assets/images/android-icon-monochrome.png",
     },
+    package: applicationIdentifier,
     predictiveBackGestureEnabled: false,
   },
   plugins: [
