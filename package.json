@@ -13,6 +13,7 @@
     "check-lint": "eslint --format unix --max-warnings 0",
     "check-types": "tsc",
     "check-unused": "knip",
+    "eas": "npx eas-cli@latest",
     "generate-typed-routes": "expo customize tsconfig.json",
     "ios": "expo run:ios",
     "ios-device": "expo run:ios --device",

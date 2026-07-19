@@ -12,6 +12,9 @@ const config: ExpoConfig = {
   userInterfaceStyle: "automatic",
   ios: {
     bundleIdentifier: applicationIdentifier,
+    infoPlist: {
+      ITSAppUsesNonExemptEncryption: false,
+    },
     supportsTablet: false,
   },
   android: {
@@ -23,6 +26,11 @@ const config: ExpoConfig = {
     },
     package: applicationIdentifier,
     predictiveBackGestureEnabled: false,
+  },
+  extra: {
+    eas: {
+      projectId: "30be4b8d-e596-4e43-8a03-767511bb7cae",
+    },
   },
   plugins: [
     [
