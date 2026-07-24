@@ -1,0 +1,17 @@
+{
+  "cameraPermissionRequired": "Afventer tilladelse til at benytte kameraet",
+  "confirm": "Bekræft",
+  "confirmThatYouWantToReset": "Bekræft at du vil nulstille til {{percentage}}% og fjerne alle hjerter og flammer.",
+  "flame": "flamme",
+  "goToHomeScreen": "Gå til forsiden!",
+  "grantCameraAccess": "Giv adgang til kameraet",
+  "heart": "hjerte",
+  "home": "Forsiden",
+  "oops": "Ups!",
+  "reset": "Nulstil",
+  "scanAQrCode": "Scan en QR-kode",
+  "scanQrCode": "Scan QR-kode",
+  "thisScreenDoesNotExist": "Denne side findes ikke.",
+  "waitingForCameraPermission": "Venter på tilladelse til kameraet…",
+  "wellbeingScore": "Trivselsscore: {{score}}"
+}

@@ -1,0 +1,17 @@
+{
+  "cameraPermissionRequired": "Waiting for permission to use the camera",
+  "confirm": "Confirm",
+  "confirmThatYouWantToReset": "Confirm that you want to reset to {{percentage}}% and remove all hearts and flames.",
+  "flame": "flame",
+  "goToHomeScreen": "Go to home screen!",
+  "grantCameraAccess": "Grant access to the camera",
+  "heart": "heart",
+  "home": "Home",
+  "oops": "Oops!",
+  "reset": "Reset",
+  "scanAQrCode": "Scan a QR code",
+  "scanQrCode": "Scan QR code",
+  "thisScreenDoesNotExist": "This screen doesn't exist.",
+  "waitingForCameraPermission": "Waiting for permission to the camera…",
+  "wellbeingScore": "Wellbeing score: {{score}}"
+}
