@@ -41,6 +41,7 @@ const config: ExpoConfig = {
         recordAudioAndroid: false,
       },
     ],
+    "expo-localization",
     "expo-router",
     [
       "expo-splash-screen",
