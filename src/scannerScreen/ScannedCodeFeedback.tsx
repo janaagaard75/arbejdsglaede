@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import { calculateNewValues } from "../mainState/calculateNewValues";
 import { QrCode } from "../mainState/QrCode";
@@ -12,36 +13,28 @@ interface Props {
 }
 
 export const ScannedCodeFeedback = (props: Props) => {
+  const { t } = useTranslation();
+
   if (props.qrCode === undefined) {
     return (
       <ThemedText className="text-center text-[30px]">
-        Scan en QR-kode
+        {t("scanAQrCode")}
       </ThemedText>
     );
   }
 
   const label = (() => {
+    const sign = props.qrCode.amount > 0 ? "+" : "−";
+
     switch (props.qrCode.type) {
       case "flame":
-        if (props.qrCode.amount === 1) {
-          return "+1 flamme";
-        }
-
-        return "− 1 flamme";
+        return `${sign} 1 ${t("flame")}`;
 
       case "heart":
-        if (props.qrCode.amount === 1) {
-          return "+ 1 hjerte";
-        }
-
-        return "− 1 hjerte";
+        return `${sign} 1 ${t("heart")}`;
 
       case "percentage":
-        if (props.qrCode.amount > 0) {
-          return `+ ${props.qrCode.amount}%`;
-        }
-
-        return `− ${Math.abs(props.qrCode.amount)}%`;
+        return `${sign} ${Math.abs(props.qrCode.amount)}%`;
     }
   })();
 

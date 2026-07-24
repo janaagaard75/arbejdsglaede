@@ -1,4 +1,5 @@
 import { observer } from "mobx-react-lite";
+import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useColors } from "../colors/useColors";
@@ -15,6 +16,7 @@ import { ThemedView } from "../themed/ThemedView";
 import { BatteryAndPercentage } from "./BatteryAndPercentage";
 
 export const HomeScreen = observer(() => {
+  const { t } = useTranslation();
   const colors = useColors();
 
   return (
@@ -26,12 +28,12 @@ export const HomeScreen = observer(() => {
     >
       <ThemedView className="flex-1">
         <View className="m-5 self-end">
-          <ThemedLinkButton href="/reset">Nulstil</ThemedLinkButton>
+          <ThemedLinkButton href="/reset">{t("reset")}</ThemedLinkButton>
         </View>
         <View className="flex-1 justify-center">
           <View className="mt-10">
             <ThemedText className="self-center text-[28px] font-bold">
-              {`Trivselsscore: ${mainStore.score}`}
+              {t("wellbeingScore", { score: mainStore.score })}
             </ThemedText>
           </View>
           <View className="flex-1 justify-center">
@@ -56,7 +58,7 @@ export const HomeScreen = observer(() => {
             />
           </View>
           <View className="mb-20 justify-end">
-            <ThemedLinkButton href="/scan">Scan QR-kode</ThemedLinkButton>
+            <ThemedLinkButton href="/scan">{t("scanQrCode")}</ThemedLinkButton>
           </View>
         </View>
       </ThemedView>

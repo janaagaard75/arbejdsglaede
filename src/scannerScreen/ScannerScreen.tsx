@@ -2,6 +2,7 @@ import { useCameraPermissions } from "expo-camera";
 import { useRouter } from "expo-router";
 import { observer } from "mobx-react-lite";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useColors } from "../colors/useColors";
@@ -15,6 +16,7 @@ import { ScannedCodeFeedback } from "./ScannedCodeFeedback";
 import { Viewfinder } from "./Viewfinder";
 
 export const ScannerScreen = observer(() => {
+  const { t } = useTranslation();
   const [cameraPermissions, requestCameraPermissions] = useCameraPermissions();
   const [qrCodeString, setQrCodeString] = useState<string | undefined>(
     undefined,
@@ -46,7 +48,7 @@ export const ScannerScreen = observer(() => {
         }}
       >
         <ThemedText className="mx-7.5 mt-7.5 flex-1">
-          Venter på tilladelse til kameraet…
+          {t("waitingForCameraPermission")}
         </ThemedText>
       </SafeAreaView>
     );
@@ -62,10 +64,10 @@ export const ScannerScreen = observer(() => {
       >
         <ThemedView className="flex-1 gap-7.5">
           <ThemedText className="mx-7.5 mt-10 text-center text-[30px]">
-            Afventer tilladelse til at benytte kameraet
+            {t("cameraPermissionRequired")}
           </ThemedText>
           <ThemedTextButton onPress={requestCameraPermissions}>
-            Giv adgang til kameraet
+            {t("grantCameraAccess")}
           </ThemedTextButton>
         </ThemedView>
       </SafeAreaView>
@@ -101,7 +103,7 @@ export const ScannerScreen = observer(() => {
             onConfirm={applyQrCode}
             sliderWidth={250}
           >
-            Bekræft
+            {t("confirm")}
           </SlideToConfirm>
         </View>
       </ThemedView>

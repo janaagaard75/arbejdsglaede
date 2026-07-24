@@ -1,4 +1,5 @@
 import { useRouter } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Battery } from "./battery/Battery";
@@ -8,7 +9,10 @@ import { SlideToConfirm } from "./slideToConfirm/SlideToConfirm";
 import { ThemedText } from "./themed/ThemedText";
 import { ThemedView } from "./themed/ThemedView";
 
+const resetPercentage = 20;
+
 export const ResetScreen = () => {
+  const { t } = useTranslation();
   const colors = useColors();
   const router = useRouter();
 
@@ -30,10 +34,10 @@ export const ResetScreen = () => {
     >
       <ThemedView className="flex-1 gap-7.5">
         <ThemedText className="mx-7.5 mt-50">
-          Bekræft at du vil nulstille til 20% og fjerne alle hjerter og flammer.
+          {t("confirmThatYouWantToReset", { percentage: resetPercentage })}
         </ThemedText>
         <View className="w-50 items-center self-center">
-          <Battery percentage={20} />
+          <Battery percentage={resetPercentage} />
         </View>
         <View className="mx-auto mb-20 flex-1 justify-end">
           <SlideToConfirm
@@ -42,7 +46,7 @@ export const ResetScreen = () => {
             onConfirm={reset}
             sliderWidth={250}
           >
-            Bekræft
+            {t("confirm")}
           </SlideToConfirm>
         </View>
       </ThemedView>

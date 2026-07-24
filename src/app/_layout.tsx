@@ -1,4 +1,5 @@
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "react-native-reanimated";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -12,6 +13,7 @@ import { useAppColorScheme } from "../useAppColorScheme";
 void configureI18next();
 
 const RootLayout = () => {
+  const { t } = useTranslation();
   const colorScheme = useAppColorScheme();
   const colors = useColors();
 
@@ -32,14 +34,14 @@ const RootLayout = () => {
               name="index"
               options={{
                 headerShown: false,
-                headerTitle: "Forsiden",
+                headerTitle: t("home"),
               }}
             />
             <Stack.Screen
               name="reset"
               options={{
                 headerRight: () => <HeaderCloseButton />,
-                headerTitle: "Nulstil",
+                headerTitle: t("reset"),
                 presentation: "modal",
               }}
             />
@@ -47,7 +49,7 @@ const RootLayout = () => {
               name="scan"
               options={{
                 headerRight: () => <HeaderCloseButton />,
-                headerTitle: "Scan QR-kode",
+                headerTitle: t("scanQrCode"),
                 presentation: "modal",
               }}
             />
