@@ -5,6 +5,7 @@
   },
   "build": {
     "base": {
+      "corepack": true,
       "node": "24"
     },
     "development": {
