@@ -59,7 +59,7 @@ const config: ExpoConfig = {
     url: "https://u.expo.dev/30be4b8d-e596-4e43-8a03-767511bb7cae",
   },
   runtimeVersion: {
-    policy: "appVersion",
+    policy: "fingerprint",
   },
 };
 
