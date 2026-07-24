@@ -1,0 +1,44 @@
+name: "Publish production release"
+
+on:
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: "Platform"
+        default: "all"
+        type: choice
+        options:
+          - all
+          - android
+          - ios
+
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
+jobs:
+  build-and-submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install pnpm
+        run: corepack enable
+
+      - uses: actions/setup-node@v6
+        with:
+          cache-dependency-path: pnpm-lock.yaml
+          cache: "pnpm"
+          node-version-file: .nvmrc
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Set up EAS command
+        uses: expo/expo-github-action@v9
+        with:
+          eas-version: latest
+          token: ${{secrets.EXPO_TOKEN}}
+
+      - name: Build and submit production release
+        run: eas build --profile production --platform ${{inputs.platform || 'all'}} --non-interactive --auto-submit

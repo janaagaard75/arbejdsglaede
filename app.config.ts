@@ -1,5 +1,7 @@
 import { ExpoConfig } from "expo/config";
 
+const applicationIdentifier = "com.henrikleth.arbejdsglaede";
+
 const config: ExpoConfig = {
   name: "arbejdsglaede",
   slug: "arbejdsglaede",
@@ -9,7 +11,10 @@ const config: ExpoConfig = {
   scheme: "arbejdsglaede",
   userInterfaceStyle: "automatic",
   ios: {
-    bundleIdentifier: "com.janaagaard.arbejdsglaede",
+    bundleIdentifier: applicationIdentifier,
+    infoPlist: {
+      ITSAppUsesNonExemptEncryption: false,
+    },
     supportsTablet: false,
   },
   android: {
@@ -19,7 +24,13 @@ const config: ExpoConfig = {
       backgroundImage: "./assets/images/android-icon-background.png",
       monochromeImage: "./assets/images/android-icon-monochrome.png",
     },
+    package: applicationIdentifier,
     predictiveBackGestureEnabled: false,
+  },
+  extra: {
+    eas: {
+      projectId: "30be4b8d-e596-4e43-8a03-767511bb7cae",
+    },
   },
   plugins: [
     [
@@ -43,6 +54,12 @@ const config: ExpoConfig = {
   experiments: {
     reactCompiler: true,
     typedRoutes: true,
+  },
+  updates: {
+    url: "https://u.expo.dev/30be4b8d-e596-4e43-8a03-767511bb7cae",
+  },
+  runtimeVersion: {
+    policy: "fingerprint",
   },
 };
 
