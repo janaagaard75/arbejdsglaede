@@ -32,12 +32,18 @@ const config: ExpoConfig = {
       projectId: "30be4b8d-e596-4e43-8a03-767511bb7cae",
     },
   },
+  // Localizes the native iOS system dialogs, which the in-app translations cannot reach.
+  locales: {
+    da: "./locales/da.json",
+    en: "./locales/en.json",
+  },
   plugins: [
     [
       "expo-camera",
       {
+        // The fallback used when the device language is neither Danish nor English. The localized versions live in ./locales.
         cameraPermission:
-          "App'en har brug for adgang til kameraet for at kunne scanne QR-koderne i spillet.",
+          "The app needs access to the camera to scan the QR codes in the game.",
         recordAudioAndroid: false,
       },
     ],
