@@ -25,8 +25,13 @@ export const configureI18next = async () => {
     },
     lng: selectedLanguage,
     resources: {
-      da: { translation: translationDa },
-      en: { translation: translationEn },
+      da: {
+        // `satisfies` tp ensures that the Danish translation has the same keys as the English translation.
+        translation: translationDa satisfies typeof translationEn,
+      },
+      en: {
+        translation: translationEn,
+      },
     },
   });
 };
