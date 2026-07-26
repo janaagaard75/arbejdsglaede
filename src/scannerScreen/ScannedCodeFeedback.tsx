@@ -5,6 +5,8 @@ import { QrCode } from "../mainState/QrCode";
 import { ThemedText } from "../themed/ThemedText";
 import { Summary } from "./Summary";
 
+const minusSign = "\u2212";
+
 interface Props {
   flames: number;
   hearts: number;
@@ -24,7 +26,7 @@ export const ScannedCodeFeedback = (props: Props) => {
   }
 
   const label = (() => {
-    const sign = props.qrCode.amount > 0 ? "+" : "−";
+    const sign = props.qrCode.amount > 0 ? "+" : minusSign;
 
     switch (props.qrCode.type) {
       case "flame":
