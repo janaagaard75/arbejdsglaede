@@ -47,7 +47,14 @@ const config: ExpoConfig = {
         recordAudioAndroid: false,
       },
     ],
-    "expo-localization",
+    [
+      "expo-localization",
+      {
+        // Apply language without requiring a cold start.
+        allowDynamicLocaleChangesAndroid: false,
+        supportedLocales: ["da", "en"],
+      },
+    ],
     "expo-router",
     [
       "expo-splash-screen",
