@@ -1,3 +1,9 @@
 {
-  "NSCameraUsageDescription": "App'en har brug for adgang til kameraet for at kunne scanne QR-koderne i spillet."
+  "android": {
+    "app_name": "Arbejdsglæde"
+  },
+  "ios": {
+    "CFBundleDisplayName": "Arbejdsglæde",
+    "NSCameraUsageDescription": "App'en har brug for adgang til kameraet for at kunne scanne QR-koderne i spillet."
+  }
 }

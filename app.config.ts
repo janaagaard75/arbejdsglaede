@@ -3,7 +3,7 @@ import { ExpoConfig } from "expo/config";
 const applicationIdentifier = "com.henrikleth.arbejdsglaede";
 
 const config: ExpoConfig = {
-  name: "arbejdsglaede",
+  name: "Arbejdsglaede",
   slug: "arbejdsglaede",
   version: "1.0.0",
   orientation: "portrait",
@@ -13,6 +13,7 @@ const config: ExpoConfig = {
   ios: {
     bundleIdentifier: applicationIdentifier,
     infoPlist: {
+      CFBundleAllowMixedLocalizations: true,
       ITSAppUsesNonExemptEncryption: false,
     },
     supportsTablet: false,
@@ -32,7 +33,6 @@ const config: ExpoConfig = {
       projectId: "30be4b8d-e596-4e43-8a03-767511bb7cae",
     },
   },
-  // Localizes the native iOS system dialogs, which the in-app translations cannot reach.
   locales: {
     da: "./locales/da.json",
     en: "./locales/en.json",
