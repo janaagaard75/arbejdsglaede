@@ -3,7 +3,7 @@ import { ExpoConfig } from "expo/config";
 const applicationIdentifier = "com.henrikleth.arbejdsglaede";
 
 const config: ExpoConfig = {
-  name: "arbejdsglaede",
+  name: "Arbejdsglaede",
   slug: "arbejdsglaede",
   version: "1.0.0",
   orientation: "portrait",
@@ -13,6 +13,7 @@ const config: ExpoConfig = {
   ios: {
     bundleIdentifier: applicationIdentifier,
     infoPlist: {
+      CFBundleAllowMixedLocalizations: true,
       ITSAppUsesNonExemptEncryption: false,
     },
     supportsTablet: false,
@@ -32,13 +33,26 @@ const config: ExpoConfig = {
       projectId: "30be4b8d-e596-4e43-8a03-767511bb7cae",
     },
   },
+  locales: {
+    da: "./locales/da.json",
+    en: "./locales/en.json",
+  },
   plugins: [
     [
       "expo-camera",
       {
+        // The fallback used when the device language is neither Danish nor English. The localized versions live in ./locales.
         cameraPermission:
-          "App'en har brug for adgang til kameraet for at kunne scanne QR-koderne i spillet.",
+          "The app needs access to the camera to scan the QR codes in the game.",
         recordAudioAndroid: false,
+      },
+    ],
+    [
+      "expo-localization",
+      {
+        // Apply language without requiring a cold start.
+        allowDynamicLocaleChangesAndroid: false,
+        supportedLocales: ["da", "en"],
       },
     ],
     "expo-router",

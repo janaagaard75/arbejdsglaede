@@ -1,0 +1,9 @@
+{
+  "android": {
+    "app_name": "Arbejdsglaede"
+  },
+  "ios": {
+    "CFBundleDisplayName": "Arbejdsglaede",
+    "NSCameraUsageDescription": "The app needs access to the camera to scan the QR codes in the game."
+  }
+}
