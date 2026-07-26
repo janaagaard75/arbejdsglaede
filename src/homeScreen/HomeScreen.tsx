@@ -14,6 +14,7 @@ import { ThemedLinkButton } from "../themed/ThemedLinkButton";
 import { ThemedText } from "../themed/ThemedText";
 import { ThemedView } from "../themed/ThemedView";
 import { BatteryAndPercentage } from "./BatteryAndPercentage";
+import { groupDigitsWithSpaces } from "./groupDigitsWithSpaces";
 
 export const HomeScreen = observer(() => {
   const { t } = useTranslation();
@@ -33,7 +34,9 @@ export const HomeScreen = observer(() => {
         <View className="flex-1 justify-center">
           <View className="mt-10">
             <ThemedText className="self-center text-[28px] font-bold">
-              {t("wellbeingScore", { score: mainStore.score })}
+              {t("wellbeingScore", {
+                score: groupDigitsWithSpaces(mainStore.score),
+              })}
             </ThemedText>
           </View>
           <View className="flex-1 justify-center">
