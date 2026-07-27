@@ -5,7 +5,6 @@ import stylistic from "@stylistic/eslint-plugin";
 import eslintPluginDeMorgan from "eslint-plugin-de-morgan";
 import eslintPluginFilenameExport from "eslint-plugin-filename-export";
 import eslintPluginPerfectionist from "eslint-plugin-perfectionist";
-import eslintPluginReact from "eslint-plugin-react";
 import eslintPluginReactHooks from "eslint-plugin-react-hooks";
 import eslintPluginReactHooksExtra from "eslint-plugin-react-hooks-extra";
 import eslintPluginReactNative from "eslint-plugin-react-native";
@@ -47,8 +46,6 @@ export default defineConfig(
       eslintReactEslintPlugin.configs["recommended-typescript"],
       eslintPluginDeMorgan.configs.recommended,
       eslintPluginReactHooksExtra.configs.recommended,
-      eslintPluginReact.configs.flat.recommended,
-      eslintPluginReact.configs.flat["jsx-runtime"],
       eslintPluginPerfectionist.configs["recommended-natural"],
       reactYouMightNotNeedAnEffect.configs.recommended,
     ].map((eslintConfig) => {
@@ -77,6 +74,12 @@ export default defineConfig(
       };
     }),
     rules: {
+      // Only components that get no name inferred are reported, such as those wrapped in memo(), which would otherwise show up as Anonymous in React DevTools.
+      "@eslint-react/no-missing-component-display-name": "warn",
+
+      // Do not allow unused props.
+      "@eslint-react/no-unused-props": "warn",
+
       // Do not allow backtick strings unless they are template strings.
       "@stylistic/quotes": ["warn", "double", { avoidEscape: true }],
 
@@ -326,19 +329,11 @@ export default defineConfig(
       // Prefer template strings over concatenating with plus.
       "prefer-template": "warn",
 
-      // Do not allow unused props. (This rule also works in TypeScript.)
-      "react/no-unused-prop-types": "warn",
-
       // Ensure that we use .android.tsx and .ios.tsx files when we have platform-specific code.
       "react-native/split-platform-components": "warn",
 
       // Ensure that our components can safely be updated with fast refresh.
       "react-refresh/only-export-components": "warn",
-    },
-    settings: {
-      react: {
-        version: "detect",
-      },
     },
   },
   {
