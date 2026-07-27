@@ -78,6 +78,17 @@ export default defineConfig(
       // Do not allow unused props.
       "@eslint-react/no-unused-props": "warn",
 
+      // These nine rules duplicate an identically named react-hooks rule, and would otherwise report every violation twice. We keep the official plugin's version because only it also ships the React Compiler rules, so the two sets stay in step.
+      "@eslint-react/error-boundaries": "off",
+      "@eslint-react/exhaustive-deps": "off",
+      "@eslint-react/purity": "off",
+      "@eslint-react/rules-of-hooks": "off",
+      "@eslint-react/set-state-in-effect": "off",
+      "@eslint-react/set-state-in-render": "off",
+      "@eslint-react/static-components": "off",
+      "@eslint-react/unsupported-syntax": "off",
+      "@eslint-react/use-memo": "off",
+
       // Do not allow backtick strings unless they are template strings.
       "@stylistic/quotes": ["warn", "double", { avoidEscape: true }],
 
