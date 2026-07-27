@@ -21,7 +21,6 @@ peerDependencyRules:
     - react-dom
   # The eslint-react plugins declare TypeScript <6, but we run TS 6.
   allowedVersions:
-    "eslint-plugin-react-hooks-extra>typescript": "6"
     "@eslint-react/ast>typescript": "6"
     "@eslint-react/core>typescript": "6"
     "@eslint-react/shared>typescript": "6"

@@ -6,7 +6,6 @@ import eslintPluginDeMorgan from "eslint-plugin-de-morgan";
 import eslintPluginFilenameExport from "eslint-plugin-filename-export";
 import eslintPluginPerfectionist from "eslint-plugin-perfectionist";
 import eslintPluginReactHooks from "eslint-plugin-react-hooks";
-import eslintPluginReactHooksExtra from "eslint-plugin-react-hooks-extra";
 import eslintPluginReactNative from "eslint-plugin-react-native";
 import eslintPluginReactRefresh from "eslint-plugin-react-refresh";
 import reactYouMightNotNeedAnEffect from "eslint-plugin-react-you-might-not-need-an-effect";
@@ -45,7 +44,6 @@ export default defineConfig(
       e18eEslintPlugin.configs.recommended,
       eslintReactEslintPlugin.configs["recommended-typescript"],
       eslintPluginDeMorgan.configs.recommended,
-      eslintPluginReactHooksExtra.configs.recommended,
       eslintPluginPerfectionist.configs["recommended-natural"],
       reactYouMightNotNeedAnEffect.configs.recommended,
     ].map((eslintConfig) => {
