@@ -338,8 +338,8 @@ export default defineConfig(
       // Prefer template strings over concatenating with plus.
       "prefer-template": "warn",
 
-      // Ensure that we use .android.tsx and .ios.tsx files when we have platform-specific code.
-      "react-native/split-platform-components": "warn",
+      // Raw text outside a <Text> tag crashes React Native at runtime, and TypeScript does not catch it. ThemedText has to be skipped because the rule cannot tell that it wraps <Text>.
+      "react-native/no-raw-text": ["warn", { skip: ["ThemedText"] }],
 
       // Ensure that our components can safely be updated with fast refresh.
       "react-refresh/only-export-components": "warn",
