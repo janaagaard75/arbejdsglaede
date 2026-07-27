@@ -1,6 +1,7 @@
 // Hex values from the Tailwind color palette. Tailwind v4 only exposes the palette as oklch() strings, which React Native and react-native-svg cannot parse, so the values are written out here.
 const amber500 = "#f59e0b";
 const green600 = "#16a34a";
+const red500 = "#ef4444";
 const red600 = "#dc2626";
 const zinc100 = "#f4f4f5";
 const zinc200 = "#e4e4e7";
@@ -16,7 +17,8 @@ export const Colors = {
     disabledText: zinc500,
     green: green600,
     orange: amber500,
-    red: red600,
+    // The lighter red-500 reaches 4.7:1 against the zinc-900 background, where red-600 only manages 3.7:1.
+    red: red500,
     text: zinc200,
     unselected: zinc600,
   },
