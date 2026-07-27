@@ -61,7 +61,11 @@ const config: ExpoConfig = {
       {
         image: "./assets/images/splash-icon.png",
         resizeMode: "contain",
-        backgroundColor: "#ffffff",
+        // These repeat Colors.light.background and Colors.dark.background. Expo's config loader requires this file through plain Node, which cannot resolve an import of a TypeScript module.
+        backgroundColor: "#f4f4f5",
+        dark: {
+          backgroundColor: "#18181b",
+        },
       },
     ],
   ],
