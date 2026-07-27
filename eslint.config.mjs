@@ -5,9 +5,7 @@ import stylistic from "@stylistic/eslint-plugin";
 import eslintPluginDeMorgan from "eslint-plugin-de-morgan";
 import eslintPluginFilenameExport from "eslint-plugin-filename-export";
 import eslintPluginPerfectionist from "eslint-plugin-perfectionist";
-import eslintPluginReact from "eslint-plugin-react";
 import eslintPluginReactHooks from "eslint-plugin-react-hooks";
-import eslintPluginReactHooksExtra from "eslint-plugin-react-hooks-extra";
 import eslintPluginReactNative from "eslint-plugin-react-native";
 import eslintPluginReactRefresh from "eslint-plugin-react-refresh";
 import reactYouMightNotNeedAnEffect from "eslint-plugin-react-you-might-not-need-an-effect";
@@ -46,9 +44,6 @@ export default defineConfig(
       e18eEslintPlugin.configs.recommended,
       eslintReactEslintPlugin.configs["recommended-typescript"],
       eslintPluginDeMorgan.configs.recommended,
-      eslintPluginReactHooksExtra.configs.recommended,
-      eslintPluginReact.configs.flat.recommended,
-      eslintPluginReact.configs.flat["jsx-runtime"],
       eslintPluginPerfectionist.configs["recommended-natural"],
       reactYouMightNotNeedAnEffect.configs.recommended,
     ].map((eslintConfig) => {
@@ -77,6 +72,23 @@ export default defineConfig(
       };
     }),
     rules: {
+      // Only components that get no name inferred are reported, such as those wrapped in memo(), which would otherwise show up as Anonymous in React DevTools.
+      "@eslint-react/no-missing-component-display-name": "warn",
+
+      // Do not allow unused props.
+      "@eslint-react/no-unused-props": "warn",
+
+      // These nine rules duplicate an identically named react-hooks rule, and would otherwise report every violation twice. We keep the official plugin's version because only it also ships the React Compiler rules, so the two sets stay in step.
+      "@eslint-react/error-boundaries": "off",
+      "@eslint-react/exhaustive-deps": "off",
+      "@eslint-react/purity": "off",
+      "@eslint-react/rules-of-hooks": "off",
+      "@eslint-react/set-state-in-effect": "off",
+      "@eslint-react/set-state-in-render": "off",
+      "@eslint-react/static-components": "off",
+      "@eslint-react/unsupported-syntax": "off",
+      "@eslint-react/use-memo": "off",
+
       // Do not allow backtick strings unless they are template strings.
       "@stylistic/quotes": ["warn", "double", { avoidEscape: true }],
 
@@ -326,19 +338,11 @@ export default defineConfig(
       // Prefer template strings over concatenating with plus.
       "prefer-template": "warn",
 
-      // Do not allow unused props. (This rule also works in TypeScript.)
-      "react/no-unused-prop-types": "warn",
-
-      // Ensure that we use .android.tsx and .ios.tsx files when we have platform-specific code.
-      "react-native/split-platform-components": "warn",
+      // Raw text outside a <Text> tag crashes React Native at runtime, and TypeScript does not catch it. ThemedText has to be skipped because the rule cannot tell that it wraps <Text>.
+      "react-native/no-raw-text": ["warn", { skip: ["ThemedText"] }],
 
       // Ensure that our components can safely be updated with fast refresh.
       "react-refresh/only-export-components": "warn",
-    },
-    settings: {
-      react: {
-        version: "detect",
-      },
     },
   },
   {
