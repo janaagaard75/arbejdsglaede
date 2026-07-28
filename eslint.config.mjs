@@ -2,6 +2,7 @@ import e18eEslintPlugin from "@e18e/eslint-plugin";
 import eslintReactEslintPlugin from "@eslint-react/eslint-plugin";
 import jsEslint from "@eslint/js";
 import stylistic from "@stylistic/eslint-plugin";
+import eslintPluginBetterTailwindcss from "eslint-plugin-better-tailwindcss";
 import eslintPluginDeMorgan from "eslint-plugin-de-morgan";
 import eslintPluginFilenameExport from "eslint-plugin-filename-export";
 import eslintPluginPerfectionist from "eslint-plugin-perfectionist";
@@ -26,8 +27,15 @@ export default defineConfig(
         tsconfigRootDir: import.meta.dirname,
       },
     },
+    settings: {
+      "better-tailwindcss": {
+        entryPoint: "src/global.css",
+        rootFontSize: 16,
+      },
+    },
     plugins: {
       "@stylistic": stylistic,
+      "better-tailwindcss": eslintPluginBetterTailwindcss,
       "filename-export": eslintPluginFilenameExport,
       "react-hooks": eslintPluginReactHooks,
       "react-native": eslintPluginReactNative,
@@ -207,6 +215,12 @@ export default defineConfig(
         {
           requireReturnForObjectLiteral: true,
         },
+      ],
+
+      // Prefer the shorter canonical class names, e.g. leading-7.5 instead of leading-[30px].
+      "better-tailwindcss/enforce-canonical-classes": [
+        "warn",
+        { collapse: false },
       ],
 
       // Always wrap in curly braces, even one-liners.
