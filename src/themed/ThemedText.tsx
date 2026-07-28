@@ -3,14 +3,12 @@ import { Text, type TextProps } from "react-native";
 
 type Props = TextProps & { children: string };
 
-export const ThemedText = (props: Props) => (
+export const ThemedText = ({ className, ...otherProps }: Props) => (
   <Text
     className={clsx(
-      "text-[20px] leading-[30px] text-zinc-800 dark:text-zinc-200",
-      props.className,
+      "text-[20px] leading-7.5 text-zinc-800 dark:text-zinc-200",
+      className,
     )}
-    {...props}
-  >
-    {props.children}
-  </Text>
+    {...otherProps}
+  />
 );

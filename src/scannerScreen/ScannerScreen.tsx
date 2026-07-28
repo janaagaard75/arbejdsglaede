@@ -82,7 +82,7 @@ export const ScannerScreen = observer(() => {
       }}
     >
       <ThemedView className="flex-1 gap-5">
-        <View className="mt-17.5 h-[220px] justify-end">
+        <View className="mt-17.5 h-55 justify-end">
           <Viewfinder
             onScannedQrCodeChange={setQrCodeString}
             scannedQrCode={qrCodeString}

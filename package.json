@@ -30,6 +30,7 @@
     "clsx": "^2.1.1",
     "eslint": "^9.39.4",
     "eslint-formatter-unix": "^9.0.1",
+    "eslint-plugin-better-tailwindcss": "^4.7.0",
     "eslint-plugin-de-morgan": "^2.1.1",
     "eslint-plugin-filename-export": "^2.0.0",
     "eslint-plugin-perfectionist": "^5.9.0",
