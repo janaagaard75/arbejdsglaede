@@ -2,7 +2,6 @@ import { observer } from "mobx-react-lite";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useColors } from "../colors/useColors";
 import { FlameIcon } from "../iconsRow/FlameIcon";
 import { FlameOutlineIcon } from "../iconsRow/FlameOutlineIcon";
 import { HeartIcon } from "../iconsRow/HeartIcon";
@@ -13,6 +12,7 @@ import { maximumIcons } from "../mainState/maximumIcons";
 import { ThemedLinkButton } from "../themed/ThemedLinkButton";
 import { ThemedText } from "../themed/ThemedText";
 import { ThemedView } from "../themed/ThemedView";
+import { useColors } from "../themed/useColors";
 import { BatteryAndPercentage } from "./BatteryAndPercentage";
 import { groupDigitsWithSpaces } from "./groupDigitsWithSpaces";
 

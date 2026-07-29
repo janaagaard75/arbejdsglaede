@@ -1,8 +1,8 @@
 import { getLocales } from "expo-localization";
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
-import translationDa from "./translations/da.json";
-import translationEn from "./translations/en.json";
+import uiStringsDa from "./translations/uiStrings.da.json";
+import uiStringsEn from "./translations/uiStrings.en.json";
 
 const defaultLanguage = "en";
 
@@ -27,10 +27,10 @@ export const configureI18next = async () => {
     resources: {
       da: {
         // `satisfies` tp ensures that the Danish translation has the same keys as the English translation.
-        translation: translationDa satisfies typeof translationEn,
+        translation: uiStringsDa satisfies typeof uiStringsEn,
       },
       en: {
-        translation: translationEn,
+        translation: uiStringsEn,
       },
     },
   });

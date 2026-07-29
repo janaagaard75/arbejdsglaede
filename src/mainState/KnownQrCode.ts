@@ -1,4 +1,4 @@
-export type QrCode = FlameQrCode | HeartQrCode | PercentageQrCode;
+export type KnownQrCode = FlameQrCode | HeartQrCode | PercentageQrCode;
 
 interface FlameQrCode {
   amount: -1 | 1;

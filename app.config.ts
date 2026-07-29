@@ -7,11 +7,17 @@ const config: ExpoConfig = {
   slug: "arbejdsglaede",
   version: "1.0.0",
   orientation: "portrait",
-  icon: "./assets/images/icon.png",
+  icon: "./assets/icon-light.png",
   scheme: "arbejdsglaede",
   userInterfaceStyle: "automatic",
   ios: {
     bundleIdentifier: applicationIdentifier,
+    icon: {
+      dark: "./assets/icon-dark.png",
+      light: "./assets/icon-light.png",
+      // The white-on-black icon doubles as the grayscale mask that iOS tints.
+      tinted: "./assets/icon-dark.png",
+    },
     infoPlist: {
       CFBundleAllowMixedLocalizations: true,
       ITSAppUsesNonExemptEncryption: false,
@@ -20,10 +26,10 @@ const config: ExpoConfig = {
   },
   android: {
     adaptiveIcon: {
-      backgroundColor: "#E6F4FE",
-      foregroundImage: "./assets/images/android-icon-foreground.png",
-      backgroundImage: "./assets/images/android-icon-background.png",
-      monochromeImage: "./assets/images/android-icon-monochrome.png",
+      backgroundColor: "#ffffff",
+      // The glyph is padded to sit inside the 66dp safe zone, so the same black-on-transparent file works as both layers.
+      foregroundImage: "./assets/android-icon.png",
+      monochromeImage: "./assets/android-icon.png",
     },
     package: applicationIdentifier,
     predictiveBackGestureEnabled: false,
@@ -34,8 +40,8 @@ const config: ExpoConfig = {
     },
   },
   locales: {
-    da: "./locales/da.json",
-    en: "./locales/en.json",
+    da: "./locales/appMetadata.da.json",
+    en: "./locales/appMetadata.en.json",
   },
   plugins: [
     [
@@ -59,12 +65,15 @@ const config: ExpoConfig = {
     [
       "expo-splash-screen",
       {
-        image: "./assets/images/splash-icon.png",
+        image: "./assets/splash-icon-light.png",
+        // The default of 100 leaves the wide battery glyph too small to read.
+        imageWidth: 200,
         resizeMode: "contain",
         // These repeat Colors.light.background and Colors.dark.background. Expo's config loader requires this file through plain Node, which cannot resolve an import of a TypeScript module.
         backgroundColor: "#f4f4f5",
         dark: {
           backgroundColor: "#18181b",
+          image: "./assets/splash-icon-dark.png",
         },
       },
     ],

@@ -1,4 +1,4 @@
-import { QrCode } from "../mainState/QrCode";
+import { KnownQrCode } from "../mainState/KnownQrCode";
 
 const flameCode = /^[+-]flame$/;
 const heartCode = /^[+-]heart$/;
@@ -6,7 +6,7 @@ const percentagePointsCode = /^[+-]\d{3}pp$/;
 
 export const parseQrCodeString = (
   qrCodeString: string | undefined,
-): QrCode | undefined => {
+): "unknownQrCode" | KnownQrCode | undefined => {
   if (qrCodeString === undefined) {
     return undefined;
   }
@@ -69,5 +69,5 @@ export const parseQrCodeString = (
     };
   }
 
-  return undefined;
+  return "unknownQrCode";
 };

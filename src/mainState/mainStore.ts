@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { makeAutoObservable } from "mobx";
 import { makePersistable } from "mobx-persist-store";
-import { QrCode } from "./QrCode";
+import { KnownQrCode } from "./KnownQrCode";
 import { calculateNewValues } from "./calculateNewValues";
 
 const initialFlames = 0;
@@ -31,7 +31,7 @@ class MainStore {
     );
   }
 
-  public applyQrCode(qrCode: QrCode) {
+  public applyQrCode(qrCode: KnownQrCode) {
     const newValues = calculateNewValues(
       {
         flames: this.flames,

@@ -1,7 +1,7 @@
 import { BarcodeBounds, BarcodeScanningResult, CameraView } from "expo-camera";
 import { useRef, useState } from "react";
 import { View } from "react-native";
-import { useColors } from "../colors/useColors";
+import { useColors } from "../themed/useColors";
 import { HeadUpDisplay } from "./HeadUpDisplay";
 import { QrCodeHighlighter } from "./QrCodeHighlighter";
 

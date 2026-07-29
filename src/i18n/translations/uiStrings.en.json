@@ -9,6 +9,7 @@
   "reset": "Reset",
   "scanAQrCode": "Scan a QR code",
   "scanQrCode": "Scan QR code",
+  "unknownQrCode": "Unknown QR code",
   "waitingForCameraPermission": "Waiting for permission to the camera…",
   "wellbeingScore": "Wellbeing score: {{score}}"
 }

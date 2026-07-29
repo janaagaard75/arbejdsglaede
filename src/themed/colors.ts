@@ -11,7 +11,7 @@ const zinc600 = "#52525b";
 const zinc800 = "#27272a";
 const zinc900 = "#18181b";
 
-export const Colors = {
+export const colors = {
   dark: {
     background: zinc900,
     disabledText: zinc500,

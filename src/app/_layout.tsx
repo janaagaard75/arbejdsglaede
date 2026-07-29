@@ -3,11 +3,11 @@ import { useTranslation } from "react-i18next";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "react-native-reanimated";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { useColors } from "../colors/useColors";
 import "../global.css";
 import { HeaderCloseButton } from "../HeaderCloseButton";
 import { configureI18next } from "../i18n/configureI18next";
-import { useAppColorScheme } from "../useAppColorScheme";
+import { useAppColorScheme } from "../themed/useAppColorScheme";
+import { useColors } from "../themed/useColors";
 
 // The translations are bundled with the app, so i18next initializes synchronously and is ready before the first render.
 void configureI18next();

@@ -1,5 +1,5 @@
 import { clamp } from "react-native-reanimated";
-import { QrCode } from "./QrCode";
+import { KnownQrCode } from "./KnownQrCode";
 import { maximumIcons } from "./maximumIcons";
 
 export const calculateNewValues = (
@@ -8,7 +8,7 @@ export const calculateNewValues = (
     hearts: number;
     percentage: number;
   },
-  qrCode: QrCode,
+  qrCode: KnownQrCode,
 ) => {
   switch (qrCode.type) {
     case "flame":

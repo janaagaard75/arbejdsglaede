@@ -5,12 +5,12 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useColors } from "../colors/useColors";
 import { mainStore } from "../mainState/mainStore";
 import { SlideToConfirm } from "../slideToConfirm/SlideToConfirm";
 import { ThemedText } from "../themed/ThemedText";
 import { ThemedTextButton } from "../themed/ThemedTextButton";
 import { ThemedView } from "../themed/ThemedView";
+import { useColors } from "../themed/useColors";
 import { parseQrCodeString } from "./parseQrCodeString";
 import { ScannedCodeFeedback } from "./ScannedCodeFeedback";
 import { Viewfinder } from "./Viewfinder";
@@ -24,7 +24,8 @@ export const ScannerScreen = observer(() => {
   const colors = useColors();
   const router = useRouter();
 
-  const qrCode = parseQrCodeString(qrCodeString);
+  const parsedQrCode = parseQrCodeString(qrCodeString);
+  const qrCode = parsedQrCode === "unknownQrCode" ? undefined : parsedQrCode;
 
   const applyQrCode = () => {
     if (qrCode === undefined) {
@@ -93,10 +94,10 @@ export const ScannerScreen = observer(() => {
             flames={mainStore.flames}
             hearts={mainStore.hearts}
             percentage={mainStore.percentage}
-            qrCode={qrCode}
+            qrCode={parsedQrCode}
           />
         </View>
-        <View className="mx-auto mb-20 w-67.5 justify-end">
+        <View className="mx-auto mb-20 justify-end">
           <SlideToConfirm
             buttonWidth={140}
             disabled={qrCode === undefined}
