@@ -96,7 +96,7 @@ export const ScannerScreen = observer(() => {
             qrCode={qrCode}
           />
         </View>
-        <View className="mx-auto mb-20 w-67.5 justify-end">
+        <View className="mx-auto mb-20 justify-end">
           <SlideToConfirm
             buttonWidth={140}
             disabled={qrCode === undefined}
