@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import { calculateNewValues } from "../mainState/calculateNewValues";
-import { QrCode } from "../mainState/QrCode";
+import { KnownQrCode } from "../mainState/KnownQrCode";
 import { ThemedText } from "../themed/ThemedText";
 import { Summary } from "./Summary";
 
@@ -11,7 +11,7 @@ interface Props {
   flames: number;
   hearts: number;
   percentage: number;
-  qrCode: QrCode | undefined;
+  qrCode: "unknownQrCode" | KnownQrCode | undefined;
 }
 
 export const ScannedCodeFeedback = (props: Props) => {
@@ -21,6 +21,14 @@ export const ScannedCodeFeedback = (props: Props) => {
     return (
       <ThemedText className="text-center text-[30px]">
         {t("scanAQrCode")}
+      </ThemedText>
+    );
+  }
+
+  if (props.qrCode === "unknownQrCode") {
+    return (
+      <ThemedText className="text-center text-[30px]">
+        {t("unknownQrCode")}
       </ThemedText>
     );
   }

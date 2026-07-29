@@ -24,7 +24,8 @@ export const ScannerScreen = observer(() => {
   const colors = useColors();
   const router = useRouter();
 
-  const qrCode = parseQrCodeString(qrCodeString);
+  const parsedQrCode = parseQrCodeString(qrCodeString);
+  const qrCode = parsedQrCode === "unknownQrCode" ? undefined : parsedQrCode;
 
   const applyQrCode = () => {
     if (qrCode === undefined) {
@@ -93,7 +94,7 @@ export const ScannerScreen = observer(() => {
             flames={mainStore.flames}
             hearts={mainStore.hearts}
             percentage={mainStore.percentage}
-            qrCode={qrCode}
+            qrCode={parsedQrCode}
           />
         </View>
         <View className="mx-auto mb-20 justify-end">

@@ -9,6 +9,7 @@
   "reset": "Nulstil",
   "scanAQrCode": "Scan en QR-kode",
   "scanQrCode": "Scan QR-kode",
+  "unknownQrCode": "Ukendt QR-kode",
   "waitingForCameraPermission": "Venter på tilladelse til kameraet…",
   "wellbeingScore": "Trivselsscore: {{score}}"
 }
