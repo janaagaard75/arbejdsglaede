@@ -9,6 +9,7 @@ import Animated, {
 import { scheduleOnRN } from "react-native-worklets";
 import { cn } from "../cn";
 import { ThemedText } from "../themed/ThemedText";
+import { useColors } from "../themed/useColors";
 import { ArrowRightIcon } from "./ArrowRightIcon";
 
 interface Props {
@@ -21,6 +22,7 @@ interface Props {
 
 export const SlideToConfirm = (props: Props) => {
   const animatedPosition = useSharedValue(0);
+  const colors = useColors();
 
   const dropZoneWidth = 20;
   const maxDx = props.sliderWidth - props.buttonWidth;
@@ -88,7 +90,9 @@ export const SlideToConfirm = (props: Props) => {
             >
               {props.children}
             </ThemedText>
-            <ArrowRightIcon />
+            <ArrowRightIcon
+              color={props.disabled ? colors.disabledText : colors.text}
+            />
           </View>
         </Animated.View>
       </GestureDetector>
