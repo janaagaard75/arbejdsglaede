@@ -18,7 +18,8 @@
     "generate-typed-routes": "expo customize tsconfig.json",
     "ios": "expo run:ios",
     "ios-device": "expo run:ios --device",
-    "start": "expo start"
+    "start": "expo start",
+    "submit-ios": "pnpm run eas submit --platform ios"
   },
   "dependencies": {
     "@e18e/eslint-plugin": "^0.6.0",
