@@ -40,8 +40,8 @@ const config: ExpoConfig = {
     },
   },
   locales: {
-    da: "./locales/da.json",
-    en: "./locales/en.json",
+    da: "./locales/appMetadata.da.json",
+    en: "./locales/appMetadata.en.json",
   },
   plugins: [
     [
