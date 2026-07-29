@@ -1,6 +1,6 @@
 import { BarcodeBounds } from "expo-camera";
 import { View } from "react-native";
-import { useColors } from "../colors/useColors";
+import { useColors } from "../themed/useColors";
 
 interface Props {
   readonly bounds: BarcodeBounds | undefined;

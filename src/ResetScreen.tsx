@@ -3,11 +3,11 @@ import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Battery } from "./battery/Battery";
-import { useColors } from "./colors/useColors";
 import { mainStore } from "./mainState/mainStore";
 import { SlideToConfirm } from "./slideToConfirm/SlideToConfirm";
 import { ThemedText } from "./themed/ThemedText";
 import { ThemedView } from "./themed/ThemedView";
+import { useColors } from "./themed/useColors";
 
 const resetPercentage = 20;
 

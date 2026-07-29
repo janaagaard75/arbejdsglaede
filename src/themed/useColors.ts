@@ -1,7 +1,7 @@
 import { useAppColorScheme } from "../useAppColorScheme";
-import { Colors } from "./Colors";
+import { colors } from "./colors";
 
 export const useColors = () => {
   const theme = useAppColorScheme();
-  return Colors[theme];
+  return colors[theme];
 };

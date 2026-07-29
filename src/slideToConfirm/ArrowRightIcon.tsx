@@ -1,5 +1,5 @@
 import Svg, { Path } from "react-native-svg";
-import { useColors } from "../colors/useColors";
+import { useColors } from "../themed/useColors";
 
 // https://tabler.io/icons/icon/arrow-big-right-lines
 export const ArrowRightIcon = () => {

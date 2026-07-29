@@ -1,6 +1,6 @@
 import { Link, type LinkProps } from "expo-router";
-import { useColors } from "../colors/useColors";
 import { ThemedText } from "./ThemedText";
+import { useColors } from "./useColors";
 
 interface Props {
   children: string;
