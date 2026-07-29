@@ -5,10 +5,11 @@
   "private": true,
   "packageManager": "pnpm@11.15.1",
   "engines": {
-    "node": ">=24"
+    "node": ">=22.23.1"
   },
   "scripts": {
     "android": "expo run:android",
+    "build-ios": "EAS_BUILD_NO_EXPO_GO_WARNING=true pnpm run eas build --platform ios",
     "check-formatting": "prettier --check .",
     "check-lint": "eslint --format unix --max-warnings 0",
     "check-types": "tsc",
@@ -17,7 +18,8 @@
     "generate-typed-routes": "expo customize tsconfig.json",
     "ios": "expo run:ios",
     "ios-device": "expo run:ios --device",
-    "start": "expo start"
+    "start": "expo start",
+    "submit-ios": "pnpm run eas submit --platform ios"
   },
   "dependencies": {
     "@e18e/eslint-plugin": "^0.6.0",
