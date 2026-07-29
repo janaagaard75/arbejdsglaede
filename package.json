@@ -9,6 +9,7 @@
   },
   "scripts": {
     "android": "expo run:android",
+    "build-ios": "EAS_BUILD_NO_EXPO_GO_WARNING=true pnpm run eas build --platform ios",
     "check-formatting": "prettier --check .",
     "check-lint": "eslint --format unix --max-warnings 0",
     "check-types": "tsc",
