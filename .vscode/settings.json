@@ -19,7 +19,9 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "i18n-ally.localesPaths": ["locales", "src/i18n"],
+  "i18n-ally.localesPaths": ["src/i18n/translations"],
+  // The default matcher expects `en.json`, so it has to be told about the `uiStrings` prefix. A `{namespace}` placeholder would make i18n-ally expect `t("uiStrings:reset")`, but the code uses the default namespace.
+  "i18n-ally.pathMatcher": "uiStrings.{locale}.{ext}",
   "js/ts.tsdk.path": "node_modules/typescript/lib",
   "search.exclude": {
     ".claude/": true

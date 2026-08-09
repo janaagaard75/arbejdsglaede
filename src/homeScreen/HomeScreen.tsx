@@ -28,7 +28,8 @@ export const HomeScreen = observer(() => {
       }}
     >
       <ThemedView className="flex-1">
-        <View className="m-5 self-end">
+        <View className="m-5 flex-row justify-end gap-2.5">
+          {__DEV__ && <ThemedLinkButton href="/dev">Screens</ThemedLinkButton>}
           <ThemedLinkButton href="/reset">{t("reset")}</ThemedLinkButton>
         </View>
         <View className="flex-1 justify-center">

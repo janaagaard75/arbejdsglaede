@@ -7,20 +7,23 @@ import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { mainStore } from "../mainState/mainStore";
 import { SlideToConfirm } from "../slideToConfirm/SlideToConfirm";
-import { ThemedText } from "../themed/ThemedText";
-import { ThemedTextButton } from "../themed/ThemedTextButton";
 import { ThemedView } from "../themed/ThemedView";
 import { useColors } from "../themed/useColors";
+import { CameraPermissionRequired } from "./CameraPermissionRequired";
 import { parseQrCodeString } from "./parseQrCodeString";
 import { ScannedCodeFeedback } from "./ScannedCodeFeedback";
 import { Viewfinder } from "./Viewfinder";
+import { WaitingForCameraPermission } from "./WaitingForCameraPermission";
 
-export const ScannerScreen = observer(() => {
+interface Props {
+  // Only set by the dev screens, where the code cannot be scanned, because a simulator has no camera.
+  readonly simulatedQrCodeString?: string;
+}
+
+export const ScannerScreen = observer((props: Props) => {
   const { t } = useTranslation();
   const [cameraPermissions, requestCameraPermissions] = useCameraPermissions();
-  const [qrCodeString, setQrCodeString] = useState<string | undefined>(
-    undefined,
-  );
+  const [qrCodeString, setQrCodeString] = useState(props.simulatedQrCodeString);
   const colors = useColors();
   const router = useRouter();
 
@@ -41,37 +44,14 @@ export const ScannerScreen = observer(() => {
   };
 
   if (cameraPermissions === null) {
-    return (
-      <SafeAreaView
-        style={{
-          backgroundColor: colors.background,
-          flex: 1,
-        }}
-      >
-        <ThemedText className="mx-7.5 mt-7.5 flex-1">
-          {t("waitingForCameraPermission")}
-        </ThemedText>
-      </SafeAreaView>
-    );
+    return <WaitingForCameraPermission />;
   }
 
   if (!cameraPermissions.granted) {
     return (
-      <SafeAreaView
-        style={{
-          backgroundColor: colors.background,
-          flex: 1,
-        }}
-      >
-        <ThemedView className="flex-1 gap-7.5">
-          <ThemedText className="mx-7.5 mt-10 text-center text-[30px]">
-            {t("cameraPermissionRequired")}
-          </ThemedText>
-          <ThemedTextButton onPress={requestCameraPermissions}>
-            {t("grantCameraAccess")}
-          </ThemedTextButton>
-        </ThemedView>
-      </SafeAreaView>
+      <CameraPermissionRequired
+        onRequestCameraPermissions={requestCameraPermissions}
+      />
     );
   }
 
