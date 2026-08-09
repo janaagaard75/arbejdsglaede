@@ -29,8 +29,20 @@ export const HomeScreen = observer(() => {
     >
       <ThemedView className="flex-1">
         <View className="m-5 flex-row justify-end gap-2.5">
-          {__DEV__ && <ThemedLinkButton href="/dev">Screens</ThemedLinkButton>}
-          <ThemedLinkButton href="/reset">{t("reset")}</ThemedLinkButton>
+          {__DEV__ && (
+            <ThemedLinkButton
+              href="/dev"
+              variant="secondary"
+            >
+              Screens
+            </ThemedLinkButton>
+          )}
+          <ThemedLinkButton
+            href="/reset"
+            variant="secondary"
+          >
+            {t("reset")}
+          </ThemedLinkButton>
         </View>
         <View className="flex-1 justify-center">
           <View className="mt-10 items-center">
@@ -63,7 +75,12 @@ export const HomeScreen = observer(() => {
             />
           </View>
           <View className="mb-20 justify-end">
-            <ThemedLinkButton href="/scan">{t("scanQrCode")}</ThemedLinkButton>
+            <ThemedLinkButton
+              href="/scan"
+              variant="primary"
+            >
+              {t("scanQrCode")}
+            </ThemedLinkButton>
           </View>
         </View>
       </ThemedView>

@@ -24,7 +24,10 @@ export const CameraPermissionRequired = (props: Props) => {
         <ThemedText className="mx-7.5 mt-10 text-center text-[30px]">
           {t("cameraPermissionRequired")}
         </ThemedText>
-        <ThemedTextButton onPress={props.onRequestCameraPermissions}>
+        <ThemedTextButton
+          onPress={props.onRequestCameraPermissions}
+          variant="primary"
+        >
           {t("grantCameraAccess")}
         </ThemedTextButton>
       </ThemedView>
