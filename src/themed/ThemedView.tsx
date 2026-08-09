@@ -1,11 +1,15 @@
 import { View, type ViewProps } from "react-native";
-import { cn } from "../cn";
+import { useColors } from "./useColors";
 
 type Props = ViewProps;
 
-export const ThemedView = ({ className, ...otherProps }: Props) => (
-  <View
-    className={cn("bg-zinc-100 dark:bg-zinc-900", className)}
-    {...otherProps}
-  />
-);
+export const ThemedView = ({ style, ...otherProps }: Props) => {
+  const colors = useColors();
+
+  return (
+    <View
+      style={[{ backgroundColor: colors.background }, style]}
+      {...otherProps}
+    />
+  );
+};

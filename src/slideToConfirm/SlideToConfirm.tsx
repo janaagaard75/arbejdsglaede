@@ -7,7 +7,6 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { scheduleOnRN } from "react-native-worklets";
-import { cn } from "../cn";
 import { ThemedText } from "../themed/ThemedText";
 import { useColors } from "../themed/useColors";
 import { ArrowRightIcon } from "./ArrowRightIcon";
@@ -55,13 +54,13 @@ export const SlideToConfirm = (props: Props) => {
     };
   });
 
+  const foregroundColor = props.disabled ? colors.disabledText : colors.text;
+
   return (
     <View
-      className={cn("rounded-[10px] border-2 p-0.75", {
-        "border-zinc-400 dark:border-zinc-500": props.disabled,
-        "border-zinc-800 dark:border-zinc-200": !props.disabled,
-      })}
+      className="rounded-[10px] border-2 p-0.75"
       style={{
+        borderColor: foregroundColor,
         width: props.sliderWidth + 2 * (3 + 2),
       }}
     >
@@ -75,24 +74,13 @@ export const SlideToConfirm = (props: Props) => {
           ]}
         >
           <View
-            className={cn(
-              "flex-row items-center gap-2.5 rounded-md border-2 px-3.5 py-1.5",
-              {
-                "border-zinc-400 dark:border-zinc-500": props.disabled,
-                "border-zinc-800 dark:border-zinc-200": !props.disabled,
-              },
-            )}
+            className="flex-row items-center gap-2.5 rounded-md border-2 px-3.5 py-1.5"
+            style={{ borderColor: foregroundColor }}
           >
-            <ThemedText
-              className={cn({
-                "text-zinc-400 dark:text-zinc-500": props.disabled,
-              })}
-            >
+            <ThemedText style={{ color: foregroundColor }}>
               {props.children}
             </ThemedText>
-            <ArrowRightIcon
-              color={props.disabled ? colors.disabledText : colors.text}
-            />
+            <ArrowRightIcon color={foregroundColor} />
           </View>
         </Animated.View>
       </GestureDetector>
