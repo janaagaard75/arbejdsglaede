@@ -19,6 +19,7 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+  "i18n-ally.localesPaths": ["locales", "src/i18n"],
   "js/ts.tsdk.path": "node_modules/typescript/lib",
   "search.exclude": {
     ".claude/": true
