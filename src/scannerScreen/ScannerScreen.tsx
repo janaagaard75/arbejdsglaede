@@ -15,12 +15,15 @@ import { ScannedCodeFeedback } from "./ScannedCodeFeedback";
 import { Viewfinder } from "./Viewfinder";
 import { WaitingForCameraPermission } from "./WaitingForCameraPermission";
 
-export const ScannerScreen = observer(() => {
+interface Props {
+  // Only set by the dev screens, where the code cannot be scanned, because a simulator has no camera.
+  readonly simulatedQrCodeString?: string;
+}
+
+export const ScannerScreen = observer((props: Props) => {
   const { t } = useTranslation();
   const [cameraPermissions, requestCameraPermissions] = useCameraPermissions();
-  const [qrCodeString, setQrCodeString] = useState<string | undefined>(
-    undefined,
-  );
+  const [qrCodeString, setQrCodeString] = useState(props.simulatedQrCodeString);
   const colors = useColors();
   const router = useRouter();
 
