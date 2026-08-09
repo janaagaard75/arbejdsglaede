@@ -8,9 +8,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { mainStore } from "../mainState/mainStore";
 import { SlideToConfirm } from "../slideToConfirm/SlideToConfirm";
 import { ThemedText } from "../themed/ThemedText";
-import { ThemedTextButton } from "../themed/ThemedTextButton";
 import { ThemedView } from "../themed/ThemedView";
 import { useColors } from "../themed/useColors";
+import { CameraPermissionRequired } from "./CameraPermissionRequired";
 import { parseQrCodeString } from "./parseQrCodeString";
 import { ScannedCodeFeedback } from "./ScannedCodeFeedback";
 import { Viewfinder } from "./Viewfinder";
@@ -57,21 +57,9 @@ export const ScannerScreen = observer(() => {
 
   if (!cameraPermissions.granted) {
     return (
-      <SafeAreaView
-        style={{
-          backgroundColor: colors.background,
-          flex: 1,
-        }}
-      >
-        <ThemedView className="flex-1 gap-7.5">
-          <ThemedText className="mx-7.5 mt-10 text-center text-[30px]">
-            {t("cameraPermissionRequired")}
-          </ThemedText>
-          <ThemedTextButton onPress={requestCameraPermissions}>
-            {t("grantCameraAccess")}
-          </ThemedTextButton>
-        </ThemedView>
-      </SafeAreaView>
+      <CameraPermissionRequired
+        onRequestCameraPermissions={requestCameraPermissions}
+      />
     );
   }
 
