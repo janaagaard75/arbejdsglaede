@@ -54,13 +54,16 @@ export const SlideToConfirm = (props: Props) => {
     };
   });
 
-  const foregroundColor = props.disabled ? colors.disabledText : colors.text;
+  const trackBorderColor = props.disabled ? colors.disabledText : colors.text;
+  const handleBackgroundColor = props.disabled ? "transparent" : colors.text;
+  const handleBorderColor = props.disabled ? colors.disabledText : colors.text;
+  const labelColor = props.disabled ? colors.disabledText : colors.background;
 
   return (
     <View
-      className="rounded-[10px] border-2 p-0.75"
+      className="rounded-full border-2 p-0.75"
       style={{
-        borderColor: foregroundColor,
+        borderColor: trackBorderColor,
         width: props.sliderWidth + 2 * (3 + 2),
       }}
     >
@@ -74,13 +77,19 @@ export const SlideToConfirm = (props: Props) => {
           ]}
         >
           <View
-            className="flex-row items-center gap-2.5 rounded-md border-2 px-3.5 py-1.5"
-            style={{ borderColor: foregroundColor }}
+            className="flex-row items-center gap-2.5 rounded-full border-2 px-3.5 py-1.5"
+            style={{
+              backgroundColor: handleBackgroundColor,
+              borderColor: handleBorderColor,
+            }}
           >
-            <ThemedText style={{ color: foregroundColor }}>
+            <ThemedText
+              className="font-semibold"
+              style={{ color: labelColor }}
+            >
               {props.children}
             </ThemedText>
-            <ArrowRightIcon color={foregroundColor} />
+            <ArrowRightIcon color={labelColor} />
           </View>
         </Animated.View>
       </GestureDetector>
