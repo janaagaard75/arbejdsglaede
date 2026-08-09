@@ -7,13 +7,13 @@ import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { mainStore } from "../mainState/mainStore";
 import { SlideToConfirm } from "../slideToConfirm/SlideToConfirm";
-import { ThemedText } from "../themed/ThemedText";
 import { ThemedView } from "../themed/ThemedView";
 import { useColors } from "../themed/useColors";
 import { CameraPermissionRequired } from "./CameraPermissionRequired";
 import { parseQrCodeString } from "./parseQrCodeString";
 import { ScannedCodeFeedback } from "./ScannedCodeFeedback";
 import { Viewfinder } from "./Viewfinder";
+import { WaitingForCameraPermission } from "./WaitingForCameraPermission";
 
 export const ScannerScreen = observer(() => {
   const { t } = useTranslation();
@@ -41,18 +41,7 @@ export const ScannerScreen = observer(() => {
   };
 
   if (cameraPermissions === null) {
-    return (
-      <SafeAreaView
-        style={{
-          backgroundColor: colors.background,
-          flex: 1,
-        }}
-      >
-        <ThemedText className="mx-7.5 mt-7.5 flex-1">
-          {t("waitingForCameraPermission")}
-        </ThemedText>
-      </SafeAreaView>
-    );
+    return <WaitingForCameraPermission />;
   }
 
   if (!cameraPermissions.granted) {
