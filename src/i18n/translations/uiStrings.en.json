@@ -1,14 +1,14 @@
 {
   "cameraPermissionRequired": "Waiting for permission to use the camera",
   "confirm": "Confirm",
-  "confirmThatYouWantToReset": "Confirm that you want to reset to {{percentage}}% and remove all hearts and flames.",
-  "flame": "flame",
+  "confirmThatYouWantToReset": "Confirm that you want to reset to {{percentage}}% and remove all smileys and hearts.",
   "grantCameraAccess": "Grant access to the camera",
   "heart": "heart",
   "home": "Home",
   "reset": "Reset",
   "scanAQrCode": "Scan a QR code",
   "scanQrCode": "Scan QR code",
+  "smiley": "smiley",
   "unknownQrCode": "Unknown QR code",
   "waitingForCameraPermission": "Waiting for permission to the camera…",
   "wellbeingScore": "Wellbeing score: {{score}}"

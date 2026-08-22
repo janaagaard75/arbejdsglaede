@@ -36,12 +36,13 @@ export const ScannedCodeFeedback = (props: Props) => {
   const label = (() => {
     const sign = props.qrCode.amount > 0 ? "+" : minusSign;
 
+    // The QR codes keep their original names, so the flame code is the one that awards a heart, and the heart code the one that awards a smiley.
     switch (props.qrCode.type) {
       case "flame":
-        return `${sign} 1 ${t("flame")}`;
+        return `${sign} 1 ${t("heart")}`;
 
       case "heart":
-        return `${sign} 1 ${t("heart")}`;
+        return `${sign} 1 ${t("smiley")}`;
 
       case "percentage":
         return `${sign} ${Math.abs(props.qrCode.amount)}%`;

@@ -2,18 +2,18 @@ import { observer } from "mobx-react-lite";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FlameIcon } from "../iconsRow/FlameIcon";
-import { FlameOutlineIcon } from "../iconsRow/FlameOutlineIcon";
 import { HeartIcon } from "../iconsRow/HeartIcon";
 import { HeartOutlineIcon } from "../iconsRow/HeartOutlineIcon";
 import { IconsRow } from "../iconsRow/IconsRow";
+import { SmileyIcon } from "../iconsRow/SmileyIcon";
+import { SmileyOutlineIcon } from "../iconsRow/SmileyOutlineIcon";
 import { mainStore } from "../mainState/mainStore";
 import { maximumIcons } from "../mainState/maximumIcons";
 import { ThemedLinkButton } from "../themed/ThemedLinkButton";
 import { ThemedText } from "../themed/ThemedText";
 import { ThemedView } from "../themed/ThemedView";
 import { useColors } from "../themed/useColors";
-import { BatteryAndPercentage } from "./BatteryAndPercentage";
+import { SmileyAndPercentage } from "./SmileyAndPercentage";
 import { groupDigitsWithSpaces } from "./groupDigitsWithSpaces";
 
 export const HomeScreen = observer(() => {
@@ -41,22 +41,22 @@ export const HomeScreen = observer(() => {
             </ThemedText>
           </View>
           <View className="flex-1 justify-center">
-            <BatteryAndPercentage percentage={mainStore.percentage} />
+            <SmileyAndPercentage percentage={mainStore.percentage} />
             <View className="h-10" />
             <IconsRow
               currentValue={mainStore.hearts}
-              excludedIcon={<HeartOutlineIcon />}
+              excludedIcon={<SmileyOutlineIcon />}
               gap={3}
-              includedIcon={<HeartIcon />}
+              includedIcon={<SmileyIcon />}
               maximum={maximumIcons}
               size={30}
             />
             <View className="h-5" />
             <IconsRow
               currentValue={mainStore.flames}
-              excludedIcon={<FlameOutlineIcon />}
+              excludedIcon={<HeartOutlineIcon />}
               gap={3}
-              includedIcon={<FlameIcon />}
+              includedIcon={<HeartIcon />}
               maximum={maximumIcons}
               size={30}
             />

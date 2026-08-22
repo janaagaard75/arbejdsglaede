@@ -46,7 +46,7 @@ export const BigSmiley = (props: Props) => {
   const waterlinePercentage = (100 * waterlineY) / viewBoxSize;
 
   return (
-    // The battery is 60% wide with an aspect ratio of 1.5, so a square smiley reaches the same height at 40%.
+    // Callers set the size of the smiley through the width of the view they wrap it in, rather than by passing a size.
     <View className="aspect-square w-[40%] self-center">
       <Animated.View
         style={[
