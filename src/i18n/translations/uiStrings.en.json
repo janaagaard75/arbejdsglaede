@@ -11,5 +11,5 @@
   "smiley": "smiley",
   "unknownQrCode": "Unknown QR code",
   "waitingForCameraPermission": "Waiting for permission to the camera…",
-  "wellbeingScore": "Wellbeing score: {{score}}"
+  "wellbeingScore": "Wellbeing score"
 }

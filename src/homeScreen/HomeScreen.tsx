@@ -33,11 +33,12 @@ export const HomeScreen = observer(() => {
           <ThemedLinkButton href="/reset">{t("reset")}</ThemedLinkButton>
         </View>
         <View className="flex-1 justify-center">
-          <View className="mt-10">
-            <ThemedText className="self-center text-[28px] font-bold">
-              {t("wellbeingScore", {
-                score: groupDigitsWithSpaces(mainStore.score),
-              })}
+          <View className="mt-10 items-center">
+            <ThemedText className="text-[24px]">
+              {t("wellbeingScore")}
+            </ThemedText>
+            <ThemedText className="text-[64px] leading-[72px] font-bold">
+              {groupDigitsWithSpaces(mainStore.score)}
             </ThemedText>
           </View>
           <View className="flex-1 justify-center">
