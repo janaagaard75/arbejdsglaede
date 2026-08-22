@@ -71,10 +71,10 @@ export const ScannerScreen = observer((props: Props) => {
         </View>
         <View className="flex-1">
           <ScannedCodeFeedback
-            flames={mainStore.flames}
             hearts={mainStore.hearts}
             percentage={mainStore.percentage}
             qrCode={parsedQrCode}
+            smileys={mainStore.smileys}
           />
         </View>
         <View className="mx-auto mb-20 justify-end">

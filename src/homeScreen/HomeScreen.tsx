@@ -45,7 +45,7 @@ export const HomeScreen = observer(() => {
             <SmileyAndPercentage percentage={mainStore.percentage} />
             <View className="h-10" />
             <IconsRow
-              currentValue={mainStore.hearts}
+              currentValue={mainStore.smileys}
               excludedIcon={<SmileyOutlineIcon />}
               gap={3}
               includedIcon={<SmileyIcon />}
@@ -54,7 +54,7 @@ export const HomeScreen = observer(() => {
             />
             <View className="h-5" />
             <IconsRow
-              currentValue={mainStore.flames}
+              currentValue={mainStore.hearts}
               excludedIcon={<HeartOutlineIcon />}
               gap={3}
               includedIcon={<HeartIcon />}

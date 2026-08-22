@@ -4,52 +4,53 @@ import { makePersistable } from "mobx-persist-store";
 import { KnownQrCode } from "./KnownQrCode";
 import { calculateNewValues } from "./calculateNewValues";
 
-const initialFlames = 0;
 const initialHearts = 0;
 const initialPercentage = 20;
+const initialSmileys = 0;
 
-const flameValue = 50;
-const heartValue = 125;
+const heartValue = 50;
+const smileyValue = 100;
 
 class MainStore {
-  public flames = initialFlames;
   public hearts = initialHearts;
   public percentage = initialPercentage;
+  public smileys = initialSmileys;
 
   public constructor() {
     makeAutoObservable(this);
     void makePersistable(this, {
-      name: "MainStore",
-      properties: ["flames", "hearts", "percentage"],
+      // The name changed along with the properties, because what used to be stored as `hearts` is what is now called `smileys`, and reusing the old name would silently read the old smiley count back as hearts.
+      name: "MainStoreWithSmileys",
+      properties: ["hearts", "percentage", "smileys"],
       storage: AsyncStorage,
     });
   }
 
   public get score(): number {
     return (
-      this.percentage + this.hearts * heartValue + this.flames * flameValue
+      this.percentage + this.smileys * smileyValue + this.hearts * heartValue
     );
   }
 
   public applyQrCode(qrCode: KnownQrCode) {
     const newValues = calculateNewValues(
       {
-        flames: this.flames,
         hearts: this.hearts,
         percentage: this.percentage,
+        smileys: this.smileys,
       },
       qrCode,
     );
 
-    this.flames = newValues.newFlames;
     this.hearts = newValues.newHearts;
     this.percentage = newValues.newPercentage;
+    this.smileys = newValues.newSmileys;
   }
 
   public reset() {
-    this.flames = initialFlames;
     this.hearts = initialHearts;
     this.percentage = initialPercentage;
+    this.smileys = initialSmileys;
   }
 }
 

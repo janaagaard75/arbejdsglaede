@@ -4,25 +4,18 @@ import { maximumIcons } from "./maximumIcons";
 
 export const calculateNewValues = (
   currentValues: {
-    flames: number;
     hearts: number;
     percentage: number;
+    smileys: number;
   },
   qrCode: KnownQrCode,
 ) => {
   switch (qrCode.type) {
-    case "flame":
-      return {
-        newFlames: clamp(currentValues.flames + qrCode.amount, 0, maximumIcons),
-        newHearts: currentValues.hearts,
-        newPercentage: currentValues.percentage,
-      };
-
     case "heart":
       return {
-        newFlames: currentValues.flames,
         newHearts: clamp(currentValues.hearts + qrCode.amount, 0, maximumIcons),
         newPercentage: currentValues.percentage,
+        newSmileys: currentValues.smileys,
       };
 
     case "percentage": {
@@ -34,28 +27,39 @@ export const calculateNewValues = (
 
       if (unrestrictedNewPercentage <= 100) {
         return {
-          newFlames: currentValues.flames,
           newHearts: currentValues.hearts,
           newPercentage: unrestrictedNewPercentage,
+          newSmileys: currentValues.smileys,
         };
       }
 
-      if (currentValues.hearts === maximumIcons) {
+      if (currentValues.smileys === maximumIcons) {
         return {
-          newFlames: currentValues.flames,
           newHearts: currentValues.hearts,
           newPercentage: 100,
+          newSmileys: currentValues.smileys,
         };
       }
 
-      const newHearts = currentValues.hearts + 1;
+      const newSmileys = currentValues.smileys + 1;
       const overflownPercentage = unrestrictedNewPercentage - 100;
 
       return {
-        newFlames: currentValues.flames,
-        newHearts: newHearts,
+        newHearts: currentValues.hearts,
         newPercentage: overflownPercentage,
+        newSmileys: newSmileys,
       };
     }
+
+    case "smiley":
+      return {
+        newHearts: currentValues.hearts,
+        newPercentage: currentValues.percentage,
+        newSmileys: clamp(
+          currentValues.smileys + qrCode.amount,
+          0,
+          maximumIcons,
+        ),
+      };
   }
 };

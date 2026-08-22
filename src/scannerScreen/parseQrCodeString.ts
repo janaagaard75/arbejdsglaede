@@ -1,7 +1,7 @@
 import { KnownQrCode } from "../mainState/KnownQrCode";
 
-const flameCode = /^[+-]flame$/;
 const heartCode = /^[+-]heart$/;
+const smileyCode = /^[+-]smiley$/;
 const percentagePointsCode = /^[+-]\d{3}pp$/;
 
 export const parseQrCodeString = (
@@ -9,25 +9,6 @@ export const parseQrCodeString = (
 ): "unknownQrCode" | KnownQrCode | undefined => {
   if (qrCodeString === undefined) {
     return undefined;
-  }
-
-  if (flameCode.test(qrCodeString)) {
-    const operation = qrCodeString[0];
-    const value = (() => {
-      switch (operation) {
-        case "+":
-          return 1;
-        case "-":
-          return -1;
-        default:
-          throw new Error(`The operation ${operation} is not supported.`);
-      }
-    })();
-
-    return {
-      amount: value,
-      type: "flame",
-    };
   }
 
   if (heartCode.test(qrCodeString)) {
@@ -46,6 +27,25 @@ export const parseQrCodeString = (
     return {
       amount: value,
       type: "heart",
+    };
+  }
+
+  if (smileyCode.test(qrCodeString)) {
+    const operation = qrCodeString[0];
+    const value = (() => {
+      switch (operation) {
+        case "+":
+          return 1;
+        case "-":
+          return -1;
+        default:
+          throw new Error(`The operation ${operation} is not supported.`);
+      }
+    })();
+
+    return {
+      amount: value,
+      type: "smiley",
     };
   }
 

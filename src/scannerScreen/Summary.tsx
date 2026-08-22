@@ -7,9 +7,9 @@ import { SmileyOutlineIcon } from "../iconsRow/SmileyOutlineIcon";
 import { BigSmiley } from "../smiley/BigSmiley";
 
 interface Props {
-  flames: number;
   hearts: number;
   percentage: number;
+  smileys: number;
 }
 
 export const Summary = (props: Props) => (
@@ -20,7 +20,7 @@ export const Summary = (props: Props) => (
       </View>
       <View className="h-1.25" />
       <IconsRow
-        currentValue={props.hearts}
+        currentValue={props.smileys}
         excludedIcon={<SmileyOutlineIcon />}
         gap={1}
         includedIcon={<SmileyIcon />}
@@ -29,7 +29,7 @@ export const Summary = (props: Props) => (
       />
       <View className="h-1.25" />
       <IconsRow
-        currentValue={props.flames}
+        currentValue={props.hearts}
         excludedIcon={<HeartOutlineIcon />}
         gap={1}
         includedIcon={<HeartIcon />}
