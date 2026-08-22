@@ -4,6 +4,7 @@ import { ResetScreen } from "../ResetScreen";
 import { CameraPermissionRequired } from "../scannerScreen/CameraPermissionRequired";
 import { ScannerScreen } from "../scannerScreen/ScannerScreen";
 import { WaitingForCameraPermission } from "../scannerScreen/WaitingForCameraPermission";
+import { SmileyPreviewScreen } from "./SmileyPreviewScreen";
 
 interface DevScreen {
   name: string;
@@ -60,5 +61,9 @@ export const devScreens: ReadonlyArray<DevScreen> = [
     screen: (
       <CameraPermissionRequired onRequestCameraPermissions={() => undefined} />
     ),
+  },
+  {
+    name: "Smileys",
+    screen: <SmileyPreviewScreen />,
   },
 ];
