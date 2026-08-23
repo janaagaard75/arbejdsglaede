@@ -26,7 +26,8 @@ const config: ExpoConfig = {
   },
   android: {
     adaptiveIcon: {
-      backgroundColor: "#ffffff",
+      // This repeats colors.light.background, for the same reason the splash screen colors below do.
+      backgroundColor: "#f8f4ee",
       // The glyph is padded to sit inside the 66dp safe zone, and Android tints the monochrome layer through its alpha alone, so one file serves both layers.
       foregroundImage: "./assets/android-icon.png",
       monochromeImage: "./assets/android-icon.png",
