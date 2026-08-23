@@ -1,9 +1,4 @@
-export type KnownQrCode = FlameQrCode | HeartQrCode | PercentageQrCode;
-
-interface FlameQrCode {
-  amount: -1 | 1;
-  type: "flame";
-}
+export type KnownQrCode = HeartQrCode | PercentageQrCode | SmileyQrCode;
 
 interface HeartQrCode {
   amount: -1 | 1;
@@ -13,4 +8,9 @@ interface HeartQrCode {
 interface PercentageQrCode {
   amount: number;
   type: "percentage";
+}
+
+interface SmileyQrCode {
+  amount: -1 | 1;
+  type: "smiley";
 }

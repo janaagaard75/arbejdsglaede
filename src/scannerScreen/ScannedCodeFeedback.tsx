@@ -8,10 +8,10 @@ import { Summary } from "./Summary";
 const minusSign = "\u2212";
 
 interface Props {
-  flames: number;
   hearts: number;
   percentage: number;
   qrCode: "unknownQrCode" | KnownQrCode | undefined;
+  smileys: number;
 }
 
 export const ScannedCodeFeedback = (props: Props) => {
@@ -37,22 +37,22 @@ export const ScannedCodeFeedback = (props: Props) => {
     const sign = props.qrCode.amount > 0 ? "+" : minusSign;
 
     switch (props.qrCode.type) {
-      case "flame":
-        return `${sign} 1 ${t("flame")}`;
-
       case "heart":
         return `${sign} 1 ${t("heart")}`;
 
       case "percentage":
         return `${sign} ${Math.abs(props.qrCode.amount)}%`;
+
+      case "smiley":
+        return `${sign} 1 ${t("smiley")}`;
     }
   })();
 
   const newValues = calculateNewValues(
     {
-      flames: props.flames,
       hearts: props.hearts,
       percentage: props.percentage,
+      smileys: props.smileys,
     },
     props.qrCode,
   );
@@ -62,17 +62,17 @@ export const ScannedCodeFeedback = (props: Props) => {
       <ThemedText className="text-center text-[30px]">{label}</ThemedText>
       <View className="flex-1 flex-row">
         <Summary
-          flames={props.flames}
           hearts={props.hearts}
           percentage={props.percentage}
+          smileys={props.smileys}
         />
         <View className="w-10 items-center justify-center">
           <ThemedText>⇨</ThemedText>
         </View>
         <Summary
-          flames={newValues.newFlames}
           hearts={newValues.newHearts}
           percentage={newValues.newPercentage}
+          smileys={newValues.newSmileys}
         />
       </View>
     </View>

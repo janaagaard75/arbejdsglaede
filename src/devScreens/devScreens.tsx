@@ -4,6 +4,7 @@ import { ResetScreen } from "../ResetScreen";
 import { CameraPermissionRequired } from "../scannerScreen/CameraPermissionRequired";
 import { ScannerScreen } from "../scannerScreen/ScannerScreen";
 import { WaitingForCameraPermission } from "../scannerScreen/WaitingForCameraPermission";
+import { SmileyPreviewScreen } from "./SmileyPreviewScreen";
 
 interface DevScreen {
   name: string;
@@ -28,20 +29,20 @@ export const devScreens: ReadonlyArray<DevScreen> = [
     screen: <ScannerScreen simulatedQrCodeString="https://example.com" />,
   },
   {
-    name: "Scan: plus one flame",
-    screen: <ScannerScreen simulatedQrCodeString="+flame" />,
-  },
-  {
-    name: "Scan: minus one flame",
-    screen: <ScannerScreen simulatedQrCodeString="-flame" />,
-  },
-  {
     name: "Scan: plus one heart",
     screen: <ScannerScreen simulatedQrCodeString="+heart" />,
   },
   {
     name: "Scan: minus one heart",
     screen: <ScannerScreen simulatedQrCodeString="-heart" />,
+  },
+  {
+    name: "Scan: plus one smiley",
+    screen: <ScannerScreen simulatedQrCodeString="+smiley" />,
+  },
+  {
+    name: "Scan: minus one smiley",
+    screen: <ScannerScreen simulatedQrCodeString="-smiley" />,
   },
   {
     name: "Scan: plus 15 percent",
@@ -60,5 +61,9 @@ export const devScreens: ReadonlyArray<DevScreen> = [
     screen: (
       <CameraPermissionRequired onRequestCameraPermissions={() => undefined} />
     ),
+  },
+  {
+    name: "Smileys",
+    screen: <SmileyPreviewScreen />,
   },
 ];
