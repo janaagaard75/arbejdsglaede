@@ -3,7 +3,7 @@ import { ExpoConfig } from "expo/config";
 const applicationIdentifier = "com.henrikleth.arbejdsglaede";
 
 const config: ExpoConfig = {
-  name: "Arbejdsglaede",
+  name: "Happiness at work",
   slug: "arbejdsglaede",
   version: "1.0.0",
   orientation: "portrait",
