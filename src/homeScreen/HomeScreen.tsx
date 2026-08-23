@@ -35,7 +35,7 @@ export const HomeScreen = observer(() => {
         <View className="flex-1 justify-center">
           <View className="mt-10 items-center">
             <ThemedText className="text-[24px]">
-              {t("wellbeingScore")}
+              {t("happinessPoints")}
             </ThemedText>
             <ThemedText className="text-[64px] leading-[72px] font-bold">
               {groupDigitsWithSpaces(mainStore.score)}

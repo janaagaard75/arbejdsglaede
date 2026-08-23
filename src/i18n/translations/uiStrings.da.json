@@ -3,6 +3,7 @@
   "confirm": "Bekræft",
   "confirmThatYouWantToReset": "Bekræft at du vil nulstille til {{percentage}}% og fjerne alle smileyer og hjerter.",
   "grantCameraAccess": "Giv adgang til kameraet",
+  "happinessPoints": "Trivselsscore",
   "heart": "hjerte",
   "home": "Forsiden",
   "reset": "Nulstil",
@@ -10,6 +11,5 @@
   "scanQrCode": "Scan QR-kode",
   "smiley": "smiley",
   "unknownQrCode": "Ukendt QR-kode",
-  "waitingForCameraPermission": "Venter på tilladelse til kameraet…",
-  "wellbeingScore": "Trivselsscore"
+  "waitingForCameraPermission": "Venter på tilladelse til kameraet…"
 }

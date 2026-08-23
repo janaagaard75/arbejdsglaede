@@ -3,6 +3,7 @@
   "confirm": "Confirm",
   "confirmThatYouWantToReset": "Confirm that you want to reset to {{percentage}}% and remove all smileys and hearts.",
   "grantCameraAccess": "Grant access to the camera",
+  "happinessPoints": "Happiness points",
   "heart": "heart",
   "home": "Home",
   "reset": "Reset",
@@ -10,6 +11,5 @@
   "scanQrCode": "Scan QR code",
   "smiley": "smiley",
   "unknownQrCode": "Unknown QR code",
-  "waitingForCameraPermission": "Waiting for permission to the camera…",
-  "wellbeingScore": "Wellbeing score"
+  "waitingForCameraPermission": "Waiting for permission to the camera…"
 }
