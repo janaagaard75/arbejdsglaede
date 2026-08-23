@@ -16,7 +16,13 @@ import tsEslint from "typescript-eslint";
 
 export default defineConfig(
   {
-    files: [".expo/types/**/*", "src/**/*.ts", "src/**/*.tsx", "*.d.ts"],
+    files: [
+      ".expo/types/**/*",
+      "scripts/**/*.ts",
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "*.d.ts",
+    ],
     languageOptions: {
       globals: {
         ...globals.node,

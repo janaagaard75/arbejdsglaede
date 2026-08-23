@@ -3,7 +3,7 @@ import { ExpoConfig } from "expo/config";
 const applicationIdentifier = "com.henrikleth.arbejdsglaede";
 
 const config: ExpoConfig = {
-  name: "Arbejdsglaede",
+  name: "Happiness at work",
   slug: "arbejdsglaede",
   version: "1.0.0",
   orientation: "portrait",
@@ -15,8 +15,8 @@ const config: ExpoConfig = {
     icon: {
       dark: "./assets/icon-dark.png",
       light: "./assets/icon-light.png",
-      // The white-on-black icon doubles as the grayscale mask that iOS tints.
-      tinted: "./assets/icon-dark.png",
+      // A file of its own, because iOS tints the grayscale of whatever it is given, and the orange glyph flattens to a middle gray.
+      tinted: "./assets/icon-tinted.png",
     },
     infoPlist: {
       CFBundleAllowMixedLocalizations: true,
@@ -27,7 +27,7 @@ const config: ExpoConfig = {
   android: {
     adaptiveIcon: {
       backgroundColor: "#ffffff",
-      // The glyph is padded to sit inside the 66dp safe zone, so the same black-on-transparent file works as both layers.
+      // The glyph is padded to sit inside the 66dp safe zone, and Android tints the monochrome layer through its alpha alone, so one file serves both layers.
       foregroundImage: "./assets/android-icon.png",
       monochromeImage: "./assets/android-icon.png",
     },
@@ -66,7 +66,7 @@ const config: ExpoConfig = {
       "expo-splash-screen",
       {
         image: "./assets/splash-icon-light.png",
-        // The default of 100 leaves the wide battery glyph too small to read.
+        // The default of 100 shrinks the smiley so far that its eyes and fill line stop reading.
         imageWidth: 200,
         resizeMode: "contain",
         // These repeat Colors.light.background and Colors.dark.background. Expo's config loader requires this file through plain Node, which cannot resolve an import of a TypeScript module.
