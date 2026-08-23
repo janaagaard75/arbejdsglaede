@@ -17,9 +17,22 @@ const RootLayout = () => {
   const colorScheme = useAppColorScheme();
   const colors = useColors();
 
+  const baseNavigationTheme = colorScheme === "dark" ? DarkTheme : DefaultTheme;
+  const navigationTheme = {
+    ...baseNavigationTheme,
+    colors: {
+      ...baseNavigationTheme.colors,
+      background: colors.background,
+      border: colors.background,
+      card: colors.background,
+      primary: colors.text,
+      text: colors.text,
+    },
+  };
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+      <ThemeProvider value={navigationTheme}>
         <SafeAreaProvider>
           <Stack
             screenOptions={{

@@ -26,7 +26,8 @@ const config: ExpoConfig = {
   },
   android: {
     adaptiveIcon: {
-      backgroundColor: "#ffffff",
+      // This repeats colors.light.background, for the same reason the splash screen colors below do.
+      backgroundColor: "#f8f4ee",
       // The glyph is padded to sit inside the 66dp safe zone, and Android tints the monochrome layer through its alpha alone, so one file serves both layers.
       foregroundImage: "./assets/android-icon.png",
       monochromeImage: "./assets/android-icon.png",
@@ -69,10 +70,10 @@ const config: ExpoConfig = {
         // The default of 100 shrinks the smiley so far that its eyes and fill line stop reading.
         imageWidth: 200,
         resizeMode: "contain",
-        // These repeat Colors.light.background and Colors.dark.background. Expo's config loader requires this file through plain Node, which cannot resolve an import of a TypeScript module.
-        backgroundColor: "#f4f4f5",
+        // These repeat colors.light.background and colors.dark.background. Expo's config loader requires this file through plain Node, which cannot resolve an import of a TypeScript module.
+        backgroundColor: "#f8f4ee",
         dark: {
-          backgroundColor: "#18181b",
+          backgroundColor: "#292929",
           image: "./assets/splash-icon-dark.png",
         },
       },

@@ -49,8 +49,12 @@ const phosphorGlyphDiameter = 208;
 const interiorTopY = 40;
 const interiorBottomY = 216;
 
-// This repeats Colors.light.orange and Colors.dark.orange, which are both Tailwind's amber-500. This file is run by plain Node, which cannot resolve an import of a TypeScript module.
+// These repeat colors.light.orange and colors.dark.orange, which are both Tailwind's amber-500, and colors.light.background and colors.dark.background. This file is run by plain Node, which cannot resolve an import of a TypeScript module.
 const orange: Rgb = [0xf5, 0x9e, 0x0b];
+const cream: Rgb = [0xf8, 0xf4, 0xee];
+const ink: Rgb = [0x29, 0x29, 0x29];
+
+// The tinted icon uses the full range rather than the palette, because iOS maps the grayscale it is handed onto the tint, and anything narrower only dulls the result.
 const white: Rgb = [0xff, 0xff, 0xff];
 const black: Rgb = [0x00, 0x00, 0x00];
 
@@ -324,8 +328,8 @@ const generateIcons = (fillPercentage: number): Array<[string, Buffer]> => {
     );
 
     return [
-      ["icon-light.png", composite(iconSize, iconCoverage, orange, white)],
-      ["icon-dark.png", composite(iconSize, iconCoverage, orange, black)],
+      ["icon-light.png", composite(iconSize, iconCoverage, orange, cream)],
+      ["icon-dark.png", composite(iconSize, iconCoverage, orange, ink)],
       // iOS tints the grayscale of whatever it is given, and the orange glyph flattens to a middle gray, so the tinted icon is drawn in white instead.
       ["icon-tinted.png", composite(iconSize, iconCoverage, white, black)],
       ["splash-icon-light.png", cutOut(iconSize, iconCoverage, orange)],
