@@ -46,7 +46,10 @@ export const HomeScreen = observer(() => {
         </View>
         <View className="flex-1 justify-center">
           <View className="mt-10 items-center">
-            <ThemedText className="text-[24px]">
+            <ThemedText
+              className="text-[24px]"
+              style={{ color: colors.mutedText }}
+            >
               {t("happinessPoints")}
             </ThemedText>
             <ThemedText className="text-[64px] leading-[72px] font-bold">
