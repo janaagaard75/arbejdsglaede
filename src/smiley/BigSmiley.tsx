@@ -15,6 +15,9 @@ const waterlineTransitionInMilliseconds = 400;
 const interiorTopY = 40;
 const interiorBottomY = 216;
 
+// Two windows that merely meet at the waterline leave a pale seam, because each edge is antialiased on its own and the two half-covered pixels never add up to a whole one. Letting the lower window reach a little higher hides the seam under solid colour.
+const waterlineOverlap = 1;
+
 /** The same two Phosphor Smiley weights that SmileyIcon and SmileyOutlineIcon draw. https://phosphoricons.com/?q=smiley */
 const filledSmiley =
   "M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM80,108a12,12,0,1,1,12,12A12,12,0,0,1,80,108Zm96,0a12,12,0,1,1-12-12A12,12,0,0,1,176,108Zm-1.07,48c-10.29,17.79-27.4,28-46.93,28s-36.63-10.2-46.92-28a8,8,0,1,1,13.84-8c7.47,12.91,19.21,20,33.08,20s25.61-7.1,33.07-20a8,8,0,0,1,13.86,8Z";
@@ -73,7 +76,7 @@ export const BigSmiley = (props: Props) => {
           windowStyle,
           {
             bottom: 0,
-            height: `${100 - waterlinePercentage}%`,
+            height: `${100 - waterlinePercentage + (100 * waterlineOverlap) / viewBoxSize}%`,
             transitionDuration: waterlineTransitionInMilliseconds,
             transitionProperty: "height",
           },

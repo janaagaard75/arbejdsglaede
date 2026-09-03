@@ -33,7 +33,7 @@ interface PngChunk {
 type Rgb = readonly [number, number, number];
 
 // How full the smiley is. This is the value the checked-in icons were generated with.
-const defaultFillPercentage = 30;
+const defaultFillPercentage = 20;
 
 // Both paths have to stay identical to the ones in src/iconsRow/SmileyIcon.tsx, src/iconsRow/SmileyOutlineIcon.tsx and src/smiley/BigSmiley.tsx, so that the icon and the app draw the same smiley.
 const filledSmiley =
@@ -236,10 +236,13 @@ const buildSvg = (
 ): string => {
   const scale = glyphDiameter / phosphorGlyphDiameter;
   const offset = size / 2 - phosphorCenter * scale;
+  // Two shapes that merely meet at the waterline leave a pale seam, because each one is antialiased against the clip edge on its own and the two half-covered edges never add up to a whole pixel. Letting the lower shape start one pixel higher hides the seam under solid colour.
+  const overlap = 1 / scale;
+  const belowWaterlineY = waterlineY - overlap;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
   <defs>
     <clipPath id="aboveWaterline"><rect x="0" y="0" width="${phosphorViewBoxSize}" height="${round(waterlineY)}"/></clipPath>
-    <clipPath id="belowWaterline"><rect x="0" y="${round(waterlineY)}" width="${phosphorViewBoxSize}" height="${round(phosphorViewBoxSize - waterlineY)}"/></clipPath>
+    <clipPath id="belowWaterline"><rect x="0" y="${round(belowWaterlineY)}" width="${phosphorViewBoxSize}" height="${round(phosphorViewBoxSize - belowWaterlineY)}"/></clipPath>
   </defs>
   <rect width="${size}" height="${size}" fill="#ffffff"/>
   <g transform="translate(${round(offset)} ${round(offset)}) scale(${round(scale)})" fill="#000000">
