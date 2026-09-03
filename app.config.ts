@@ -5,6 +5,7 @@ const applicationIdentifier = "com.henrikleth.arbejdsglaede";
 const config: ExpoConfig = {
   name: "Happiness at work",
   slug: "arbejdsglaede",
+  owner: "janaagaard75",
   version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/icon-light.png",

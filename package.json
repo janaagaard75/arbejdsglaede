@@ -14,7 +14,7 @@
     "check-lint": "eslint --format unix --max-warnings 0",
     "check-types": "tsc",
     "check-unused": "knip",
-    "eas": "npx eas-cli@latest",
+    "eas": "EXPO_TOKEN=$(op read 'op://Private/Expo arbejdsglaede build/credential') && export EXPO_TOKEN && npx eas-cli@latest",
     "generate-icons": "node scripts/generateIcons.ts",
     "generate-typed-routes": "expo customize tsconfig.json",
     "ios": "expo run:ios",
