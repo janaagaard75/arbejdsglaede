@@ -3,7 +3,7 @@
   "main": "expo-router/entry",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@11.15.1",
+  "packageManager": "pnpm@11.25.0",
   "engines": {
     "node": ">=22.23.1"
   },
@@ -14,7 +14,7 @@
     "check-lint": "eslint --format unix --max-warnings 0",
     "check-types": "tsc",
     "check-unused": "knip",
-    "eas": "npx eas-cli@latest",
+    "eas": "EXPO_TOKEN=$(op read 'op://Private/Expo arbejdsglaede build/credential') && export EXPO_TOKEN && npx eas-cli@latest",
     "generate-icons": "node scripts/generateIcons.ts",
     "generate-typed-routes": "expo customize tsconfig.json",
     "ios": "expo run:ios",
