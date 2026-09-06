@@ -16,6 +16,7 @@
     "check-unused": "knip",
     "eas": "EXPO_TOKEN=$(op read 'op://Private/Expo arbejdsglaede build/credential') && export EXPO_TOKEN && npx eas-cli@latest",
     "generate-icons": "node scripts/generateIcons.ts",
+    "generate-smiley-assets": "node scripts/generateSmileyAssets.ts",
     "generate-typed-routes": "expo customize tsconfig.json",
     "ios": "expo run:ios",
     "ios-device": "expo run:ios --device",
@@ -74,5 +75,8 @@
     "tailwindcss": "^4.3.3",
     "typescript": "~6.0.3",
     "typescript-eslint": "^8.67.0"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.4"
   }
 }
