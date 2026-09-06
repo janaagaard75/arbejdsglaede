@@ -1,30 +1,28 @@
-import { View, type ViewStyle } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  View,
+  type ImageSourcePropType,
+  type ViewStyle,
+} from "react-native";
 import Animated from "react-native-reanimated";
-import Svg, { Path } from "react-native-svg";
-import { useColors } from "../themed/useColors";
+import { useAppColorScheme } from "../themed/useAppColorScheme";
 
 interface Props {
-  /** Between 0 and 100, where 0 leaves the smiley empty and 100 fills it completely. */
   percentage: number;
 }
 
-const viewBoxSize = 256;
+const imageSize = 512;
+const faceTopY = 32;
+const faceBottomY = 480;
 const waterlineTransitionInMilliseconds = 400;
-
-// The inner edge of the ring. The fill rises between these two, so that 0 percent lands exactly on the outlined smiley and 100 percent exactly on the filled one.
-const interiorTopY = 40;
-const interiorBottomY = 216;
-
-// Two windows that merely meet at the waterline leave a pale seam, because each edge is antialiased on its own and the two half-covered pixels never add up to a whole one. Letting the lower window reach a little higher hides the seam under solid colour.
 const waterlineOverlap = 1;
+const colorSmiley = require("../../assets/smiley/fluent-smiling-face-with-smiling-eyes-color.png");
+const graySmiley = {
+  dark: require("../../assets/smiley/fluent-smiling-face-with-smiling-eyes-gray-dark-mode.png"),
+  light: require("../../assets/smiley/fluent-smiling-face-with-smiling-eyes-gray-light-mode.png"),
+};
 
-/** The same two Phosphor Smiley weights that SmileyIcon and SmileyOutlineIcon draw. https://phosphoricons.com/?q=smiley */
-const filledSmiley =
-  "M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM80,108a12,12,0,1,1,12,12A12,12,0,0,1,80,108Zm96,0a12,12,0,1,1-12-12A12,12,0,0,1,176,108Zm-1.07,48c-10.29,17.79-27.4,28-46.93,28s-36.63-10.2-46.92-28a8,8,0,1,1,13.84-8c7.47,12.91,19.21,20,33.08,20s25.61-7.1,33.07-20a8,8,0,0,1,13.86,8Z";
-const outlinedSmiley =
-  "M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216ZM80,108a12,12,0,1,1,12,12A12,12,0,0,1,80,108Zm96,0a12,12,0,1,1-12-12A12,12,0,0,1,176,108Zm-1.07,48c-10.29,17.79-27.4,28-46.93,28s-36.63-10.2-46.92-28a8,8,0,1,1,13.84-8c7.47,12.91,19.21,20,33.08,20s25.61-7.1,33.07-20a8,8,0,0,1,13.86,8Z";
-
-// The waterline is a pair of windows rather than an SVG clip path, because Reanimated ignores a style on an SVG element until that style first changes, which leaves the smiley solid on the very first render.
 const windowStyle: ViewStyle = {
   left: 0,
   overflow: "hidden",
@@ -32,24 +30,44 @@ const windowStyle: ViewStyle = {
   right: 0,
 };
 
-// The smiley keeps its full size while its window shrinks, so that the window reveals part of it instead of scaling it down.
 const smileyStyle: ViewStyle = {
   aspectRatio: 1,
   position: "absolute",
   width: "100%",
 };
 
-export const BigSmiley = (props: Props) => {
-  const orange = useColors().orange;
+const SmileyArtwork = ({ source }: { source: ImageSourcePropType }) => (
+  <Image
+    resizeMode="contain"
+    source={source}
+    style={styles.artwork}
+  />
+);
 
-  const roundedPercentage = Math.round(props.percentage);
+const getWaterlinePercentage = (percentage: number, waterlineY: number) => {
+  if (percentage === 0) {
+    return 100;
+  }
+
+  if (percentage === 100) {
+    return 0;
+  }
+
+  return (100 * waterlineY) / imageSize;
+};
+
+export const BigSmiley = (props: Props) => {
+  const colorScheme = useAppColorScheme();
+  const percentage = Math.min(100, Math.max(0, Math.round(props.percentage)));
   const waterlineY =
-    interiorBottomY
-    - ((interiorBottomY - interiorTopY) * roundedPercentage) / 100;
-  const waterlinePercentage = (100 * waterlineY) / viewBoxSize;
+    faceBottomY - ((faceBottomY - faceTopY) * percentage) / 100;
+  const waterlinePercentage = getWaterlinePercentage(percentage, waterlineY);
+  const overlapPercentage =
+    percentage === 0 || percentage === 100
+      ? 0
+      : (100 * waterlineOverlap) / imageSize;
 
   return (
-    // Callers set the size of the smiley through the width of the view they wrap it in, rather than by passing a size.
     <View className="aspect-square w-[40%] self-center">
       <Animated.View
         style={[
@@ -63,12 +81,7 @@ export const BigSmiley = (props: Props) => {
         ]}
       >
         <View style={[smileyStyle, { top: 0 }]}>
-          <Svg
-            fill={orange}
-            viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
-          >
-            <Path d={outlinedSmiley} />
-          </Svg>
+          <SmileyArtwork source={graySmiley[colorScheme]} />
         </View>
       </Animated.View>
       <Animated.View
@@ -76,21 +89,23 @@ export const BigSmiley = (props: Props) => {
           windowStyle,
           {
             bottom: 0,
-            height: `${100 - waterlinePercentage + (100 * waterlineOverlap) / viewBoxSize}%`,
+            height: `${100 - waterlinePercentage + overlapPercentage}%`,
             transitionDuration: waterlineTransitionInMilliseconds,
             transitionProperty: "height",
           },
         ]}
       >
         <View style={[smileyStyle, { bottom: 0 }]}>
-          <Svg
-            fill={orange}
-            viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
-          >
-            <Path d={filledSmiley} />
-          </Svg>
+          <SmileyArtwork source={colorSmiley} />
         </View>
       </Animated.View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  artwork: {
+    height: "100%",
+    width: "100%",
+  },
+});
