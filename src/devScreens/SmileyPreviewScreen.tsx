@@ -10,8 +10,8 @@ import { ThemedText } from "../themed/ThemedText";
 import { ThemedView } from "../themed/ThemedView";
 import { useColors } from "../themed/useColors";
 
-const initialPercentage = 65;
-const fillLevels = [0, 10, 25, 50, 75, 90, 100];
+const initialPercentage = 0;
+const fillLevels = [0, 10, 20, 30, 90, 100];
 const includedSmileys = 6;
 
 export const SmileyPreviewScreen = () => {
