@@ -31,6 +31,8 @@ export const SmileyPreviewScreen = () => {
           {fillLevels.map((fillLevel) => (
             // A Pressable in place of the View that held the smiley before, so that making these tappable leaves the row laid out exactly as it was.
             <Pressable
+              accessibilityLabel={`${fillLevel}% filled`}
+              accessibilityRole="button"
               className="flex-1 items-center gap-1"
               key={fillLevel}
               onPress={() => {

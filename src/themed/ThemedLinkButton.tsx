@@ -22,6 +22,8 @@ export const ThemedLinkButton = (props: Props) => {
       href={props.href}
     >
       <Pressable
+        accessibilityLabel={props.children}
+        accessibilityRole="button"
         className="self-center"
         onPressIn={pressScale.onPressIn}
         onPressOut={pressScale.onPressOut}
