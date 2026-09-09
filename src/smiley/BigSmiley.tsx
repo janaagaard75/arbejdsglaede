@@ -17,10 +17,10 @@ const faceTopY = 32;
 const faceBottomY = 480;
 const waterlineTransitionInMilliseconds = 400;
 const waterlineOverlap = 1;
-const colorSmiley = require("../../assets/smiley/fluent-smiling-face-with-smiling-eyes-color.png");
+const colorSmiley = require("../../assets/smiley/fluent-grinning-face-with-smiling-eyes-color.png");
 const graySmiley = {
-  dark: require("../../assets/smiley/fluent-smiling-face-with-smiling-eyes-gray-dark-mode.png"),
-  light: require("../../assets/smiley/fluent-smiling-face-with-smiling-eyes-gray-light-mode.png"),
+  dark: require("../../assets/smiley/fluent-grinning-face-with-smiling-eyes-gray-dark-mode.png"),
+  light: require("../../assets/smiley/fluent-grinning-face-with-smiling-eyes-gray-light-mode.png"),
 };
 
 const windowStyle: ViewStyle = {

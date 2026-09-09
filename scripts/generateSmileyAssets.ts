@@ -16,19 +16,19 @@ const smileyOutputDirectory = join(
 );
 const sourcePath = join(
   smileySourceDirectory,
-  "fluent-smiling-face-with-smiling-eyes.svg",
+  "fluent-grinning-face-with-smiling-eyes.svg",
 );
 const colorOutputPath = join(
   smileyOutputDirectory,
-  "fluent-smiling-face-with-smiling-eyes-color.png",
+  "fluent-grinning-face-with-smiling-eyes-color.png",
 );
 const lightModeGrayOutputPath = join(
   smileyOutputDirectory,
-  "fluent-smiling-face-with-smiling-eyes-gray-light-mode.png",
+  "fluent-grinning-face-with-smiling-eyes-gray-light-mode.png",
 );
 const darkModeGrayOutputPath = join(
   smileyOutputDirectory,
-  "fluent-smiling-face-with-smiling-eyes-gray-dark-mode.png",
+  "fluent-grinning-face-with-smiling-eyes-gray-dark-mode.png",
 );
 
 const renderSmiley = () =>
