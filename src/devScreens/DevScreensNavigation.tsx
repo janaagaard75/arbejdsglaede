@@ -11,6 +11,8 @@ interface Props {
 export const DevScreensNavigation = (props: Props) => (
   <View className="flex-row items-center gap-2 px-2">
     <Pressable
+      accessibilityLabel="Previous screen"
+      accessibilityRole="button"
       hitSlop={10}
       onPress={props.onPrevious}
     >
@@ -18,6 +20,8 @@ export const DevScreensNavigation = (props: Props) => (
     </Pressable>
     <ThemedText className="text-[16px]">{`${props.current} / ${props.total}`}</ThemedText>
     <Pressable
+      accessibilityLabel="Next screen"
+      accessibilityRole="button"
       hitSlop={10}
       onPress={props.onNext}
     >
