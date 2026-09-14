@@ -31,7 +31,7 @@ const sourcePath = join(
   "..",
   "assets-src",
   "smiley",
-  "fluent-grinning-face-with-smiling-eyes.svg",
+  "fluent-smiling-face-with-smiling-eyes.svg",
 );
 
 const renderArtwork = async (
