@@ -10,8 +10,8 @@ import { ThemedText } from "../themed/ThemedText";
 import { ThemedView } from "../themed/ThemedView";
 import { useColors } from "../themed/useColors";
 
-const initialPercentage = 65;
-const fillLevels = [0, 10, 25, 50, 75, 90, 100];
+const initialPercentage = 0;
+const fillLevels = [0, 10, 20, 30, 90, 100];
 const includedSmileys = 6;
 
 export const SmileyPreviewScreen = () => {
@@ -31,6 +31,8 @@ export const SmileyPreviewScreen = () => {
           {fillLevels.map((fillLevel) => (
             // A Pressable in place of the View that held the smiley before, so that making these tappable leaves the row laid out exactly as it was.
             <Pressable
+              accessibilityLabel={`${fillLevel}% filled`}
+              accessibilityRole="button"
               className="flex-1 items-center gap-1"
               key={fillLevel}
               onPress={() => {
