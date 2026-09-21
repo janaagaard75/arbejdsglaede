@@ -33,7 +33,7 @@ export const devScreens: ReadonlyArray<DevScreen> = [
     screen: <ScannerScreen simulatedQrCodeString="-heart" />,
   },
   {
-    name: "Scan: plus one smiley",
+    name: "Scan: plus one heart (misprinted +smiley)",
     screen: <ScannerScreen simulatedQrCodeString="+smiley" />,
   },
   {

@@ -21,7 +21,8 @@ export const parseQrCodeString = (
     case "+050pp":
       return { amount: 50, type: "percentage" };
     case "+smiley":
-      return { amount: 1, type: "smiley" };
+      // Printed game boards mistakenly use +smiley where they should use +heart.
+      return { amount: 1, type: "heart" };
     case "-heart":
       return { amount: -1, type: "heart" };
     default:
