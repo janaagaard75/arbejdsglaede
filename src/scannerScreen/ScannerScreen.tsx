@@ -27,7 +27,8 @@ export const ScannerScreen = observer((props: Props) => {
   const colors = useColors();
   const router = useRouter();
 
-  const parsedQrCode = parseQrCodeString(qrCodeString);
+  const parsedQrCode =
+    qrCodeString === undefined ? undefined : parseQrCodeString(qrCodeString);
   const qrCode = parsedQrCode === "unknownQrCode" ? undefined : parsedQrCode;
 
   const applyQrCode = () => {

@@ -29,28 +29,20 @@ export const devScreens: ReadonlyArray<DevScreen> = [
     screen: <ScannerScreen simulatedQrCodeString="https://example.com" />,
   },
   {
-    name: "Scan: plus one heart",
-    screen: <ScannerScreen simulatedQrCodeString="+heart" />,
-  },
-  {
     name: "Scan: minus one heart",
     screen: <ScannerScreen simulatedQrCodeString="-heart" />,
   },
   {
-    name: "Scan: plus one smiley",
+    name: "Scan: plus one heart (misprinted +smiley)",
     screen: <ScannerScreen simulatedQrCodeString="+smiley" />,
   },
   {
-    name: "Scan: minus one smiley",
-    screen: <ScannerScreen simulatedQrCodeString="-smiley" />,
+    name: "Scan: plus 10 percent",
+    screen: <ScannerScreen simulatedQrCodeString="+010pp" />,
   },
   {
-    name: "Scan: plus 15 percent",
-    screen: <ScannerScreen simulatedQrCodeString="+015pp" />,
-  },
-  {
-    name: "Scan: minus 15 percent",
-    screen: <ScannerScreen simulatedQrCodeString="-015pp" />,
+    name: "Scan: minus 10 percent",
+    screen: <ScannerScreen simulatedQrCodeString="-010pp" />,
   },
   {
     name: "Scan: waiting for permission",
