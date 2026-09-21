@@ -15,6 +15,7 @@
     "check-types": "tsc",
     "check-unused": "knip",
     "eas": "sh -c 'EXPO_TOKEN=$(op read \"op://Private/Expo arbejdsglaede build/credential\") && export EXPO_TOKEN && exec npx eas-cli@latest \"$@\"' -- \"$@\"",
+    "eas-build-pre-install": "corepack enable",
     "generate-icons": "node scripts/generateIcons.ts",
     "generate-smiley-assets": "node scripts/generateSmileyAssets.ts",
     "generate-typed-routes": "expo customize tsconfig.json",
