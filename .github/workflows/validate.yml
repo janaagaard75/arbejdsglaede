@@ -17,29 +17,29 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Install pnpm
+      - name: Enable Yarn
         run: corepack enable
 
       - uses: actions/setup-node@v6
         with:
-          cache-dependency-path: pnpm-lock.yaml
-          cache: "pnpm"
+          cache-dependency-path: yarn.lock
+          cache: "yarn"
           node-version-file: .nvmrc
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: yarn install --immutable
 
       - name: Generate typed routes
-        run: pnpm generate-typed-routes
+        run: yarn generate-typed-routes
 
       - name: Check types
-        run: pnpm check-types
+        run: yarn check-types
 
       - name: Check formatting
-        run: pnpm check-formatting
+        run: yarn check-formatting
 
       - name: Check for unused files and dependencies
-        run: pnpm check-unused
+        run: yarn check-unused
 
       - name: Check linting
-        run: pnpm check-lint
+        run: yarn check-lint

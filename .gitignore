@@ -2,9 +2,16 @@
 
 # dependencies
 node_modules/
-
-# pnpm
 .pnpm-store/
+
+# Yarn without Zero-installs
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
 # Expo
 .expo/
@@ -25,7 +32,8 @@ expo-env.d.ts
 
 # debug
 npm-debug.*
-pnpm-debug.*
+yarn-debug.*
+yarn-error.*
 
 # macOS
 .DS_Store
