@@ -1,73 +1,30 @@
 import { KnownQrCode } from "../mainState/KnownQrCode";
 
-const heartCode = /^[+-]heart$/;
-const smileyCode = /^[+-]smiley$/;
-const percentagePointsCode = /^[+-]\d{3}pp$/;
-
 export const parseQrCodeString = (
-  qrCodeString: string | undefined,
-): "unknownQrCode" | KnownQrCode | undefined => {
-  if (qrCodeString === undefined) {
-    return undefined;
+  qrCodeString: string,
+): "unknownQrCode" | KnownQrCode => {
+  switch (qrCodeString) {
+    case "-050pp":
+      return { amount: -50, type: "percentage" };
+    case "-030pp":
+      return { amount: -30, type: "percentage" };
+    case "-020pp":
+      return { amount: -20, type: "percentage" };
+    case "-010pp":
+      return { amount: -10, type: "percentage" };
+    case "+010pp":
+      return { amount: 10, type: "percentage" };
+    case "+020pp":
+      return { amount: 20, type: "percentage" };
+    case "+030pp":
+      return { amount: 30, type: "percentage" };
+    case "+050pp":
+      return { amount: 50, type: "percentage" };
+    case "+smiley":
+      return { amount: 1, type: "smiley" };
+    case "-heart":
+      return { amount: -1, type: "heart" };
+    default:
+      return "unknownQrCode";
   }
-
-  if (heartCode.test(qrCodeString)) {
-    const operation = qrCodeString[0];
-    const value = (() => {
-      switch (operation) {
-        case "+":
-          return 1;
-        case "-":
-          return -1;
-        default:
-          throw new Error(`The operation ${operation} is not supported.`);
-      }
-    })();
-
-    return {
-      amount: value,
-      type: "heart",
-    };
-  }
-
-  if (smileyCode.test(qrCodeString)) {
-    const operation = qrCodeString[0];
-    const value = (() => {
-      switch (operation) {
-        case "+":
-          return 1;
-        case "-":
-          return -1;
-        default:
-          throw new Error(`The operation ${operation} is not supported.`);
-      }
-    })();
-
-    return {
-      amount: value,
-      type: "smiley",
-    };
-  }
-
-  if (percentagePointsCode.test(qrCodeString)) {
-    const operation = qrCodeString[0];
-    const absolutePercentagePoints = parseInt(qrCodeString.slice(1, 4), 10);
-    const percentagePoints = (() => {
-      switch (operation) {
-        case "+":
-          return absolutePercentagePoints;
-        case "-":
-          return -absolutePercentagePoints;
-        default:
-          throw new Error(`The operation ${operation} is not supported.`);
-      }
-    })();
-
-    return {
-      amount: percentagePoints,
-      type: "percentage",
-    };
-  }
-
-  return "unknownQrCode";
 };
