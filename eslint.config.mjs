@@ -42,6 +42,7 @@ export default defineConfig(
     plugins: {
       "@stylistic": stylistic,
       "better-tailwindcss": eslintPluginBetterTailwindcss,
+      // The Yarn patch replaces context.getFilename(), which ESLint 10 removed; remove it when the plugin supports ESLint 10: https://github.com/ekwoka/eslint-plugin-filename-export/issues.
       "filename-export": eslintPluginFilenameExport,
       "react-hooks": eslintPluginReactHooks,
       "react-native": eslintPluginReactNative,

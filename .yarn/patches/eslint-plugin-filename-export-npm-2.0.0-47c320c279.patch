@@ -1,0 +1,22 @@
+diff --git a/dist/index.js b/dist/index.js
+index ad724543de2018e6b4033341d5fbb93505901541..0de4719e0fe2da9f64954521bfe1909cc7cce748 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -80,7 +80,7 @@ module.exports = {
+                 const transformers = makeTransformers((_a = context.options[0]) !== null && _a !== void 0 ? _a : {});
+                 return {
+                     Program(node) {
+-                        const filename = context.getFilename();
++                        const filename = context.filename;
+                         const filenameSansExt = (0, node_path_1.basename)(filename, (0, node_path_1.extname)(filename));
+                         if (['index', 'types'].includes(filenameSansExt) ||
+                             /\.(test|spec|stories)$/.test(filenameSansExt))
+@@ -138,7 +138,7 @@ module.exports = {
+                 const transformers = makeTransformers((_a = context.options[0]) !== null && _a !== void 0 ? _a : {});
+                 return {
+                     Program(node) {
+-                        const filename = context.getFilename();
++                        const filename = context.filename;
+                         const filenameSansExt = (0, node_path_1.basename)(filename, (0, node_path_1.extname)(filename));
+                         if (['index', 'types'].includes(filenameSansExt) ||
+                             /\.(test|spec|stories)$/.test(filenameSansExt))
