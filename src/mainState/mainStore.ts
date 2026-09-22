@@ -11,9 +11,25 @@ const initialSmileys = 0;
 const heartValue = 50;
 const smileyValue = 100;
 
+interface MainValues {
+  hearts: number;
+  percentage: number;
+  smileys: number;
+}
+
+interface QrChange {
+  id: number;
+  newValues: MainValues;
+  previousValues: MainValues;
+  qrCode: KnownQrCode;
+  ready: boolean;
+}
+
 class MainStore {
   public hearts = initialHearts;
+  public pendingQrChange: QrChange | undefined = undefined;
   public percentage = initialPercentage;
+  public qrChangeId = 0;
   public smileys = initialSmileys;
 
   public constructor() {
@@ -33,24 +49,66 @@ class MainStore {
   }
 
   public applyQrCode(qrCode: KnownQrCode) {
-    const newValues = calculateNewValues(
-      {
-        hearts: this.hearts,
-        percentage: this.percentage,
-        smileys: this.smileys,
-      },
-      qrCode,
-    );
+    const previousValues = this.values;
+    const calculatedValues = calculateNewValues(previousValues, qrCode);
+    const newValues = {
+      hearts: calculatedValues.newHearts,
+      percentage: calculatedValues.newPercentage,
+      smileys: calculatedValues.newSmileys,
+    };
 
-    this.hearts = newValues.newHearts;
-    this.percentage = newValues.newPercentage;
-    this.smileys = newValues.newSmileys;
+    this.hearts = newValues.hearts;
+    this.percentage = newValues.percentage;
+    this.smileys = newValues.smileys;
+
+    if (
+      previousValues.hearts === newValues.hearts
+      && previousValues.percentage === newValues.percentage
+      && previousValues.smileys === newValues.smileys
+    ) {
+      this.pendingQrChange = undefined;
+      return;
+    }
+
+    this.qrChangeId += 1;
+    this.pendingQrChange = {
+      id: this.qrChangeId,
+      newValues: newValues,
+      previousValues: previousValues,
+      qrCode: qrCode,
+      ready: false,
+    };
+  }
+
+  public markPendingQrChangeReady() {
+    if (this.pendingQrChange !== undefined) {
+      this.pendingQrChange.ready = true;
+    }
   }
 
   public reset() {
     this.hearts = initialHearts;
+    this.pendingQrChange = undefined;
     this.percentage = initialPercentage;
     this.smileys = initialSmileys;
+  }
+
+  public takeReadyQrChange(): QrChange | undefined {
+    if (this.pendingQrChange?.ready !== true) {
+      return undefined;
+    }
+
+    const qrChange = this.pendingQrChange;
+    this.pendingQrChange = undefined;
+    return qrChange;
+  }
+
+  private get values(): MainValues {
+    return {
+      hearts: this.hearts,
+      percentage: this.percentage,
+      smileys: this.smileys,
+    };
   }
 }
 
