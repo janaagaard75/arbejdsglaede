@@ -71,12 +71,7 @@ export const ScannerScreen = observer((props: Props) => {
           />
         </View>
         <View className="flex-1">
-          <ScannedCodeFeedback
-            hearts={mainStore.hearts}
-            percentage={mainStore.percentage}
-            qrCode={parsedQrCode}
-            smileys={mainStore.smileys}
-          />
+          <ScannedCodeFeedback qrCode={parsedQrCode} />
         </View>
         <View className="mx-auto mb-20 justify-end">
           <SlideToConfirm
