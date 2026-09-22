@@ -1,6 +1,10 @@
-import { clamp } from "react-native-reanimated";
 import { KnownQrCode } from "./KnownQrCode";
 import { maximumIcons } from "./maximumIcons";
+
+const clamp = (value: number, minimum: number, maximum: number) =>
+  Math.min(maximum, Math.max(minimum, value));
+
+const percentagePointsPerSmiley = 100;
 
 export const calculateNewValues = (
   currentValues: {
@@ -19,34 +23,26 @@ export const calculateNewValues = (
       };
 
     case "percentage": {
-      const unrestrictedNewPercentage = clamp(
-        currentValues.percentage + qrCode.amount,
+      const maximumPercentagePoints =
+        maximumIcons * percentagePointsPerSmiley + percentagePointsPerSmiley;
+      const currentPercentagePoints =
+        currentValues.smileys * percentagePointsPerSmiley
+        + currentValues.percentage;
+      const newPercentagePoints = clamp(
+        currentPercentagePoints + qrCode.amount,
         0,
-        Number.MAX_SAFE_INTEGER,
+        maximumPercentagePoints,
       );
-
-      if (unrestrictedNewPercentage <= 100) {
-        return {
-          newHearts: currentValues.hearts,
-          newPercentage: unrestrictedNewPercentage,
-          newSmileys: currentValues.smileys,
-        };
-      }
-
-      if (currentValues.smileys === maximumIcons) {
-        return {
-          newHearts: currentValues.hearts,
-          newPercentage: 100,
-          newSmileys: currentValues.smileys,
-        };
-      }
-
-      const newSmileys = currentValues.smileys + 1;
-      const overflownPercentage = unrestrictedNewPercentage - 100;
+      const newSmileys = Math.min(
+        maximumIcons,
+        Math.floor(newPercentagePoints / percentagePointsPerSmiley),
+      );
+      const newPercentage =
+        newPercentagePoints - newSmileys * percentagePointsPerSmiley;
 
       return {
         newHearts: currentValues.hearts,
-        newPercentage: overflownPercentage,
+        newPercentage: newPercentage,
         newSmileys: newSmileys,
       };
     }
