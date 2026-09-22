@@ -2,12 +2,11 @@ import { observer } from "mobx-react-lite";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { AnimatedIconsRow } from "../iconsRow/AnimatedIconsRow";
 import { HeartIcon } from "../iconsRow/HeartIcon";
 import { HeartOutlineIcon } from "../iconsRow/HeartOutlineIcon";
-import { IconsRow } from "../iconsRow/IconsRow";
 import { SmileyIcon } from "../iconsRow/SmileyIcon";
 import { SmileyOutlineIcon } from "../iconsRow/SmileyOutlineIcon";
-import { mainStore } from "../mainState/mainStore";
 import { maximumIcons } from "../mainState/maximumIcons";
 import { ThemedLinkButton } from "../themed/ThemedLinkButton";
 import { ThemedText } from "../themed/ThemedText";
@@ -15,10 +14,12 @@ import { ThemedView } from "../themed/ThemedView";
 import { useColors } from "../themed/useColors";
 import { SmileyAndPercentage } from "./SmileyAndPercentage";
 import { groupDigitsWithSpaces } from "./groupDigitsWithSpaces";
+import { scoreForValues, useQrChangeAnimation } from "./useQrChangeAnimation";
 
 export const HomeScreen = observer(() => {
   const { t } = useTranslation();
   const colors = useColors();
+  const { displayedValues, iconTransition } = useQrChangeAnimation();
 
   return (
     <SafeAreaView
@@ -53,28 +54,32 @@ export const HomeScreen = observer(() => {
               {t("happinessPoints")}
             </ThemedText>
             <ThemedText className="text-[64px] leading-18 font-bold">
-              {groupDigitsWithSpaces(mainStore.score)}
+              {groupDigitsWithSpaces(scoreForValues(displayedValues))}
             </ThemedText>
           </View>
           <View className="flex-1 justify-center">
-            <SmileyAndPercentage percentage={mainStore.percentage} />
+            <SmileyAndPercentage percentage={displayedValues.percentage} />
             <View className="h-10" />
-            <IconsRow
-              currentValue={mainStore.smileys}
+            <AnimatedIconsRow
+              currentValue={displayedValues.smileys}
               excludedIcon={<SmileyOutlineIcon />}
               gap={3}
               includedIcon={<SmileyIcon />}
               maximum={maximumIcons}
               size={30}
+              transition={iconTransition}
+              type="smiley"
             />
             <View className="h-5" />
-            <IconsRow
-              currentValue={mainStore.hearts}
+            <AnimatedIconsRow
+              currentValue={displayedValues.hearts}
               excludedIcon={<HeartOutlineIcon />}
               gap={3}
               includedIcon={<HeartIcon />}
               maximum={maximumIcons}
               size={30}
+              transition={iconTransition}
+              type="heart"
             />
           </View>
           <View className="mb-20 justify-end">

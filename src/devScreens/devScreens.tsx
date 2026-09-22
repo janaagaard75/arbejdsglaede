@@ -4,6 +4,7 @@ import { ResetScreen } from "../ResetScreen";
 import { CameraPermissionRequired } from "../scannerScreen/CameraPermissionRequired";
 import { ScannerScreen } from "../scannerScreen/ScannerScreen";
 import { WaitingForCameraPermission } from "../scannerScreen/WaitingForCameraPermission";
+import { QrAnimationPreviewScreen } from "./QrAnimationPreviewScreen";
 import { SmileyPreviewScreen } from "./SmileyPreviewScreen";
 
 interface DevScreen {
@@ -15,6 +16,10 @@ export const devScreens: ReadonlyArray<DevScreen> = [
   {
     name: "Home",
     screen: <HomeScreen />,
+  },
+  {
+    name: "QR animations",
+    screen: <QrAnimationPreviewScreen />,
   },
   {
     name: "Reset",

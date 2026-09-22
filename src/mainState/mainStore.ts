@@ -11,13 +11,13 @@ const initialSmileys = 0;
 const heartValue = 50;
 const smileyValue = 100;
 
-interface MainValues {
+export interface MainValues {
   hearts: number;
   percentage: number;
   smileys: number;
 }
 
-interface QrChange {
+export interface QrChange {
   id: number;
   newValues: MainValues;
   previousValues: MainValues;
@@ -29,8 +29,8 @@ class MainStore {
   public hearts = initialHearts;
   public pendingQrChange: QrChange | undefined = undefined;
   public percentage = initialPercentage;
-  public qrChangeId = 0;
   public smileys = initialSmileys;
+  private qrChangeId = 0;
 
   public constructor() {
     makeAutoObservable(this);
