@@ -30,3 +30,7 @@ Issues and specs are tracked in this repository's GitHub Issues. See `docs/agent
 ### Domain docs
 
 Domain documentation uses a single root `CONTEXT.md`. See `docs/agents/domain.md`.
+
+### Pull requests
+
+Write pull request descriptions as one concise paragraph stating what changed and why. Add structure or supporting evidence only when the user explicitly requests it.
