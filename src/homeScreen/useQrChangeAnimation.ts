@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { AccessibilityInfo, AppState, InteractionManager } from "react-native";
 import { useReducedMotion } from "react-native-reanimated";
 import { IconTransition } from "../iconsRow/AnimatedIconsRow";
+import { iconTransitionDurations } from "../iconsRow/iconTransitionDurations";
 import { mainStore, MainValues, QrChange } from "../mainState/mainStore";
 
 const heartValue = 50;
@@ -141,7 +142,12 @@ export const useQrChangeAnimation = () => {
       });
       updateDisplayedValues({ [valueKey]: target });
 
-      const completed = await waitFor(reduceMotion ? 150 : 350, generation);
+      const completed = await waitFor(
+        reduceMotion
+          ? iconTransitionDurations.reduceMotion
+          : iconTransitionDurations[direction],
+        generation,
+      );
 
       if (completed) {
         setIconTransition(undefined);

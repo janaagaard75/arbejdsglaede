@@ -5,10 +5,12 @@ import Animated, {
   useAnimatedStyle,
   useReducedMotion,
   useSharedValue,
+  withDelay,
   withSequence,
   withSpring,
   withTiming,
 } from "react-native-reanimated";
+import { iconTransitionDurations } from "./iconTransitionDurations";
 
 export interface IconTransition {
   direction: "add" | "remove";
@@ -51,20 +53,36 @@ const IconSlot = (props: IconSlotProps) => {
     if (props.transition.direction === "add") {
       opacity.value = 0;
       scale.value = reduceMotion ? 1 : 0;
-      opacity.value = withTiming(1, { duration: reduceMotion ? 150 : 180 });
+      opacity.value = reduceMotion
+        ? withTiming(1, { duration: iconTransitionDurations.reduceMotion })
+        : withDelay(
+            iconTransitionDurations.addDelay,
+            withTiming(1, { duration: iconTransitionDurations.addFade }),
+          );
       scale.value = reduceMotion
         ? 1
-        : withSequence(
-            withTiming(1.1, { duration: 220 }),
-            withSpring(1, { damping: 9, mass: 0.5, stiffness: 180 }),
+        : withDelay(
+            iconTransitionDurations.addDelay,
+            withSequence(
+              withTiming(1.1, {
+                duration: iconTransitionDurations.addOvershoot,
+              }),
+              withSpring(1, { damping: 9, mass: 0.5, stiffness: 180 }),
+            ),
           );
       return;
     }
 
     opacity.value = 1;
     scale.value = 1;
-    opacity.value = withTiming(0, { duration: reduceMotion ? 150 : 350 });
-    scale.value = reduceMotion ? 1 : withTiming(3, { duration: 350 });
+    opacity.value = withTiming(0, {
+      duration: reduceMotion
+        ? iconTransitionDurations.reduceMotion
+        : iconTransitionDurations.remove,
+    });
+    scale.value = reduceMotion
+      ? 1
+      : withTiming(3, { duration: iconTransitionDurations.remove });
   }, [
     isTransitionTarget,
     opacity,
