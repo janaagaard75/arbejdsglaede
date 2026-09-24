@@ -277,7 +277,7 @@ export const useQrChangeAnimation = () => {
     [animateIcons, animatePercentage, announceChange, updateDisplayedValues],
   );
 
-  const cancelAnimation = useCallback(() => {
+  const cancelAnimationAndSync = useCallback(() => {
     cancellationGenerationRef.current += 1;
     queueItemIdRef.current += 1;
     queueTailRef.current = Promise.resolve();
@@ -320,24 +320,28 @@ export const useQrChangeAnimation = () => {
     useCallback(() => {
       focusedRef.current = true;
 
+      if (mainStore.pendingQrChange === undefined) {
+        cancelAnimationAndSync();
+      }
+
       return () => {
         focusedRef.current = false;
-        cancelAnimation();
+        cancelAnimationAndSync();
       };
-    }, [cancelAnimation]),
+    }, [cancelAnimationAndSync]),
   );
 
   useEffect(() => {
     const subscription = AppState.addEventListener("change", (state) => {
       if (state !== "active") {
-        cancelAnimation();
+        cancelAnimationAndSync();
       }
     });
 
     return () => {
       subscription.remove();
     };
-  }, [cancelAnimation]);
+  }, [cancelAnimationAndSync]);
 
   useEffect(
     () => () => {
