@@ -9,6 +9,7 @@ import { mainStore, MainValues, QrChange } from "../mainState/mainStore";
 
 const heartValue = 50;
 const percentagePointsPerSmiley = 100;
+const percentageAnimationDurationMultiplier = 1.5;
 
 const readStoreValues = (): MainValues => {
   return {
@@ -19,7 +20,10 @@ const readStoreValues = (): MainValues => {
 };
 
 const percentageAnimationDuration = (from: number, to: number) =>
-  from === to ? 0 : 250 + (350 * Math.abs(to - from)) / 100;
+  from === to
+    ? 0
+    : (250 + (350 * Math.abs(to - from)) / 100)
+      * percentageAnimationDurationMultiplier;
 
 const easeInOut = (progress: number) =>
   progress < 0.5
