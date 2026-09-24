@@ -27,10 +27,6 @@ If a comment is long enough that this feels wrong, the fix is to shorten it, not
 
 Issues and specs are tracked in this repository's GitHub Issues. See `docs/agents/issue-tracker.md`.
 
-### Triage labels
-
-The default five-role triage label vocabulary is used. See `docs/agents/triage-labels.md`.
-
 ### Domain docs
 
 Domain documentation uses a single root `CONTEXT.md`. See `docs/agents/domain.md`.
