@@ -92,7 +92,7 @@ export const ScannerScreen = observer((props: Props) => {
             scannedQrCode={qrCodeString}
           />
         </View>
-        <View className="flex-1">
+        <View className="mt-5 flex-1">
           <ScannedCodeFeedback qrCode={parsedQrCode} />
         </View>
         <View className="mx-auto mb-20 justify-end">
