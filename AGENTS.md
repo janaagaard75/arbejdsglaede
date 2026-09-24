@@ -20,3 +20,17 @@ Never write a comment that restates the code, labels a section, or repeats what 
 Never hard-wrap a comment across several lines, however long it gets. Prettier does not reflow comments, so a wrapped comment has to be rewrapped by hand every time it is edited, and the diffs touch lines that did not change. Let the editor soft-wrap instead.
 
 If a comment is long enough that this feels wrong, the fix is to shorten it, not to wrap it.
+
+## Agent skills
+
+### Issue tracker
+
+Issues and specs are tracked in this repository's GitHub Issues. See `docs/agents/issue-tracker.md`.
+
+### Domain docs
+
+Domain documentation uses a single root `CONTEXT.md`. See `docs/agents/domain.md`.
+
+### Pull requests
+
+Write pull request descriptions as one concise paragraph stating what changed and why. Add structure or supporting evidence only when the user explicitly requests it.
