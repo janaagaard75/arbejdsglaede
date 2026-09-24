@@ -10,6 +10,7 @@ import { useAppColorScheme } from "../themed/useAppColorScheme";
 
 interface Props {
   percentage: number;
+  transitionDuration?: number;
 }
 
 const imageSize = 512;
@@ -66,6 +67,8 @@ export const BigSmiley = (props: Props) => {
     percentage === 0 || percentage === 100
       ? 0
       : (100 * waterlineOverlap) / imageSize;
+  const transitionDuration =
+    props.transitionDuration ?? waterlineTransitionInMilliseconds;
 
   return (
     <View className="aspect-square w-[40%] self-center">
@@ -75,7 +78,7 @@ export const BigSmiley = (props: Props) => {
           {
             height: `${waterlinePercentage}%`,
             top: 0,
-            transitionDuration: waterlineTransitionInMilliseconds,
+            transitionDuration: transitionDuration,
             transitionProperty: "height",
           },
         ]}
@@ -90,7 +93,7 @@ export const BigSmiley = (props: Props) => {
           {
             bottom: 0,
             height: `${100 - waterlinePercentage + overlapPercentage}%`,
-            transitionDuration: waterlineTransitionInMilliseconds,
+            transitionDuration: transitionDuration,
             transitionProperty: "height",
           },
         ]}

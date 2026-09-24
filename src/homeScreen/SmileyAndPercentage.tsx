@@ -8,7 +8,10 @@ interface Props {
 
 export const SmileyAndPercentage = (props: Props) => (
   <View className="items-center">
-    <BigSmiley percentage={props.percentage} />
+    <BigSmiley
+      percentage={props.percentage}
+      transitionDuration={0}
+    />
     <ThemedText className="text-[28px] font-bold">{`${props.percentage}%`}</ThemedText>
   </View>
 );

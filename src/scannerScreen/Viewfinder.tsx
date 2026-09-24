@@ -1,5 +1,5 @@
 import { BarcodeBounds, BarcodeScanningResult, CameraView } from "expo-camera";
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { View } from "react-native";
 import { useColors } from "../themed/useColors";
 import { HeadUpDisplay } from "./HeadUpDisplay";
@@ -14,28 +14,84 @@ interface Challenger {
 
 interface Props {
   readonly onScannedQrCodeChange: (scannedQrCode: string | undefined) => void;
+  readonly paused: boolean;
   readonly scannedQrCode: string | undefined;
 }
 
+interface ResetTimeout {
+  duration: number;
+  id: ReturnType<typeof setTimeout>;
+}
+
+const debounceDuration = 400;
+const scannerMargin = 50;
+const viewfinderSize = 90 * 3;
+
 export const Viewfinder = (props: Props) => {
+  const { onScannedQrCodeChange, paused, scannedQrCode } = props;
   const [bounds, setBounds] = useState<BarcodeBounds | undefined>(undefined);
   const challengerRef = useRef<Challenger | undefined>(undefined);
   const colors = useColors();
+  const resetTimeoutRef = useRef<ResetTimeout | undefined>(undefined);
   const scannedQrCodeLastSeenAtRef = useRef(0);
+  const wasPausedRef = useRef(paused);
 
-  const [resetScannedQrCodeTimeoutId, setResetScannedQrCodeTimeoutId] =
-    useState<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const resetScannedQrCode = useCallback(() => {
+    resetTimeoutRef.current = undefined;
+    challengerRef.current = undefined;
+    scannedQrCodeLastSeenAtRef.current = 0;
+    onScannedQrCodeChange(undefined);
+    setBounds(undefined);
+  }, [onScannedQrCodeChange]);
 
-  const debounceDuration = 400;
-  const scannerMargin = 50;
-  const viewfinderSize = 90 * 3;
+  const scheduleReset = useCallback(
+    (duration: number, restart: boolean) => {
+      const existingTimeout = resetTimeoutRef.current;
+
+      if (
+        existingTimeout !== undefined
+        && !restart
+        && existingTimeout.duration === duration
+      ) {
+        return;
+      }
+
+      if (existingTimeout !== undefined) {
+        clearTimeout(existingTimeout.id);
+      }
+
+      resetTimeoutRef.current = {
+        duration: duration,
+        id: setTimeout(resetScannedQrCode, duration),
+      };
+    },
+    [resetScannedQrCode],
+  );
+
+  useEffect(
+    () => () => {
+      if (resetTimeoutRef.current !== undefined) {
+        clearTimeout(resetTimeoutRef.current.id);
+      }
+    },
+    [],
+  );
+
+  useEffect(() => {
+    const wasPaused = wasPausedRef.current;
+    wasPausedRef.current = paused;
+
+    if (paused) {
+      if (resetTimeoutRef.current !== undefined) {
+        clearTimeout(resetTimeoutRef.current.id);
+        resetTimeoutRef.current = undefined;
+      }
+    } else if (wasPaused) {
+      scheduleReset(debounceDuration, false);
+    }
+  }, [paused, scheduleReset]);
 
   const qrCodeScanned = (scanningResult: BarcodeScanningResult) => {
-    if (resetScannedQrCodeTimeoutId !== undefined) {
-      clearTimeout(resetScannedQrCodeTimeoutId);
-    }
-
-    // Verify that the scanned QR code is entirely within the visible area of the viewfinder.
     const aboveScanningArea = scanningResult.bounds.origin.y < scannerMargin;
     const belowScanningArea =
       scanningResult.bounds.origin.y + scanningResult.bounds.size.height
@@ -51,6 +107,7 @@ export const Viewfinder = (props: Props) => {
       || leftOfScanningArea
       || rightOfScanningArea
     ) {
+      scheduleReset(debounceDuration, false);
       return;
     }
 
@@ -58,15 +115,12 @@ export const Viewfinder = (props: Props) => {
     // eslint-disable-next-line react-hooks/purity
     const now = Date.now();
 
-    if (
-      props.scannedQrCode === undefined
-      || scanningResult.data === props.scannedQrCode
-    ) {
+    if (scannedQrCode === undefined || scanningResult.data === scannedQrCode) {
       scannedQrCodeLastSeenAtRef.current = now;
       challengerRef.current = undefined;
 
-      if (scanningResult.data !== props.scannedQrCode) {
-        props.onScannedQrCodeChange(scanningResult.data);
+      if (scanningResult.data !== scannedQrCode) {
+        onScannedQrCodeChange(scanningResult.data);
       }
 
       updateBounds(scanningResult.bounds);
@@ -80,13 +134,13 @@ export const Viewfinder = (props: Props) => {
 
       if (!scannedQrCodeKeepsItsLock && challengerHasBeenInSightLongEnough) {
         scannedQrCodeLastSeenAtRef.current = now;
-        props.onScannedQrCodeChange(updatedChallenger.data);
+        onScannedQrCodeChange(updatedChallenger.data);
         updateBounds(updatedChallenger.bounds);
         challengerRef.current = undefined;
       }
     }
 
-    setResetScannedQrCodeTimeoutId(setTimeout(resetScannedQrCode, 3_000));
+    scheduleReset(3_000, true);
   };
 
   const updateChallenger = (
@@ -123,13 +177,6 @@ export const Viewfinder = (props: Props) => {
     }
   };
 
-  const resetScannedQrCode = () => {
-    challengerRef.current = undefined;
-    scannedQrCodeLastSeenAtRef.current = 0;
-    props.onScannedQrCodeChange(undefined);
-    setBounds(undefined);
-  };
-
   return (
     <View
       className="mx-auto"
@@ -143,7 +190,7 @@ export const Viewfinder = (props: Props) => {
           barcodeTypes: ["qr"],
         }}
         facing="back"
-        onBarcodeScanned={qrCodeScanned}
+        onBarcodeScanned={paused ? undefined : qrCodeScanned}
         style={{
           backgroundColor: colors.disabledText,
           height: "100%",
