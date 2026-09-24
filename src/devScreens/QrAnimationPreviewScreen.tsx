@@ -41,7 +41,6 @@ const playScenario = (scenario: Scenario) => {
     mainStore.percentage = scenario.initialValues.percentage;
     mainStore.smileys = scenario.initialValues.smileys;
     mainStore.applyQrCode(scenario.qrCode);
-    mainStore.markPendingQrChangeReady();
   });
 };
 

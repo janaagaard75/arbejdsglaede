@@ -1,7 +1,7 @@
-import { useIsFocused } from "expo-router";
+import { useFocusEffect, useIsFocused } from "expo-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { AccessibilityInfo, AppState } from "react-native";
+import { AccessibilityInfo, AppState, InteractionManager } from "react-native";
 import { useReducedMotion } from "react-native-reanimated";
 import { IconTransition } from "../iconsRow/AnimatedIconsRow";
 import { mainStore, MainValues, QrChange } from "../mainState/mainStore";
@@ -47,7 +47,6 @@ export const useQrChangeAnimation = () => {
   const queueTailRef = useRef(Promise.resolve());
 
   const pendingChangeId = mainStore.pendingQrChange?.id;
-  const pendingChangeReady = mainStore.pendingQrChange?.ready;
   const persistedHearts = mainStore.hearts;
   const persistedPercentage = mainStore.percentage;
   const persistedSmileys = mainStore.smileys;
@@ -311,15 +310,16 @@ export const useQrChangeAnimation = () => {
     [animateChange, updateDisplayedValues],
   );
 
-  useEffect(() => {
-    focusedRef.current = isFocused;
+  useFocusEffect(
+    useCallback(() => {
+      focusedRef.current = true;
 
-    // eslint-disable-next-line react-you-might-not-need-an-effect/no-event-handler
-    if (!isFocused && isAnimating) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      cancelAnimation();
-    }
-  }, [cancelAnimation, isAnimating, isFocused]);
+      return () => {
+        focusedRef.current = false;
+        cancelAnimation();
+      };
+    }, [cancelAnimation]),
+  );
 
   useEffect(() => {
     const subscription = AppState.addEventListener("change", (state) => {
@@ -341,17 +341,27 @@ export const useQrChangeAnimation = () => {
   );
 
   useEffect(() => {
-    if (pendingChangeReady !== true) {
+    if (!isFocused || pendingChangeId === undefined) {
       return;
     }
 
-    const change = mainStore.takeReadyQrChange();
+    // eslint-disable-next-line @typescript-eslint/no-deprecated -- Navigation transitions require interaction completion rather than generic idle time.
+    const task = InteractionManager.runAfterInteractions(() => {
+      if (!focusedRef.current) {
+        return;
+      }
 
-    if (change !== undefined) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      enqueueChange(change);
-    }
-  }, [enqueueChange, pendingChangeId, pendingChangeReady]);
+      const change = mainStore.takePendingQrChange();
+
+      if (change !== undefined) {
+        enqueueChange(change);
+      }
+    });
+
+    return () => {
+      task.cancel();
+    };
+  }, [enqueueChange, isFocused, pendingChangeId]);
 
   useEffect(() => {
     // The persisted store is an external system that can hydrate or reset independently of this component.

@@ -22,7 +22,6 @@ export interface QrChange {
   newValues: MainValues;
   previousValues: MainValues;
   qrCode: KnownQrCode;
-  ready: boolean;
 }
 
 class MainStore {
@@ -76,14 +75,7 @@ class MainStore {
       newValues: newValues,
       previousValues: previousValues,
       qrCode: qrCode,
-      ready: false,
     };
-  }
-
-  public markPendingQrChangeReady() {
-    if (this.pendingQrChange !== undefined) {
-      this.pendingQrChange.ready = true;
-    }
   }
 
   public reset() {
@@ -93,11 +85,7 @@ class MainStore {
     this.smileys = initialSmileys;
   }
 
-  public takeReadyQrChange(): QrChange | undefined {
-    if (this.pendingQrChange?.ready !== true) {
-      return undefined;
-    }
-
+  public takePendingQrChange(): QrChange | undefined {
     const qrChange = this.pendingQrChange;
     this.pendingQrChange = undefined;
     return qrChange;

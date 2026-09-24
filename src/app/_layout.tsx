@@ -6,7 +6,6 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import "../global.css";
 import { HeaderCloseButton } from "../HeaderCloseButton";
 import { configureI18next } from "../i18n/configureI18next";
-import { mainStore } from "../mainState/mainStore";
 import { useAppColorScheme } from "../themed/useAppColorScheme";
 import { useColors } from "../themed/useColors";
 
@@ -36,13 +35,6 @@ const RootLayout = () => {
       <ThemeProvider value={navigationTheme}>
         <SafeAreaProvider>
           <Stack
-            screenListeners={{
-              transitionEnd: (event) => {
-                if (event.data.closing) {
-                  mainStore.markPendingQrChangeReady();
-                }
-              },
-            }}
             screenOptions={{
               headerShadowVisible: false,
               headerShown: true,
