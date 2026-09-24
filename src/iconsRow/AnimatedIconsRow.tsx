@@ -64,7 +64,7 @@ const IconSlot = (props: IconSlotProps) => {
         : withDelay(
             iconTransitionDurations.addDelay,
             withSequence(
-              withTiming(1.1, {
+              withTiming(2, {
                 duration: iconTransitionDurations.addOvershoot,
               }),
               withSpring(1, { damping: 9, mass: 0.5, stiffness: 180 }),
