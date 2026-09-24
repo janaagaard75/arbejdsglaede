@@ -53,7 +53,7 @@ export const HomeScreen = observer(() => {
             >
               {t("happinessPoints")}
             </ThemedText>
-            <ThemedText className="text-[64px] leading-18 font-bold">
+            <ThemedText className="mt-5 text-[64px] leading-18 font-bold">
               {groupDigitsWithSpaces(scoreForValues(displayedValues))}
             </ThemedText>
           </View>
