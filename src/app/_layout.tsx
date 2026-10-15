@@ -1,4 +1,6 @@
+import { Observe, ObserveRoot } from "expo-observe";
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider } from "expo-router";
+import { channel } from "expo-updates";
 import { useTranslation } from "react-i18next";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "react-native-reanimated";
@@ -11,6 +13,11 @@ import { useColors } from "../themed/useColors";
 
 // The translations are bundled with the app, so i18next initializes synchronously and is ready before the first render.
 void configureI18next();
+
+Observe.configure({
+  environment: channel ?? "development",
+  integrations: { "expo-router": true },
+});
 
 const RootLayout = () => {
   const { t } = useTranslation();
@@ -73,4 +80,4 @@ const RootLayout = () => {
   );
 };
 
-export default RootLayout;
+export default ObserveRoot.wrap(RootLayout);
