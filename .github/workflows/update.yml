@@ -30,7 +30,15 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
+      - name: Require main for production updates
+        if: inputs.channel == 'production' && github.ref != 'refs/heads/main'
+        run: |
+          echo "::error::Production updates can only be published from main."
+          exit 1
+
       - uses: actions/checkout@v6
 
       - name: Enable Yarn
