@@ -47,6 +47,15 @@ const config: ExpoConfig = {
   },
   plugins: [
     [
+      "expo-build-properties",
+      {
+        ios: {
+          // Apps built with the iOS 27 SDK fail to launch without the UIScene life cycle, and the SDK 57 template does not adopt it. This can go when upgrading to SDK 58, where it is the default.
+          enableSceneSupport: true,
+        },
+      },
+    ],
+    [
       "expo-camera",
       {
         // The fallback used when the device language is neither Danish nor English. The localized versions live in ./locales.
