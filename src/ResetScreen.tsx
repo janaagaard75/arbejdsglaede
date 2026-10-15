@@ -1,3 +1,4 @@
+import { Observe } from "expo-observe";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
@@ -25,6 +26,7 @@ export const ResetScreen = () => {
 
   const reset = () => {
     mainStore.reset();
+    Observe.logEvent("score.reset");
 
     // Wrapping in this conditional removes a warning from the router. Don't know why.
     if (router.canGoBack()) {
