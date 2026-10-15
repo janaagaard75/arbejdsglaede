@@ -1,4 +1,5 @@
 import { useCameraPermissions } from "expo-camera";
+import { Observe } from "expo-observe";
 import { useRouter } from "expo-router";
 import { observer } from "mobx-react-lite";
 import { useRef, useState } from "react";
@@ -58,6 +59,7 @@ export const ScannerScreen = observer((props: Props) => {
 
     confirmedRef.current = true;
     mainStore.applyQrCode(confirmingQrCode);
+    Observe.logEvent("qr.applied", { attributes: { ...confirmingQrCode } });
 
     // Wrapping in this conditional removes a warning from the router. Don't know why.
     if (router.canGoBack()) {

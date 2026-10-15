@@ -368,7 +368,10 @@ export default defineConfig(
       ],
 
       // Ensure that our components can safely be updated with fast refresh.
-      "react-refresh/only-export-components": "warn",
+      "react-refresh/only-export-components": [
+        "warn",
+        { extraHOCs: ["ObserveRoot"] },
+      ],
     },
   },
   {

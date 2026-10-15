@@ -1,3 +1,4 @@
+import { ObserveInteractiveMarker } from "expo-observe";
 import { observer } from "mobx-react-lite";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
@@ -7,6 +8,7 @@ import { HeartIcon } from "../iconsRow/HeartIcon";
 import { HeartOutlineIcon } from "../iconsRow/HeartOutlineIcon";
 import { SmileyIcon } from "../iconsRow/SmileyIcon";
 import { SmileyOutlineIcon } from "../iconsRow/SmileyOutlineIcon";
+import { mainStore } from "../mainState/mainStore";
 import { maximumIcons } from "../mainState/maximumIcons";
 import { ThemedLinkButton } from "../themed/ThemedLinkButton";
 import { ThemedText } from "../themed/ThemedText";
@@ -92,6 +94,7 @@ export const HomeScreen = observer(() => {
           </View>
         </View>
       </ThemedView>
+      {mainStore.isHydrated && <ObserveInteractiveMarker />}
     </SafeAreaView>
   );
 });

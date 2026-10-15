@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { makeAutoObservable } from "mobx";
-import { makePersistable } from "mobx-persist-store";
+import { isHydrated, makePersistable } from "mobx-persist-store";
 import { KnownQrCode } from "./KnownQrCode";
 import { calculateNewValues } from "./calculateNewValues";
 
@@ -39,6 +39,10 @@ class MainStore {
       properties: ["hearts", "percentage", "smileys"],
       storage: AsyncStorage,
     });
+  }
+
+  public get isHydrated(): boolean {
+    return isHydrated(this);
   }
 
   public get score(): number {
