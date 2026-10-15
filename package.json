@@ -22,7 +22,9 @@
     "ios": "expo run:ios",
     "ios-device": "expo run:ios --device",
     "start": "expo start",
-    "submit-ios": "yarn run eas submit --platform ios"
+    "submit-ios": "yarn run eas submit --platform ios",
+    "update-preview": "yarn run eas update --channel preview --environment preview",
+    "update-production": "yarn run eas update --channel production --environment production"
   },
   "dependencies": {
     "@e18e/eslint-plugin": "^0.8.1",
