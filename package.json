@@ -80,7 +80,7 @@
     "typescript-eslint": "^8.70.0"
   },
   "devDependencies": {
-    "sharp": "^0.35.4"
+    "sharp": "^0.35.5"
   },
   "resolutions": {
     "lightningcss": "1.30.1"
