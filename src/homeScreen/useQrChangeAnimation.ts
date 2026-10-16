@@ -36,6 +36,8 @@ export const scoreForValues = (values: MainValues) =>
   + values.hearts * heartValue;
 
 export const useQrChangeAnimation = () => {
+  // The React Compiler treats the MobX store as an immutable module global, so it memoizes the effects below without the store values as dependencies, and a hydration that lands after the first render never reaches the screen.
+  "use no memo";
   const { t } = useTranslation();
   const isFocused = useIsFocused();
   const reduceMotion = useReducedMotion();
