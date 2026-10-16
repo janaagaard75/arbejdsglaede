@@ -6,6 +6,7 @@ import { useReducedMotion } from "react-native-reanimated";
 import { IconTransition } from "../iconsRow/AnimatedIconsRow";
 import { iconTransitionDurations } from "../iconsRow/iconTransitionDurations";
 import { mainStore, MainValues, QrChange } from "../mainState/mainStore";
+import { useMainStoreSnapshot } from "../mainState/useMainStoreSnapshot";
 
 const heartValue = 50;
 const percentagePointsPerSmiley = 100;
@@ -36,8 +37,6 @@ export const scoreForValues = (values: MainValues) =>
   + values.hearts * heartValue;
 
 export const useQrChangeAnimation = () => {
-  // The React Compiler treats the MobX store as an immutable module global, so it memoizes the effects below without the store values as dependencies, and a hydration that lands after the first render never reaches the screen.
-  "use no memo";
   const { t } = useTranslation();
   const isFocused = useIsFocused();
   const reduceMotion = useReducedMotion();
@@ -53,10 +52,12 @@ export const useQrChangeAnimation = () => {
   const queueItemIdRef = useRef(0);
   const queueTailRef = useRef(Promise.resolve());
 
-  const pendingChangeId = mainStore.pendingQrChange?.id;
-  const persistedHearts = mainStore.hearts;
-  const persistedPercentage = mainStore.percentage;
-  const persistedSmileys = mainStore.smileys;
+  const {
+    hearts: persistedHearts,
+    pendingQrChangeId: pendingChangeId,
+    percentage: persistedPercentage,
+    smileys: persistedSmileys,
+  } = useMainStoreSnapshot();
 
   const updateDisplayedValues = useCallback((updates: Partial<MainValues>) => {
     const nextValues = { ...displayedValuesRef.current, ...updates };
