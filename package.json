@@ -9,7 +9,7 @@
   },
   "scripts": {
     "android": "expo run:android",
-    "build-ios": "EAS_BUILD_NO_EXPO_GO_WARNING=true yarn run eas build --platform ios",
+    "build": "EAS_BUILD_NO_EXPO_GO_WARNING=true yarn run eas build",
     "check-formatting": "prettier --check .",
     "check-lint": "eslint --format unix --max-warnings 0",
     "check-types": "tsc",
@@ -22,7 +22,7 @@
     "ios": "expo run:ios",
     "ios-device": "expo run:ios --device",
     "start": "expo start",
-    "submit-ios": "yarn run eas submit --platform ios",
+    "submit": "yarn run eas submit",
     "update-preview": "yarn run eas update --channel preview --environment preview",
     "update-production": "yarn run eas update --channel production --environment production"
   },
