@@ -59,7 +59,7 @@
       <p class="store-badges">
         <a href="https://apps.apple.com/app/id6792886992"
           ><img
-            src="https://tools.applemarketingtools.com/api/badges/download-on-the-app-store/black/da-dk"
+            src="/app-store-badge.svg"
             alt="Download i App Store"
         /></a>
         <a
@@ -70,6 +70,13 @@
             alt="Få det på Google Play"
         /></a>
       </p>
+      <script>
+        // iPadOS identifies itself as a Mac, so matching Mac also covers iPads.
+        if (!/Mac|iPhone|iPad|iPod/.test(navigator.userAgent)) {
+          const storeBadges = document.currentScript.previousElementSibling;
+          storeBadges.append(storeBadges.firstElementChild);
+        }
+      </script>
 
       <h2>Teknisk assistance</h2>
 
