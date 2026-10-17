@@ -71,6 +71,12 @@ a {
   margin: -9px;
 }
 
+/* The Danish badge image has less padding than the English one, so it needs less enlarging to match. */
+:lang(da) .store-badges .google-play {
+  height: 52px;
+  margin: -6px;
+}
+
 footer {
   margin-top: 3rem;
   color: var(--muted);
