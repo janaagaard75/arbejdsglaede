@@ -1,0 +1,60 @@
+:root {
+  color-scheme: light dark;
+  --background: #f8f4ee;
+  --text: #292929;
+  --muted: #6e6e6e;
+  --accent: #b45309;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #292929;
+    --text: #f8f4ee;
+    --muted: #a8a8a8;
+    --accent: #f59e0b;
+  }
+}
+
+body {
+  margin: 0 auto;
+  max-width: 40rem;
+  padding: 2rem 1rem 4rem;
+  background: var(--background);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+header img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 22%;
+}
+
+h1 {
+  margin: 0;
+  line-height: 1.2;
+}
+
+nav {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+
+a {
+  color: var(--accent);
+}
+
+footer {
+  margin-top: 3rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
