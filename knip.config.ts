@@ -1,7 +1,7 @@
 import type { KnipConfig } from "knip";
 
 const config: KnipConfig = {
-  ignore: [".claude/**", "website/**"],
+  ignore: [".claude/**", "docs/**"],
   // Yarn provides its core API to plugins at runtime.
   ignoreDependencies: ["@yarnpkg/core"],
   ignoreBinaries: [

@@ -25,11 +25,11 @@ If a comment is long enough that this feels wrong, the fix is to shorten it, not
 
 ### Issue tracker
 
-Issues and specs are tracked in this repository's GitHub Issues. See `docs/agents/issue-tracker.md`.
+Issues and specs are tracked in this repository's GitHub Issues. See `documentation/agents/issue-tracker.md`.
 
 ### Domain docs
 
-Domain documentation uses a single root `CONTEXT.md`. See `docs/agents/domain.md`.
+Domain documentation uses a single root `CONTEXT.md`. See `documentation/agents/domain.md`.
 
 ### Pull requests
 
