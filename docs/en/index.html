@@ -70,6 +70,13 @@
             alt="Get it on Google Play"
         /></a>
       </p>
+      <script>
+        // iPadOS identifies itself as a Mac, so matching Mac also covers iPads.
+        if (!/Mac|iPhone|iPad|iPod/.test(navigator.userAgent)) {
+          const storeBadges = document.currentScript.previousElementSibling;
+          storeBadges.append(storeBadges.firstElementChild);
+        }
+      </script>
 
       <h2>Support</h2>
 
