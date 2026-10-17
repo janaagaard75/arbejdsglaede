@@ -53,6 +53,24 @@ a {
   color: var(--accent);
 }
 
+.store-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.store-badges img {
+  display: block;
+  height: 40px;
+}
+
+/* Google's badge image has transparent padding built in, so it is drawn larger and pulled in to match the App Store badge. */
+.store-badges .google-play {
+  height: 58px;
+  margin: -9px;
+}
+
 footer {
   margin-top: 3rem;
   color: var(--muted);
