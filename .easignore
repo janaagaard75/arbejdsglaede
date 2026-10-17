@@ -56,6 +56,7 @@ yarn-error.*
 .github/
 .vscode/
 assets-src/
+docs/
 documentation/
 qr-codes/
 scripts/
