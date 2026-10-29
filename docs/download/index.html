@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <title>Hent Arbejdsglæde</title>
+    <meta
+      name="robots"
+      content="noindex"
+    />
+    <link
+      rel="icon"
+      href="/icon.png"
+    />
+    <link
+      rel="stylesheet"
+      href="/style.css"
+    />
+    <script>
+      const appStoreUrl = "https://apps.apple.com/app/id6792886992";
+      const googlePlayUrl =
+        "https://play.google.com/store/apps/details?id=com.henrikleth.arbejdsglaede";
+      const isAndroid = /Android/i.test(navigator.userAgent);
+
+      window.location.replace(isAndroid ? googlePlayUrl : appStoreUrl);
+    </script>
+    <noscript>
+      <meta
+        http-equiv="refresh"
+        content="0;url=https://apps.apple.com/app/id6792886992"
+      />
+    </noscript>
+  </head>
+  <body>
+    <header>
+      <img
+        src="/icon.png"
+        alt=""
+      />
+      <h1>Hent Arbejdsglæde</h1>
+    </header>
+    <main>
+      <p>Du bliver sendt videre til appbutikken. Du kan også åbne den her:</p>
+      <ul>
+        <li>
+          <a href="https://apps.apple.com/app/id6792886992">Apple App Store</a>
+        </li>
+        <li>
+          <a
+            href="https://play.google.com/store/apps/details?id=com.henrikleth.arbejdsglaede"
+            >Google Play</a
+          >
+        </li>
+      </ul>
+    </main>
+  </body>
+</html>
