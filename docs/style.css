@@ -77,6 +77,12 @@ a {
   margin: -6px;
 }
 
+.download-qr img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 footer {
   margin-top: 3rem;
   color: var(--muted);
