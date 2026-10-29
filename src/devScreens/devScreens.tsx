@@ -46,8 +46,16 @@ export const devScreens: ReadonlyArray<DevScreen> = [
     screen: <ScannerScreen simulatedQrCodeString="+010pp" />,
   },
   {
+    name: "Scan: plus 100 percentage points (one smiley)",
+    screen: <ScannerScreen simulatedQrCodeString="+100pp" />,
+  },
+  {
     name: "Scan: minus 10 percent",
     screen: <ScannerScreen simulatedQrCodeString="-010pp" />,
+  },
+  {
+    name: "Scan: minus 100 percentage points (one smiley)",
+    screen: <ScannerScreen simulatedQrCodeString="-100pp" />,
   },
   {
     name: "Scan: waiting for permission",
