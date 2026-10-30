@@ -8,7 +8,7 @@ const initialHearts = 0;
 const initialPercentage = 20;
 const initialSmileys = 0;
 
-const heartValue = 50;
+const heartValue = 100;
 const smileyValue = 100;
 
 export interface MainValues {
