@@ -8,7 +8,7 @@ import { iconTransitionDurations } from "../iconsRow/iconTransitionDurations";
 import { mainStore, MainValues, QrChange } from "../mainState/mainStore";
 import { useMainStoreSnapshot } from "../mainState/useMainStoreSnapshot";
 
-const heartValue = 50;
+const heartValue = 100;
 const percentagePointsPerSmiley = 100;
 const percentageAnimationDurationMultiplier = 1.5;
 
