@@ -10,7 +10,9 @@ import { useMainStoreSnapshot } from "../mainState/useMainStoreSnapshot";
 
 const heartValue = 100;
 const percentagePointsPerSmiley = 100;
-const percentageAnimationDurationMultiplier = 1.5;
+const percentageAnimationDurationMultiplier = 2;
+const scoreChangeLeadIn = 240;
+const scoreChangeHold = 900;
 
 const readStoreValues = (): MainValues => {
   return {
@@ -43,6 +45,9 @@ export const useQrChangeAnimation = () => {
   const [displayedValues, setDisplayedValues] = useState(readStoreValues);
   const [iconTransition, setIconTransition] = useState<
     IconTransition | undefined
+  >(undefined);
+  const [scoreChange, setScoreChange] = useState<
+    { amount: number; id: number } | undefined
   >(undefined);
   const [isAnimating, setIsAnimating] = useState(false);
   const cancellationGenerationRef = useRef(0);
@@ -120,6 +125,7 @@ export const useQrChangeAnimation = () => {
       type: IconTransition["type"],
       target: number,
       generation: number,
+      percentage = displayedValuesRef.current.percentage,
     ) => {
       const valueKey = type === "heart" ? "hearts" : "smileys";
       const current = displayedValuesRef.current[valueKey];
@@ -147,7 +153,7 @@ export const useQrChangeAnimation = () => {
         indices: indices,
         type: type,
       });
-      updateDisplayedValues({ [valueKey]: target });
+      updateDisplayedValues({ percentage: percentage, [valueKey]: target });
 
       const completed = await waitFor(
         reduceMotion
@@ -219,7 +225,17 @@ export const useQrChangeAnimation = () => {
   const animateChange = useCallback(
     async (change: QrChange, generation: number) => {
       updateDisplayedValues(change.previousValues);
+      setScoreChange({
+        amount:
+          scoreForValues(change.newValues)
+          - scoreForValues(change.previousValues),
+        id: change.id,
+      });
       announceChange(change);
+
+      if (!reduceMotion && !(await waitFor(scoreChangeLeadIn, generation))) {
+        return;
+      }
 
       switch (change.qrCode.type) {
         case "heart":
@@ -244,11 +260,9 @@ export const useQrChangeAnimation = () => {
               }
 
               smileys += 1;
-              if (!(await animateIcons("smiley", smileys, generation))) {
+              if (!(await animateIcons("smiley", smileys, generation, 0))) {
                 return;
               }
-
-              updateDisplayedValues({ percentage: 0 });
             }
           } else {
             while (
@@ -260,11 +274,9 @@ export const useQrChangeAnimation = () => {
               }
 
               smileys -= 1;
-              if (!(await animateIcons("smiley", smileys, generation))) {
+              if (!(await animateIcons("smiley", smileys, generation, 100))) {
                 return;
               }
-
-              updateDisplayedValues({ percentage: 100 });
             }
           }
 
@@ -279,9 +291,19 @@ export const useQrChangeAnimation = () => {
 
       if (cancellationGenerationRef.current === generation) {
         updateDisplayedValues(change.newValues);
+        if (await waitFor(scoreChangeHold, generation)) {
+          setScoreChange(undefined);
+        }
       }
     },
-    [animateIcons, animatePercentage, announceChange, updateDisplayedValues],
+    [
+      animateIcons,
+      animatePercentage,
+      announceChange,
+      reduceMotion,
+      updateDisplayedValues,
+      waitFor,
+    ],
   );
 
   const cancelAnimationAndSync = useCallback(() => {
@@ -289,6 +311,7 @@ export const useQrChangeAnimation = () => {
     queueItemIdRef.current += 1;
     queueTailRef.current = Promise.resolve();
     setIconTransition(undefined);
+    setScoreChange(undefined);
     updateDisplayedValues(readStoreValues());
     setIsAnimating(false);
   }, [updateDisplayedValues]);
@@ -401,5 +424,7 @@ export const useQrChangeAnimation = () => {
   return {
     displayedValues: displayedValues,
     iconTransition: iconTransition,
+    reduceMotion: reduceMotion,
+    scoreChange: scoreChange,
   };
 };

@@ -14,6 +14,7 @@ import { ThemedLinkButton } from "../themed/ThemedLinkButton";
 import { ThemedText } from "../themed/ThemedText";
 import { ThemedView } from "../themed/ThemedView";
 import { useColors } from "../themed/useColors";
+import { ScoreConfetti } from "./ScoreConfetti";
 import { SmileyAndPercentage } from "./SmileyAndPercentage";
 import { groupDigitsWithSpaces } from "./groupDigitsWithSpaces";
 import { scoreForValues, useQrChangeAnimation } from "./useQrChangeAnimation";
@@ -21,7 +22,8 @@ import { scoreForValues, useQrChangeAnimation } from "./useQrChangeAnimation";
 export const HomeScreen = observer(() => {
   const { t } = useTranslation();
   const colors = useColors();
-  const { displayedValues, iconTransition } = useQrChangeAnimation();
+  const { displayedValues, iconTransition, reduceMotion, scoreChange } =
+    useQrChangeAnimation();
 
   return (
     <SafeAreaView
@@ -58,6 +60,24 @@ export const HomeScreen = observer(() => {
             <ThemedText className="mt-5 text-[64px] leading-18 font-bold">
               {groupDigitsWithSpaces(scoreForValues(displayedValues))}
             </ThemedText>
+            <View className="h-8">
+              {scoreChange !== undefined && scoreChange.amount !== 0 && (
+                <ThemedText
+                  accessible={false}
+                  className="text-2xl font-bold"
+                  style={{
+                    color: scoreChange.amount < 0 ? colors.red : colors.text,
+                  }}
+                >
+                  {`${scoreChange.amount > 0 ? "+" : "−"}${groupDigitsWithSpaces(Math.abs(scoreChange.amount))}`}
+                </ThemedText>
+              )}
+            </View>
+            {!reduceMotion
+              && scoreChange !== undefined
+              && scoreChange.amount > 0 && (
+                <ScoreConfetti key={scoreChange.id} />
+              )}
           </View>
           <View className="flex-1 justify-center">
             <SmileyAndPercentage percentage={displayedValues.percentage} />
