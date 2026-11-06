@@ -1,5 +1,5 @@
 import { AccessibilityActionEvent, View } from "react-native";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import { GestureDetector, usePanGesture } from "react-native-gesture-handler";
 import Animated, {
   clamp,
   useAnimatedStyle,
@@ -47,32 +47,27 @@ export const SlideToConfirm = (props: Props) => {
   };
 
   // The pan activates on horizontal movement and fails on vertical movement, letting a downward swipe on the button dismiss the modal instead.
-  const pan = Gesture.Pan()
-    .enabled(!props.disabled)
-    .activeOffsetX([-10, 10])
-    .failOffsetY([-20, 20])
-    .onStart(() => {
+  const pan = usePanGesture({
+    activeOffsetX: [-10, 10],
+    enabled: !props.disabled,
+    failOffsetY: [-20, 20],
+    onActivate: () => {
       if (onInteractionStart !== undefined) {
         scheduleOnRN(onInteractionStart);
       }
-    })
-    .onChange((event) => {
-      animatedPosition.value = clamp(event.translationX, 0, maxDx);
-    })
-    .onEnd(() => {
-      if (maxDx - animatedPosition.value <= dropZoneWidth) {
+    },
+    onFinalize: (event) => {
+      if (!event.canceled && maxDx - animatedPosition.value <= dropZoneWidth) {
         scheduleOnRN(onConfirm);
       } else if (onInteractionCancel !== undefined) {
         scheduleOnRN(onInteractionCancel);
       }
-    })
-    .onFinalize((_event, success) => {
-      if (!success && onInteractionCancel !== undefined) {
-        scheduleOnRN(onInteractionCancel);
-      }
-
       animatedPosition.value = withTiming(0, { duration: 100 });
-    });
+    },
+    onUpdate: (event) => {
+      animatedPosition.value = clamp(event.translationX, 0, maxDx);
+    },
+  });
 
   const animatedTranslation = useAnimatedStyle(() => {
     return {
