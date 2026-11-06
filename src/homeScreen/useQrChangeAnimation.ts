@@ -1,7 +1,7 @@
 import { useFocusEffect, useIsFocused } from "expo-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { AccessibilityInfo, AppState, InteractionManager } from "react-native";
+import { AccessibilityInfo, AppState } from "react-native";
 import { useReducedMotion } from "react-native-reanimated";
 import { IconTransition } from "../iconsRow/AnimatedIconsRow";
 import { iconTransitionDurations } from "../iconsRow/iconTransitionDurations";
@@ -362,8 +362,7 @@ export const useQrChangeAnimation = () => {
       return;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-deprecated -- Navigation transitions require interaction completion rather than generic idle time.
-    const task = InteractionManager.runAfterInteractions(() => {
+    const idleCallbackId = requestIdleCallback(() => {
       if (!focusedRef.current) {
         return;
       }
@@ -376,7 +375,7 @@ export const useQrChangeAnimation = () => {
     });
 
     return () => {
-      task.cancel();
+      cancelIdleCallback(idleCallbackId);
     };
   }, [enqueueChange, isFocused, pendingChangeId]);
 
