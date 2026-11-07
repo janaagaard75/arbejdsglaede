@@ -10,6 +10,7 @@ import Animated, {
   withSpring,
   withTiming,
 } from "react-native-reanimated";
+import { IconConfetti } from "./IconConfetti";
 import { iconTransitionDurations } from "./iconTransitionDurations";
 
 export interface IconTransition {
@@ -107,6 +108,9 @@ const IconSlot = (props: IconSlotProps) => {
           {props.includedIcon}
         </Animated.View>
       )}
+      {isTransitionTarget
+        && props.transition?.direction === "add"
+        && !reduceMotion && <IconConfetti key={props.transition.id} />}
     </View>
   );
 };
