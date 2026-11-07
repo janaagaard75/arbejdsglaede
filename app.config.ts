@@ -6,7 +6,8 @@ const config: ExpoConfig = {
   name: "Happiness at work",
   slug: "arbejdsglaede",
   owner: "janaagaard75",
-  version: "1.0.0",
+  // This placeholder is unused in production builds; the publish workflow replaces it with the Git tag version.
+  version: "0.0.0",
   orientation: "portrait",
   icon: "./assets/icon-light.png",
   scheme: "arbejdsglaede",
