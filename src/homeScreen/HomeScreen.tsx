@@ -14,7 +14,6 @@ import { ThemedLinkButton } from "../themed/ThemedLinkButton";
 import { ThemedText } from "../themed/ThemedText";
 import { ThemedView } from "../themed/ThemedView";
 import { useColors } from "../themed/useColors";
-import { ScoreConfetti } from "./ScoreConfetti";
 import { SmileyAndPercentage } from "./SmileyAndPercentage";
 import { groupDigitsWithSpaces } from "./groupDigitsWithSpaces";
 import { scoreForValues, useQrChangeAnimation } from "./useQrChangeAnimation";
@@ -22,7 +21,7 @@ import { scoreForValues, useQrChangeAnimation } from "./useQrChangeAnimation";
 export const HomeScreen = observer(() => {
   const { t } = useTranslation();
   const colors = useColors();
-  const { displayedValues, iconTransition, reduceMotion, scoreChange } =
+  const { displayedValues, iconTransition, scoreChange } =
     useQrChangeAnimation();
 
   return (
@@ -73,11 +72,6 @@ export const HomeScreen = observer(() => {
                 </ThemedText>
               )}
             </View>
-            {!reduceMotion
-              && scoreChange !== undefined
-              && scoreChange.amount > 0 && (
-                <ScoreConfetti key={scoreChange.id} />
-              )}
           </View>
           <View className="flex-1 justify-center">
             <SmileyAndPercentage percentage={displayedValues.percentage} />

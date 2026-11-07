@@ -10,7 +10,7 @@ import { useMainStoreSnapshot } from "../mainState/useMainStoreSnapshot";
 
 const heartValue = 100;
 const percentagePointsPerSmiley = 100;
-const percentageAnimationDurationMultiplier = 2;
+const percentageAnimationDurationMultiplier = 3;
 const scoreChangeLeadIn = 240;
 const scoreChangeHold = 900;
 

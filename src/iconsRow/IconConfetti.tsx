@@ -6,11 +6,14 @@ import Animated, {
   interpolate,
   useAnimatedStyle,
   useSharedValue,
+  withDelay,
   withTiming,
 } from "react-native-reanimated";
+import { iconTransitionDurations } from "./iconTransitionDurations";
 import { useColors } from "../themed/useColors";
 
-const burstDuration = 1120;
+const burstDuration =
+  iconTransitionDurations.add - iconTransitionDurations.addDelay;
 const particleCount = 22;
 const particles = Array.from({ length: particleCount }, (_, index) => {
   const direction = index % 2 === 0 ? -1 : 1;
@@ -19,7 +22,7 @@ const particles = Array.from({ length: particleCount }, (_, index) => {
     lift: 24 + ((index * 23) % 86),
     size: 4 + ((index * 7) % 6),
     spin: direction * (110 + ((index * 31) % 220)),
-    startX: direction * (58 + ((index * 13) % 23)),
+    startX: direction * (8 + ((index * 13) % 15)),
   };
 });
 
@@ -61,14 +64,17 @@ const ConfettiParticle = ({ color, particle, progress }: ParticleProps) => {
   );
 };
 
-export const ScoreConfetti = () => {
+export const IconConfetti = () => {
   const colors = useColors();
   const particleColors = [colors.orange, colors.green, colors.text];
   const progress = useSharedValue(0);
 
   useEffect(() => {
     progress.set(
-      withTiming(1, { duration: burstDuration, easing: Easing.linear }),
+      withDelay(
+        iconTransitionDurations.addDelay,
+        withTiming(1, { duration: burstDuration, easing: Easing.linear }),
+      ),
     );
   }, [progress]);
 
