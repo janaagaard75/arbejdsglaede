@@ -21,6 +21,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set app version from Git tag
+        run: |
+          VERSION_TAG=$(git tag --points-at HEAD --sort=-version:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n 1 || true)
+          if [ -z "$VERSION_TAG" ]; then
+            echo "::error::This commit has no version tag. Wait for the version tagging workflow to finish before publishing."
+            exit 1
+          fi
+          APP_VERSION=${VERSION_TAG#v}
+          sed -i "s/version: \"0.0.0\"/version: \"$APP_VERSION\"/" app.config.ts
+          echo "Building app version $APP_VERSION."
 
       - name: Enable Yarn
         run: corepack enable
